@@ -1,0 +1,614 @@
+openapi: 3.1.0
+info:
+  title: Amazon Bedrock Runtime API
+  description: >-
+    The Amazon Bedrock Runtime API provides operations for invoking foundation
+    models and running inference. Use this API to send prompts, receive
+    generated responses, conduct multi-turn conversations, and stream
+    responses in real time.
+  version: '2023-09-30'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/support/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+servers:
+  - url: https://bedrock-runtime.{region}.amazonaws.com
+    description: Amazon Bedrock Runtime API
+    variables:
+      region:
+        default: us-east-1
+        description: The AWS region
+        enum:
+          - us-east-1
+          - us-west-2
+          - eu-west-1
+          - ap-southeast-1
+
+paths:
+
+  /model/{modelId}/invoke:
+    post:
+      operationId: InvokeModel
+      summary: Invoke a model
+      description: >-
+        Invokes the specified Amazon Bedrock model to run inference using the
+        prompt and inference parameters provided in the request body. The
+        response is returned in a single response body.
+      tags:
+        - Inference
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          description: >-
+            The identifier of the model to invoke (e.g.,
+            anthropic.claude-3-sonnet-20240229-v1:0).
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          description: The MIME type of the input data in the request body.
+          schema:
+            type: string
+            default: application/json
+        - name: Accept
+          in: header
+          description: The desired MIME type of the inference body in the response.
+          schema:
+            type: string
+            default: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvokeModelRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvokeModelResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+
+  /model/{modelId}/invoke-with-response-stream:
+    post:
+      operationId: InvokeModelWithResponseStream
+      summary: Invoke a model with response streaming
+      description: >-
+        Invokes the specified Amazon Bedrock model to run inference using the
+        prompt and parameters provided in the request body. The response is
+        streamed back in real time, allowing the client to begin processing
+        results before the full response is generated.
+      tags:
+        - Inference
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          description: The identifier of the model to invoke.
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          description: The MIME type of the input data in the request body.
+          schema:
+            type: string
+            default: application/json
+        - name: X-Amzn-Bedrock-Accept
+          in: header
+          description: The desired MIME type of the inference body in the response.
+          schema:
+            type: string
+            default: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvokeModelRequest'
+      responses:
+        '200':
+          description: Successful streaming response
+          content:
+            application/vnd.amazon.eventstream:
+              schema:
+                $ref: '#/components/schemas/InvokeModelWithResponseStreamResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+
+  /model/{modelId}/converse:
+    post:
+      operationId: Converse
+      summary: Converse with a model
+      description: >-
+        Sends messages to the specified Amazon Bedrock model using the
+        Converse API. This provides a consistent interface for multi-turn
+        conversations across different foundation models, with support for
+        system prompts, tool use, and structured message formatting.
+      tags:
+        - Converse
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          description: The identifier of the model to converse with.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConverseRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConverseResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+        '404':
+          description: Model not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+
+  /model/{modelId}/converse-stream:
+    post:
+      operationId: ConverseStream
+      summary: Converse with a model using streaming
+      description: >-
+        Sends messages to the specified Amazon Bedrock model and streams the
+        response back in real time. This provides the same consistent
+        multi-turn conversation interface as the Converse API, with the
+        added benefit of streaming for lower perceived latency.
+      tags:
+        - Converse
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          description: The identifier of the model to converse with.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConverseRequest'
+      responses:
+        '200':
+          description: Successful streaming response
+          content:
+            application/vnd.amazon.eventstream:
+              schema:
+                $ref: '#/components/schemas/ConverseStreamResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+
+components:
+  schemas:
+
+    InvokeModelRequest:
+      type: object
+      description: >-
+        The request body for invoking a model. The structure depends on the
+        model being invoked. This is passed as an opaque blob to the model.
+      properties:
+        body:
+          type: string
+          format: byte
+          description: >-
+            The prompt and inference parameters encoded as a JSON string,
+            in the format required by the specified model.
+        contentType:
+          type: string
+          description: The MIME type of the input data.
+        accept:
+          type: string
+          description: The desired MIME type of the response.
+
+    InvokeModelResponse:
+      type: object
+      description: The response from the model invocation.
+      properties:
+        body:
+          type: string
+          format: byte
+          description: >-
+            The inference response from the model, encoded as a JSON string.
+        contentType:
+          type: string
+          description: The MIME type of the response body.
+
+    InvokeModelWithResponseStreamResponse:
+      type: object
+      description: The streaming response from the model invocation.
+      properties:
+        body:
+          type: object
+          description: The streaming response body as an event stream.
+          properties:
+            chunk:
+              type: object
+              properties:
+                bytes:
+                  type: string
+                  format: byte
+                  description: A chunk of the streamed response.
+
+    Message:
+      type: object
+      required:
+        - role
+        - content
+      properties:
+        role:
+          type: string
+          enum:
+            - user
+            - assistant
+          description: The role of the message sender.
+        content:
+          type: array
+          description: The content of the message.
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+                description: Text content.
+              image:
+                type: object
+                description: Image content.
+                properties:
+                  format:
+                    type: string
+                    enum:
+                      - png
+                      - jpeg
+                      - gif
+                      - webp
+                  source:
+                    type: object
+                    properties:
+                      bytes:
+                        type: string
+                        format: byte
+              toolUse:
+                type: object
+                description: Tool use content.
+                properties:
+                  toolUseId:
+                    type: string
+                  name:
+                    type: string
+                  input:
+                    type: object
+              toolResult:
+                type: object
+                description: Tool result content.
+                properties:
+                  toolUseId:
+                    type: string
+                  content:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        text:
+                          type: string
+
+    SystemContentBlock:
+      type: object
+      properties:
+        text:
+          type: string
+          description: System prompt text.
+
+    ToolConfiguration:
+      type: object
+      properties:
+        tools:
+          type: array
+          description: A list of tools available to the model.
+          items:
+            type: object
+            properties:
+              toolSpec:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: The name of the tool.
+                  description:
+                    type: string
+                    description: A description of what the tool does.
+                  inputSchema:
+                    type: object
+                    properties:
+                      json:
+                        type: object
+                        description: The JSON Schema for the tool input.
+
+    InferenceConfiguration:
+      type: object
+      properties:
+        maxTokens:
+          type: integer
+          description: The maximum number of tokens to generate.
+        temperature:
+          type: number
+          description: The sampling temperature (0.0 to 1.0).
+          minimum: 0.0
+          maximum: 1.0
+        topP:
+          type: number
+          description: The nucleus sampling parameter.
+          minimum: 0.0
+          maximum: 1.0
+        stopSequences:
+          type: array
+          items:
+            type: string
+          description: Stop sequences that will halt generation.
+
+    ConverseRequest:
+      type: object
+      required:
+        - messages
+      description: The request body for the Converse API.
+      properties:
+        messages:
+          type: array
+          description: The messages in the conversation.
+          items:
+            $ref: '#/components/schemas/Message'
+        system:
+          type: array
+          description: System prompts for the conversation.
+          items:
+            $ref: '#/components/schemas/SystemContentBlock'
+        inferenceConfig:
+          $ref: '#/components/schemas/InferenceConfiguration'
+        toolConfig:
+          $ref: '#/components/schemas/ToolConfiguration'
+
+    ConverseResponse:
+      type: object
+      description: The response from the Converse API.
+      properties:
+        output:
+          type: object
+          properties:
+            message:
+              $ref: '#/components/schemas/Message'
+        stopReason:
+          type: string
+          enum:
+            - end_turn
+            - tool_use
+            - max_tokens
+            - stop_sequence
+            - content_filtered
+          description: The reason the model stopped generating.
+        usage:
+          type: object
+          properties:
+            inputTokens:
+              type: integer
+              description: The number of input tokens processed.
+            outputTokens:
+              type: integer
+              description: The number of output tokens generated.
+            totalTokens:
+              type: integer
+              description: The total number of tokens.
+        metrics:
+          type: object
+          properties:
+            latencyMs:
+              type: integer
+              description: The latency of the response in milliseconds.
+
+    ConverseStreamResponse:
+      type: object
+      description: The streaming response from the ConverseStream API.
+      properties:
+        stream:
+          type: object
+          description: The event stream of response chunks.
+          properties:
+            messageStart:
+              type: object
+              properties:
+                role:
+                  type: string
+            contentBlockStart:
+              type: object
+              properties:
+                contentBlockIndex:
+                  type: integer
+                start:
+                  type: object
+                  properties:
+                    toolUse:
+                      type: object
+                      properties:
+                        toolUseId:
+                          type: string
+                        name:
+                          type: string
+            contentBlockDelta:
+              type: object
+              properties:
+                contentBlockIndex:
+                  type: integer
+                delta:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+            contentBlockStop:
+              type: object
+              properties:
+                contentBlockIndex:
+                  type: integer
+            messageStop:
+              type: object
+              properties:
+                stopReason:
+                  type: string
+            metadata:
+              type: object
+              properties:
+                usage:
+                  type: object
+                  properties:
+                    inputTokens:
+                      type: integer
+                    outputTokens:
+                      type: integer
+                metrics:
+                  type: object
+                  properties:
+                    latencyMs:
+                      type: integer
+
+    ValidationException:
+      type: object
+      properties:
+        message:
+          type: string
+
+    AccessDeniedException:
+      type: object
+      properties:
+        message:
+          type: string
+
+    ResourceNotFoundException:
+      type: object
+      properties:
+        message:
+          type: string
+
+    ThrottlingException:
+      type: object
+      properties:
+        message:
+          type: string
+
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
+
+    ModelStreamErrorException:
+      type: object
+      properties:
+        message:
+          type: string
+        originalStatusCode:
+          type: integer
+        originalMessage:
+          type: string
+
+tags:
+  - name: Inference
+    description: Operations for invoking models and running inference.
+  - name: Converse
+    description: Operations for multi-turn conversations with models.

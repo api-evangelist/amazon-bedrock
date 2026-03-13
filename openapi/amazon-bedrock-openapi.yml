@@ -1,0 +1,698 @@
+openapi: 3.1.0
+info:
+  title: Amazon Bedrock API
+  description: >-
+    The Amazon Bedrock management API provides operations for managing
+    foundation models, custom models, model customization jobs, provisioned
+    throughput, and other Bedrock resources.
+  version: '2023-04-20'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/support/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+servers:
+  - url: https://bedrock.{region}.amazonaws.com
+    description: Amazon Bedrock Management API
+    variables:
+      region:
+        default: us-east-1
+        description: The AWS region
+        enum:
+          - us-east-1
+          - us-west-2
+          - eu-west-1
+          - ap-southeast-1
+
+paths:
+
+  /foundation-models:
+    get:
+      operationId: ListFoundationModels
+      summary: List foundation models
+      description: >-
+        Lists the Amazon Bedrock foundation models that you can use. You can
+        filter the results by provider, output modality, and inference type.
+      tags:
+        - Foundation Models
+      parameters:
+        - name: byProvider
+          in: query
+          description: Filter by model provider (e.g., amazon, anthropic, meta).
+          schema:
+            type: string
+        - name: byOutputModality
+          in: query
+          description: Filter by output modality (TEXT, IMAGE, EMBEDDING).
+          schema:
+            type: string
+            enum:
+              - TEXT
+              - IMAGE
+              - EMBEDDING
+        - name: byInferenceType
+          in: query
+          description: Filter by inference type (ON_DEMAND, PROVISIONED).
+          schema:
+            type: string
+            enum:
+              - ON_DEMAND
+              - PROVISIONED
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFoundationModelsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+
+  /foundation-models/{modelIdentifier}:
+    get:
+      operationId: GetFoundationModel
+      summary: Get foundation model details
+      description: >-
+        Gets details about a specific Amazon Bedrock foundation model,
+        including its capabilities, supported input and output modalities,
+        and inference types.
+      tags:
+        - Foundation Models
+      parameters:
+        - name: modelIdentifier
+          in: path
+          required: true
+          description: The model identifier (e.g., anthropic.claude-3-sonnet-20240229-v1:0).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetFoundationModelResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+
+  /model-customization-jobs:
+    post:
+      operationId: CreateModelCustomizationJob
+      summary: Create a model customization job
+      description: >-
+        Creates a fine-tuning job to customize a foundation model. You provide
+        training data, a base model, and output configuration to produce a
+        custom model tailored to your use case.
+      tags:
+        - Model Customization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateModelCustomizationJobRequest'
+      responses:
+        '201':
+          description: Job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateModelCustomizationJobResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '409':
+          description: Resource already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+    get:
+      operationId: ListModelCustomizationJobs
+      summary: List model customization jobs
+      description: >-
+        Returns a list of model customization jobs that you have submitted.
+      tags:
+        - Model Customization
+      parameters:
+        - name: maxResults
+          in: query
+          description: Maximum number of results to return.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: nextToken
+          in: query
+          description: Token for pagination.
+          schema:
+            type: string
+        - name: statusEquals
+          in: query
+          description: Filter by job status.
+          schema:
+            type: string
+            enum:
+              - InProgress
+              - Completed
+              - Failed
+              - Stopping
+              - Stopped
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListModelCustomizationJobsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+
+  /model-customization-jobs/{jobIdentifier}:
+    get:
+      operationId: GetModelCustomizationJob
+      summary: Get model customization job details
+      description: >-
+        Retrieves the properties associated with a model customization job,
+        including the status, creation time, and training metrics.
+      tags:
+        - Model Customization
+      parameters:
+        - name: jobIdentifier
+          in: path
+          required: true
+          description: The identifier of the customization job.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetModelCustomizationJobResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+
+  /custom-models:
+    get:
+      operationId: ListCustomModels
+      summary: List custom models
+      description: >-
+        Returns a list of the custom models that you have created with the
+        CreateModelCustomizationJob operation.
+      tags:
+        - Custom Models
+      parameters:
+        - name: maxResults
+          in: query
+          description: Maximum number of results to return.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: nextToken
+          in: query
+          description: Token for pagination.
+          schema:
+            type: string
+        - name: baseModelArnEquals
+          in: query
+          description: Filter by base model ARN.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomModelsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+
+  /provisioned-model-throughput:
+    post:
+      operationId: CreateProvisionedModelThroughput
+      summary: Create provisioned model throughput
+      description: >-
+        Creates a provisioned throughput with dedicated capacity for a
+        foundation model or custom model. Provisioned throughput provides
+        guaranteed inference performance.
+      tags:
+        - Provisioned Throughput
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProvisionedModelThroughputRequest'
+      responses:
+        '201':
+          description: Provisioned throughput created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateProvisionedModelThroughputResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+    get:
+      operationId: ListProvisionedModelThroughputs
+      summary: List provisioned model throughputs
+      description: >-
+        Lists the provisioned throughputs that you have created.
+      tags:
+        - Provisioned Throughput
+      parameters:
+        - name: maxResults
+          in: query
+          description: Maximum number of results to return.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: nextToken
+          in: query
+          description: Token for pagination.
+          schema:
+            type: string
+        - name: statusEquals
+          in: query
+          description: Filter by status.
+          schema:
+            type: string
+            enum:
+              - Creating
+              - InService
+              - Updating
+              - Failed
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProvisionedModelThroughputsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+
+components:
+  schemas:
+
+    FoundationModelSummary:
+      type: object
+      properties:
+        modelArn:
+          type: string
+          description: The ARN of the foundation model.
+        modelId:
+          type: string
+          description: The model identifier.
+        modelName:
+          type: string
+          description: The name of the model.
+        providerName:
+          type: string
+          description: The model provider name.
+        inputModalities:
+          type: array
+          items:
+            type: string
+            enum:
+              - TEXT
+              - IMAGE
+              - EMBEDDING
+          description: The input modalities supported by the model.
+        outputModalities:
+          type: array
+          items:
+            type: string
+            enum:
+              - TEXT
+              - IMAGE
+              - EMBEDDING
+          description: The output modalities supported by the model.
+        responseStreamingSupported:
+          type: boolean
+          description: Whether response streaming is supported.
+        customizationsSupported:
+          type: array
+          items:
+            type: string
+            enum:
+              - FINE_TUNING
+              - CONTINUED_PRE_TRAINING
+          description: The customization types supported by the model.
+        inferenceTypesSupported:
+          type: array
+          items:
+            type: string
+            enum:
+              - ON_DEMAND
+              - PROVISIONED
+          description: The inference types supported by the model.
+
+    ListFoundationModelsResponse:
+      type: object
+      properties:
+        modelSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoundationModelSummary'
+          description: A list of foundation model summaries.
+
+    GetFoundationModelResponse:
+      type: object
+      properties:
+        modelDetails:
+          $ref: '#/components/schemas/FoundationModelSummary'
+
+    CreateModelCustomizationJobRequest:
+      type: object
+      required:
+        - jobName
+        - customModelName
+        - roleArn
+        - baseModelIdentifier
+        - trainingDataConfig
+        - outputDataConfig
+      properties:
+        jobName:
+          type: string
+          description: A name for the customization job.
+        customModelName:
+          type: string
+          description: A name for the resulting custom model.
+        roleArn:
+          type: string
+          description: The ARN of the IAM role for the job.
+        baseModelIdentifier:
+          type: string
+          description: The identifier of the base model to customize.
+        customizationType:
+          type: string
+          enum:
+            - FINE_TUNING
+            - CONTINUED_PRE_TRAINING
+          description: The customization type.
+        trainingDataConfig:
+          type: object
+          properties:
+            s3Uri:
+              type: string
+              description: The S3 URI of the training data.
+        outputDataConfig:
+          type: object
+          properties:
+            s3Uri:
+              type: string
+              description: The S3 URI for output data.
+        hyperParameters:
+          type: object
+          additionalProperties:
+            type: string
+          description: Hyperparameters for the customization job.
+
+    CreateModelCustomizationJobResponse:
+      type: object
+      properties:
+        jobArn:
+          type: string
+          description: The ARN of the customization job.
+
+    GetModelCustomizationJobResponse:
+      type: object
+      properties:
+        jobArn:
+          type: string
+        jobName:
+          type: string
+        status:
+          type: string
+          enum:
+            - InProgress
+            - Completed
+            - Failed
+            - Stopping
+            - Stopped
+        baseModelArn:
+          type: string
+        customModelName:
+          type: string
+        customModelArn:
+          type: string
+        creationTime:
+          type: string
+          format: date-time
+        lastModifiedTime:
+          type: string
+          format: date-time
+
+    ListModelCustomizationJobsResponse:
+      type: object
+      properties:
+        modelCustomizationJobSummaries:
+          type: array
+          items:
+            type: object
+            properties:
+              jobArn:
+                type: string
+              jobName:
+                type: string
+              status:
+                type: string
+              baseModelArn:
+                type: string
+              creationTime:
+                type: string
+                format: date-time
+        nextToken:
+          type: string
+
+    ListCustomModelsResponse:
+      type: object
+      properties:
+        modelSummaries:
+          type: array
+          items:
+            type: object
+            properties:
+              modelArn:
+                type: string
+              modelName:
+                type: string
+              baseModelArn:
+                type: string
+              baseModelName:
+                type: string
+              creationTime:
+                type: string
+                format: date-time
+        nextToken:
+          type: string
+
+    CreateProvisionedModelThroughputRequest:
+      type: object
+      required:
+        - modelUnits
+        - provisionedModelName
+        - modelId
+      properties:
+        modelUnits:
+          type: integer
+          description: Number of model units to allocate.
+        provisionedModelName:
+          type: string
+          description: A name for the provisioned throughput.
+        modelId:
+          type: string
+          description: The ID of the model to provision.
+        commitmentDuration:
+          type: string
+          enum:
+            - OneMonth
+            - SixMonths
+          description: The commitment duration.
+
+    CreateProvisionedModelThroughputResponse:
+      type: object
+      properties:
+        provisionedModelArn:
+          type: string
+          description: The ARN of the provisioned throughput.
+
+    ListProvisionedModelThroughputsResponse:
+      type: object
+      properties:
+        provisionedModelSummaries:
+          type: array
+          items:
+            type: object
+            properties:
+              provisionedModelArn:
+                type: string
+              provisionedModelName:
+                type: string
+              modelArn:
+                type: string
+              status:
+                type: string
+              modelUnits:
+                type: integer
+              creationTime:
+                type: string
+                format: date-time
+        nextToken:
+          type: string
+
+    ValidationException:
+      type: object
+      properties:
+        message:
+          type: string
+
+    AccessDeniedException:
+      type: object
+      properties:
+        message:
+          type: string
+
+    ResourceNotFoundException:
+      type: object
+      properties:
+        message:
+          type: string
+
+    ConflictException:
+      type: object
+      properties:
+        message:
+          type: string
+
+    ThrottlingException:
+      type: object
+      properties:
+        message:
+          type: string
+
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
+
+tags:
+  - name: Foundation Models
+    description: Operations for listing and describing foundation models.
+  - name: Model Customization
+    description: Operations for creating and managing model customization jobs.
+  - name: Custom Models
+    description: Operations for listing custom models.
+  - name: Provisioned Throughput
+    description: Operations for managing provisioned model throughput.

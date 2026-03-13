@@ -1,0 +1,67 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "bedrock": "https://aws.amazon.com/bedrock/ns#",
+    "aws": "https://aws.amazon.com/ns#",
+
+    "FoundationModel": "bedrock:FoundationModel",
+    "CustomModel": "bedrock:CustomModel",
+    "ProvisionedThroughput": "bedrock:ProvisionedThroughput",
+    "ModelCustomizationJob": "bedrock:ModelCustomizationJob",
+
+    "modelId": "bedrock:modelId",
+    "modelArn": "bedrock:modelArn",
+    "modelName": "bedrock:modelName",
+    "providerName": "bedrock:providerName",
+
+    "inputModalities": {
+      "@id": "bedrock:inputModalities",
+      "@type": "@vocab"
+    },
+    "outputModalities": {
+      "@id": "bedrock:outputModalities",
+      "@type": "@vocab"
+    },
+    "responseStreamingSupported": {
+      "@id": "bedrock:responseStreamingSupported",
+      "@type": "xsd:boolean"
+    },
+    "customizationsSupported": {
+      "@id": "bedrock:customizationsSupported",
+      "@type": "@vocab"
+    },
+    "inferenceTypesSupported": {
+      "@id": "bedrock:inferenceTypesSupported",
+      "@type": "@vocab"
+    },
+
+    "jobArn": "bedrock:jobArn",
+    "jobName": "bedrock:jobName",
+    "baseModelIdentifier": "bedrock:baseModelIdentifier",
+    "customModelName": "bedrock:customModelName",
+    "customizationType": "bedrock:customizationType",
+    "trainingDataConfig": "bedrock:trainingDataConfig",
+    "outputDataConfig": "bedrock:outputDataConfig",
+    "hyperParameters": "bedrock:hyperParameters",
+
+    "provisionedModelArn": "bedrock:provisionedModelArn",
+    "provisionedModelName": "bedrock:provisionedModelName",
+    "modelUnits": {
+      "@id": "bedrock:modelUnits",
+      "@type": "xsd:integer"
+    },
+    "commitmentDuration": "bedrock:commitmentDuration",
+
+    "status": "bedrock:status",
+    "creationTime": {
+      "@id": "bedrock:creationTime",
+      "@type": "xsd:dateTime"
+    },
+    "lastModifiedTime": {
+      "@id": "bedrock:lastModifiedTime",
+      "@type": "xsd:dateTime"
+    },
+
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aws.amazon.com/bedrock/schemas/foundation-model.json",
+  "title": "Amazon Bedrock Foundation Model",
+  "description": "Schema representing an Amazon Bedrock foundation model and its capabilities.",
+  "type": "object",
+  "required": [
+    "modelId",
+    "modelName",
+    "providerName"
+  ],
+  "properties": {
+    "modelArn": {
+      "type": "string",
+      "description": "The Amazon Resource Name (ARN) of the foundation model.",
+      "pattern": "^arn:aws:bedrock:[a-z0-9-]+::foundation-model/.+$"
+    },
+    "modelId": {
+      "type": "string",
+      "description": "The unique identifier for the foundation model (e.g., anthropic.claude-3-sonnet-20240229-v1:0).",
+      "examples": [
+        "anthropic.claude-3-sonnet-20240229-v1:0",
+        "amazon.titan-text-express-v1",
+        "meta.llama3-70b-instruct-v1:0"
+      ]
+    },
+    "modelName": {
+      "type": "string",
+      "description": "The display name of the foundation model."
+    },
+    "providerName": {
+      "type": "string",
+      "description": "The name of the model provider.",
+      "examples": [
+        "Amazon",
+        "Anthropic",
+        "Meta",
+        "Cohere",
+        "AI21 Labs",
+        "Stability AI",
+        "Mistral AI"
+      ]
+    },
+    "inputModalities": {
+      "type": "array",
+      "description": "The input modalities supported by the model.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "TEXT",
+          "IMAGE",
+          "EMBEDDING"
+        ]
+      }
+    },
+    "outputModalities": {
+      "type": "array",
+      "description": "The output modalities supported by the model.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "TEXT",
+          "IMAGE",
+          "EMBEDDING"
+        ]
+      }
+    },
+    "responseStreamingSupported": {
+      "type": "boolean",
+      "description": "Whether the model supports response streaming."
+    },
+    "customizationsSupported": {
+      "type": "array",
+      "description": "The customization types supported by the model.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "FINE_TUNING",
+          "CONTINUED_PRE_TRAINING"
+        ]
+      }
+    },
+    "inferenceTypesSupported": {
+      "type": "array",
+      "description": "The inference types supported by the model.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ON_DEMAND",
+          "PROVISIONED"
+        ]
+      }
+    },
+    "modelLifecycle": {
+      "type": "object",
+      "description": "Lifecycle information for the model.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "The lifecycle status of the model.",
+          "enum": [
+            "ACTIVE",
+            "LEGACY"
+          ]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
