@@ -1,7 +1,7 @@
 aid: amazon-bedrock
 url: >-
   https://raw.githubusercontent.com/api-evangelist/amazon-bedrock/refs/heads/main/apis.yml
-name: Amazon Bedrock API
+name: Amazon Bedrock
 tags:
   - Generative AI
   - Foundation Models
