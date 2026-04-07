@@ -32,7 +32,7 @@ paths:
   /model/{modelId}/invoke:
     post:
       operationId: InvokeModel
-      summary: Invoke a model
+      summary: Amazon Bedrock Invoke a model
       description: >-
         Invokes the specified Amazon Bedrock model to run inference using the
         prompt and inference parameters provided in the request body. The
@@ -107,7 +107,7 @@ paths:
   /model/{modelId}/invoke-with-response-stream:
     post:
       operationId: InvokeModelWithResponseStream
-      summary: Invoke a model with response streaming
+      summary: Amazon Bedrock Invoke a model with response streaming
       description: >-
         Invokes the specified Amazon Bedrock model to run inference using the
         prompt and parameters provided in the request body. The response is
@@ -169,7 +169,7 @@ paths:
   /model/{modelId}/converse:
     post:
       operationId: Converse
-      summary: Converse with a model
+      summary: Amazon Bedrock Converse with a model
       description: >-
         Sends messages to the specified Amazon Bedrock model using the
         Converse API. This provides a consistent interface for multi-turn
@@ -231,7 +231,7 @@ paths:
   /model/{modelId}/converse-stream:
     post:
       operationId: ConverseStream
-      summary: Converse with a model using streaming
+      summary: Amazon Bedrock Converse with a model using streaming
       description: >-
         Sends messages to the specified Amazon Bedrock model and streams the
         response back in real time. This provides the same consistent

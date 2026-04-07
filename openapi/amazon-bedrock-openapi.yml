@@ -31,7 +31,7 @@ paths:
   /foundation-models:
     get:
       operationId: ListFoundationModels
-      summary: List foundation models
+      summary: Amazon Bedrock List foundation models
       description: >-
         Lists the Amazon Bedrock foundation models that you can use. You can
         filter the results by provider, output modality, and inference type.
@@ -95,7 +95,7 @@ paths:
   /foundation-models/{modelIdentifier}:
     get:
       operationId: GetFoundationModel
-      summary: Get foundation model details
+      summary: Amazon Bedrock Get foundation model details
       description: >-
         Gets details about a specific Amazon Bedrock foundation model,
         including its capabilities, supported input and output modalities,
@@ -138,7 +138,7 @@ paths:
   /model-customization-jobs:
     post:
       operationId: CreateModelCustomizationJob
-      summary: Create a model customization job
+      summary: Amazon Bedrock Create a model customization job
       description: >-
         Creates a fine-tuning job to customize a foundation model. You provide
         training data, a base model, and output configuration to produce a
@@ -178,7 +178,7 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
     get:
       operationId: ListModelCustomizationJobs
-      summary: List model customization jobs
+      summary: Amazon Bedrock List model customization jobs
       description: >-
         Returns a list of model customization jobs that you have submitted.
       tags:
@@ -230,7 +230,7 @@ paths:
   /model-customization-jobs/{jobIdentifier}:
     get:
       operationId: GetModelCustomizationJob
-      summary: Get model customization job details
+      summary: Amazon Bedrock Get model customization job details
       description: >-
         Retrieves the properties associated with a model customization job,
         including the status, creation time, and training metrics.
@@ -272,7 +272,7 @@ paths:
   /custom-models:
     get:
       operationId: ListCustomModels
-      summary: List custom models
+      summary: Amazon Bedrock List custom models
       description: >-
         Returns a list of the custom models that you have created with the
         CreateModelCustomizationJob operation.
@@ -319,7 +319,7 @@ paths:
   /provisioned-model-throughput:
     post:
       operationId: CreateProvisionedModelThroughput
-      summary: Create provisioned model throughput
+      summary: Amazon Bedrock Create provisioned model throughput
       description: >-
         Creates a provisioned throughput with dedicated capacity for a
         foundation model or custom model. Provisioned throughput provides
@@ -353,7 +353,7 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
     get:
       operationId: ListProvisionedModelThroughputs
-      summary: List provisioned model throughputs
+      summary: Amazon Bedrock List provisioned model throughputs
       description: >-
         Lists the provisioned throughputs that you have created.
       tags:
