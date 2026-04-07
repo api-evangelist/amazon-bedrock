@@ -3,12 +3,12 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/amazon-bedrock/refs/heads/main/apis.yml
 name: Amazon Bedrock
 tags:
-  - Generative AI
-  - Foundation Models
-  - LLM
   - AI
-  - Machine Learning
   - AWS
+  - Foundation Models
+  - Generative AI
+  - LLM
+  - Machine Learning
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 description: >-
@@ -26,8 +26,8 @@ apis:
   - aid: amazon-bedrock:amazon-bedrock-api
     name: Amazon Bedrock API
     tags:
-      - Generative AI
       - Foundation Models
+      - Generative AI
     humanURL: https://docs.aws.amazon.com/bedrock/latest/APIReference/
     properties:
       - type: Documentation
@@ -43,8 +43,8 @@ apis:
   - aid: amazon-bedrock:amazon-bedrock-runtime-api
     name: Amazon Bedrock Runtime API
     tags:
-      - Generative AI
       - Foundation Models
+      - Generative AI
     humanURL: https://docs.aws.amazon.com/bedrock/latest/APIReference/
     properties:
       - type: Documentation

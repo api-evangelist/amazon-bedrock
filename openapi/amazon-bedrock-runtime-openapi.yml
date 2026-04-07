@@ -608,7 +608,7 @@ components:
           type: string
 
 tags:
-  - name: Inference
-    description: Operations for invoking models and running inference.
   - name: Converse
     description: Operations for multi-turn conversations with models.
+  - name: Inference
+    description: Operations for invoking models and running inference.

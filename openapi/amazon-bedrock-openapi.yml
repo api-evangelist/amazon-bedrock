@@ -688,11 +688,11 @@ components:
           type: string
 
 tags:
+  - name: Custom Models
+    description: Operations for listing custom models.
   - name: Foundation Models
     description: Operations for listing and describing foundation models.
   - name: Model Customization
     description: Operations for creating and managing model customization jobs.
-  - name: Custom Models
-    description: Operations for listing custom models.
   - name: Provisioned Throughput
     description: Operations for managing provisioned model throughput.
