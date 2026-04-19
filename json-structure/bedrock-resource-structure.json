@@ -1,0 +1,128 @@
+{
+  "title": "Amazon Bedrock Resource Structure",
+  "description": "Structural documentation for key resources in the Amazon Bedrock API",
+  "resources": {
+    "FoundationModel": {
+      "description": "A pre-trained large language or multimodal model available in Amazon Bedrock",
+      "identifiers": ["modelId", "modelArn"],
+      "fields": {
+        "modelId": { "type": "string", "readOnly": true },
+        "modelArn": { "type": "string", "readOnly": true },
+        "modelName": { "type": "string", "readOnly": true },
+        "providerName": { "type": "string", "readOnly": true },
+        "inputModalities": { "type": "array[enum[TEXT|IMAGE|EMBEDDING]]", "readOnly": true },
+        "outputModalities": { "type": "array[enum[TEXT|IMAGE|EMBEDDING]]", "readOnly": true },
+        "responseStreamingSupported": { "type": "boolean", "readOnly": true },
+        "customizationsSupported": { "type": "array[string]", "readOnly": true },
+        "inferenceTypesSupported": { "type": "array[string]", "readOnly": true }
+      }
+    },
+    "CustomModel": {
+      "description": "A fine-tuned or continued-pretraining model built on a foundation model",
+      "identifiers": ["modelName", "modelArn"],
+      "fields": {
+        "modelName": { "type": "string", "required": true },
+        "modelArn": { "type": "string", "readOnly": true },
+        "jobArn": { "type": "string", "readOnly": true },
+        "baseModelArn": { "type": "string", "required": true },
+        "customizationType": { "type": "enum[FINE_TUNING|CONTINUED_PRE_TRAINING]", "readOnly": true },
+        "creationTime": { "type": "datetime", "readOnly": true }
+      }
+    },
+    "Guardrail": {
+      "description": "Content filtering and safety policy applied to model inference",
+      "identifiers": ["guardrailId", "guardrailArn"],
+      "fields": {
+        "guardrailId": { "type": "string", "readOnly": true },
+        "guardrailArn": { "type": "string", "readOnly": true },
+        "name": { "type": "string", "required": true },
+        "description": { "type": "string" },
+        "status": { "type": "enum[CREATING|UPDATING|VERSIONING|READY|FAILED|DELETING]", "readOnly": true },
+        "version": { "type": "string", "readOnly": true },
+        "topicPolicy": {
+          "type": "object",
+          "nested": {
+            "topics": { "type": "array" }
+          }
+        },
+        "contentPolicy": {
+          "type": "object",
+          "nested": {
+            "filters": { "type": "array" }
+          }
+        },
+        "sensitiveInformationPolicy": {
+          "type": "object",
+          "nested": {
+            "piiEntities": { "type": "array" },
+            "regexes": { "type": "array" }
+          }
+        },
+        "wordPolicy": {
+          "type": "object",
+          "nested": {
+            "words": { "type": "array" },
+            "managedWordLists": { "type": "array" }
+          }
+        },
+        "createdAt": { "type": "datetime", "readOnly": true },
+        "updatedAt": { "type": "datetime", "readOnly": true }
+      }
+    },
+    "KnowledgeBase": {
+      "description": "Vector store-backed knowledge base for retrieval-augmented generation",
+      "identifiers": ["knowledgeBaseId", "knowledgeBaseArn"],
+      "fields": {
+        "knowledgeBaseId": { "type": "string", "readOnly": true },
+        "knowledgeBaseArn": { "type": "string", "readOnly": true },
+        "name": { "type": "string", "required": true },
+        "description": { "type": "string" },
+        "roleArn": { "type": "string", "required": true },
+        "status": { "type": "enum[CREATING|ACTIVE|DELETING|UPDATING|FAILED]", "readOnly": true },
+        "knowledgeBaseConfiguration": {
+          "type": "object",
+          "required": true,
+          "nested": {
+            "type": { "type": "enum[VECTOR]" },
+            "vectorKnowledgeBaseConfiguration": {
+              "embeddingModelArn": { "type": "string" }
+            }
+          }
+        },
+        "storageConfiguration": {
+          "type": "object",
+          "required": true,
+          "nested": {
+            "type": { "type": "enum[OPENSEARCH_SERVERLESS|PINECONE|RDS|REDIS_ENTERPRISE_CLOUD|MONGO_DB_ATLAS|NEPTUNE_ANALYTICS]" }
+          }
+        },
+        "createdAt": { "type": "datetime", "readOnly": true },
+        "updatedAt": { "type": "datetime", "readOnly": true }
+      },
+      "relationships": {
+        "hasMany": ["DataSource"]
+      }
+    },
+    "Agent": {
+      "description": "Autonomous AI agent that orchestrates multi-step tasks using tools and knowledge bases",
+      "identifiers": ["agentId", "agentArn"],
+      "fields": {
+        "agentId": { "type": "string", "readOnly": true },
+        "agentArn": { "type": "string", "readOnly": true },
+        "agentName": { "type": "string", "required": true },
+        "agentStatus": { "type": "enum[CREATING|PREPARING|PREPARED|NOT_PREPARED|DELETING|FAILED|VERSIONING|UPDATING]", "readOnly": true },
+        "foundationModel": { "type": "string", "required": true },
+        "instruction": { "type": "string" },
+        "description": { "type": "string" },
+        "idleSessionTTLInSeconds": { "type": "integer" },
+        "guardrailConfiguration": { "type": "object" },
+        "createdAt": { "type": "datetime", "readOnly": true },
+        "updatedAt": { "type": "datetime", "readOnly": true }
+      },
+      "relationships": {
+        "hasMany": ["AgentActionGroup", "AgentAlias"],
+        "referencesMany": ["KnowledgeBase"]
+      }
+    }
+  }
+}

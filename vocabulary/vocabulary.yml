@@ -1,0 +1,131 @@
+vocabulary:
+  domain: Amazon Bedrock
+  description: >-
+    Taxonomy and vocabulary for Amazon Bedrock covering generative AI,
+    foundation models, RAG, agents, guardrails, and responsible AI concepts.
+
+  concepts:
+    - term: Foundation Model
+      definition: >-
+        A large AI model pre-trained on vast amounts of data that can be
+        adapted for a wide range of tasks including text generation,
+        summarization, classification, and code generation.
+
+    - term: Inference
+      definition: >-
+        The process of using a trained foundation model to generate outputs
+        (text, images, embeddings) from input prompts or data.
+
+    - term: Prompt
+      definition: >-
+        The input text or instructions provided to a foundation model to
+        guide its response generation.
+
+    - term: Token
+      definition: >-
+        The basic unit of text processed by language models. A token is
+        approximately 4 characters or 0.75 words in English.
+
+    - term: Temperature
+      definition: >-
+        An inference parameter controlling randomness in model outputs.
+        Lower values produce more deterministic outputs; higher values
+        produce more creative and varied outputs.
+
+    - term: Top-P (Nucleus Sampling)
+      definition: >-
+        An inference parameter that limits token selection to the smallest
+        set of tokens whose cumulative probability exceeds the specified value.
+
+    - term: Embedding
+      definition: >-
+        A dense numerical vector representation of text or other data
+        that captures semantic meaning, used for similarity search in RAG.
+
+    - term: RAG
+      label: Retrieval-Augmented Generation
+      definition: >-
+        A technique combining retrieval from a knowledge base with generative
+        AI to produce more accurate, grounded, and up-to-date responses.
+
+    - term: Knowledge Base
+      definition: >-
+        A collection of documents stored as vector embeddings in a vector
+        database, enabling semantic search for RAG applications.
+
+    - term: Vector Store
+      definition: >-
+        A database optimized for storing and searching high-dimensional
+        embedding vectors using approximate nearest neighbor algorithms.
+
+    - term: Guardrail
+      definition: >-
+        Content filtering and safety policy that can block topics, filter
+        harmful content, redact PII, and detect prompt injection in Bedrock.
+
+    - term: Agent
+      definition: >-
+        An autonomous AI system that orchestrates multi-step tasks by
+        reasoning over user requests, calling APIs (action groups), and
+        querying knowledge bases.
+
+    - term: Action Group
+      definition: >-
+        A set of API actions defined by an OpenAPI schema that a Bedrock
+        Agent can call during orchestration.
+
+    - term: Fine-Tuning
+      definition: >-
+        Training a pre-trained foundation model on domain-specific data
+        to improve performance on targeted tasks.
+
+    - term: Continued Pre-Training
+      definition: >-
+        Continuing foundation model training on unlabeled domain data to
+        improve model knowledge of a specific domain without task labels.
+
+    - term: Provisioned Throughput
+      definition: >-
+        Reserved inference capacity purchased in advance for consistent
+        model performance and predictable latency at production scale.
+
+    - term: Streaming Inference
+      definition: >-
+        A mode where model output tokens are returned progressively as
+        they are generated, enabling faster time-to-first-token for UX.
+
+    - term: Converse API
+      definition: >-
+        A unified Bedrock Runtime API that provides a consistent chat interface
+        across multiple foundation model providers.
+
+    - term: Cross-Region Inference
+      definition: >-
+        Automatic routing of inference requests across AWS regions for
+        improved availability and throughput during peak demand.
+
+  model-providers:
+    - Anthropic (Claude)
+    - Amazon (Titan, Nova)
+    - Meta (Llama)
+    - Mistral AI
+    - Cohere
+    - AI21 Labs
+    - Stability AI
+    - Writer
+    - DeepSeek
+
+  tags:
+    - Generative AI
+    - Foundation Models
+    - AI
+    - Machine Learning
+    - NLP
+    - Large Language Models
+    - LLM
+    - RAG
+    - Agents
+    - Responsible AI
+    - AWS
+    - Amazon Web Services
+    - Serverless

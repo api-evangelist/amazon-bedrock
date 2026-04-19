@@ -1,0 +1,56 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://bedrock-runtime.us-east-1.amazonaws.com/model/amazon.nova-pro-v1:0/converse",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "AWS4-HMAC-SHA256 Credential=..."
+    },
+    "body": {
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "text": "What are the top 3 AWS services for data analytics?"
+            }
+          ]
+        }
+      ],
+      "system": [
+        {
+          "text": "You are a helpful AWS expert. Keep answers concise and technical."
+        }
+      ],
+      "inferenceConfig": {
+        "maxTokens": 512,
+        "temperature": 0.7,
+        "topP": 0.9
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "output": {
+        "message": {
+          "role": "assistant",
+          "content": [
+            {
+              "text": "Top 3 AWS services for data analytics:\n\n1. **Amazon Redshift** — Petabyte-scale data warehouse optimized for complex analytical queries using columnar storage and MPP architecture.\n\n2. **AWS Glue** — Serverless ETL service for data preparation, cataloging, and integration across your data lake and warehouse.\n\n3. **Amazon Athena** — Serverless SQL query engine that analyzes data directly in S3 using standard SQL, with pay-per-query pricing."
+            }
+          ]
+        }
+      },
+      "stopReason": "end_turn",
+      "usage": {
+        "inputTokens": 45,
+        "outputTokens": 98,
+        "totalTokens": 143
+      },
+      "metrics": {
+        "latencyMs": 1234
+      }
+    }
+  }
+}

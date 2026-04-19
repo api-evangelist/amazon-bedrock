@@ -1,0 +1,235 @@
+capabilities:
+  - id: invoke-foundation-models
+    name: Invoke Foundation Models
+    description: >-
+      Invoke foundation models for text generation, image generation, and
+      embeddings. Supports synchronous, streaming, and asynchronous invocation
+      patterns via InvokeModel, ConverseAPI, and batch inference.
+    operations:
+      - InvokeModel
+      - InvokeModelWithResponseStream
+      - Converse
+      - ConverseStream
+      - ApplyGuardrail
+    tags:
+      - Inference
+      - Foundation Models
+      - Streaming
+      - Text Generation
+
+  - id: manage-foundation-models
+    name: Manage Foundation Models
+    description: >-
+      List and retrieve metadata for available foundation models in Amazon
+      Bedrock, including provider, modalities, and inference parameters.
+    operations:
+      - ListFoundationModels
+      - GetFoundationModel
+      - ListFoundationModelAgreementOffers
+      - GetFoundationModelAvailability
+    tags:
+      - Foundation Models
+      - Model Discovery
+
+  - id: manage-custom-models
+    name: Manage Custom Models
+    description: >-
+      Fine-tune and customize foundation models with proprietary data using
+      model customization jobs, then deploy custom models for inference.
+    operations:
+      - CreateModelCustomizationJob
+      - GetModelCustomizationJob
+      - ListModelCustomizationJobs
+      - StopModelCustomizationJob
+      - GetCustomModel
+      - ListCustomModels
+      - DeleteCustomModel
+    tags:
+      - Fine-Tuning
+      - Custom Models
+      - Model Training
+
+  - id: manage-provisioned-throughput
+    name: Manage Provisioned Throughput
+    description: >-
+      Purchase and manage provisioned throughput for consistent model
+      inference performance at scale.
+    operations:
+      - CreateProvisionedModelThroughput
+      - GetProvisionedModelThroughput
+      - UpdateProvisionedModelThroughput
+      - DeleteProvisionedModelThroughput
+      - ListProvisionedModelThroughputs
+    tags:
+      - Provisioned Throughput
+      - Performance
+      - Scaling
+
+  - id: manage-guardrails
+    name: Manage Guardrails
+    description: >-
+      Create and manage guardrails to enforce responsible AI policies,
+      filter harmful content, deny topics, redact PII, and detect
+      prompt injection attacks.
+    operations:
+      - CreateGuardrail
+      - GetGuardrail
+      - UpdateGuardrail
+      - DeleteGuardrail
+      - ListGuardrails
+      - CreateGuardrailVersion
+      - ListGuardrailVersions
+    tags:
+      - Guardrails
+      - Safety
+      - Responsible AI
+      - Content Filtering
+
+  - id: manage-knowledge-bases
+    name: Manage Knowledge Bases
+    description: >-
+      Create and manage knowledge bases for retrieval-augmented generation (RAG).
+      Ingest documents, sync data sources, and retrieve relevant context.
+    operations:
+      - CreateKnowledgeBase
+      - GetKnowledgeBase
+      - UpdateKnowledgeBase
+      - DeleteKnowledgeBase
+      - ListKnowledgeBases
+      - CreateDataSource
+      - GetDataSource
+      - UpdateDataSource
+      - DeleteDataSource
+      - ListDataSources
+      - StartIngestionJob
+      - GetIngestionJob
+      - ListIngestionJobs
+    tags:
+      - Knowledge Bases
+      - RAG
+      - Data Ingestion
+      - Vector Store
+
+  - id: manage-agents
+    name: Manage Agents
+    description: >-
+      Create and manage autonomous AI agents that orchestrate multi-step
+      tasks, call APIs, query knowledge bases, and execute workflows.
+    operations:
+      - CreateAgent
+      - GetAgent
+      - UpdateAgent
+      - DeleteAgent
+      - ListAgents
+      - PrepareAgent
+      - CreateAgentActionGroup
+      - GetAgentActionGroup
+      - UpdateAgentActionGroup
+      - DeleteAgentActionGroup
+      - CreateAgentAlias
+      - GetAgentAlias
+      - UpdateAgentAlias
+      - DeleteAgentAlias
+      - ListAgentAliases
+    tags:
+      - Agents
+      - Orchestration
+      - Autonomous AI
+      - Action Groups
+
+  - id: run-agent-inference
+    name: Run Agent Inference
+    description: >-
+      Invoke Bedrock agents to handle user requests through multi-step
+      orchestration and retrieve results from knowledge bases.
+    operations:
+      - InvokeAgent
+      - InvokeInlineAgent
+      - Retrieve
+      - RetrieveAndGenerate
+      - RetrieveAndGenerateStream
+    tags:
+      - Agent Inference
+      - RAG
+      - Retrieval
+
+  - id: manage-model-evaluation
+    name: Manage Model Evaluation
+    description: >-
+      Create and manage model evaluation jobs to assess foundation model
+      quality, accuracy, and performance on specific tasks.
+    operations:
+      - CreateEvaluationJob
+      - GetEvaluationJob
+      - ListEvaluationJobs
+      - StopEvaluationJob
+    tags:
+      - Evaluation
+      - Model Quality
+      - Benchmarking
+
+  - id: manage-tags
+    name: Manage Tags
+    description: >-
+      Apply and remove metadata tags on Amazon Bedrock resources for
+      cost allocation and governance.
+    operations:
+      - TagResource
+      - UntagResource
+      - ListTagsForResource
+    tags:
+      - Tags
+      - Governance
+
+compositions:
+  - id: rag-application
+    name: RAG Application
+    description: >-
+      End-to-end workflow for building a retrieval-augmented generation
+      application: create a knowledge base, ingest documents, and invoke
+      a model with retrieved context.
+    steps:
+      - capability: manage-knowledge-bases
+        operation: CreateKnowledgeBase
+      - capability: manage-knowledge-bases
+        operation: CreateDataSource
+      - capability: manage-knowledge-bases
+        operation: StartIngestionJob
+      - capability: run-agent-inference
+        operation: RetrieveAndGenerate
+    tags:
+      - RAG
+      - Workflow
+      - Knowledge Bases
+
+  - id: responsible-ai-deployment
+    name: Responsible AI Deployment
+    description: >-
+      Deploy a foundation model with guardrails for content filtering,
+      topic blocking, and PII protection.
+    steps:
+      - capability: manage-guardrails
+        operation: CreateGuardrail
+      - capability: invoke-foundation-models
+        operation: Converse
+    tags:
+      - Responsible AI
+      - Safety
+      - Workflow
+
+  - id: custom-model-deployment
+    name: Custom Model Deployment
+    description: >-
+      Fine-tune a foundation model and deploy it with provisioned throughput
+      for consistent production performance.
+    steps:
+      - capability: manage-custom-models
+        operation: CreateModelCustomizationJob
+      - capability: manage-provisioned-throughput
+        operation: CreateProvisionedModelThroughput
+      - capability: invoke-foundation-models
+        operation: InvokeModel
+    tags:
+      - Fine-Tuning
+      - Provisioned Throughput
+      - Workflow

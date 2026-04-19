@@ -1,0 +1,71 @@
+extends: spectral:oas
+rules:
+  aws-bedrock-operation-summary-title-case:
+    description: All operation summaries must use Title Case
+    message: "Operation summary '{{value}}' must be in Title Case"
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][a-z0-9]*(\\s[A-Z][a-z0-9]*)*|[A-Z]+)$"
+
+  aws-bedrock-operation-tags:
+    description: All operations must have at least one tag
+    message: Operation must have at least one tag
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  aws-bedrock-operation-id:
+    description: All operations must have an operationId
+    message: Operation must have an operationId
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: operationId
+      function: truthy
+
+  aws-bedrock-operation-description:
+    description: All operations must have a description
+    message: Operation must have a description
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: description
+      function: truthy
+
+  aws-bedrock-path-param-required:
+    description: All path parameters must be marked as required
+    message: Path parameter must be marked as required
+    severity: error
+    given: "$.paths[*][*].parameters[?(@.in == 'path')]"
+    then:
+      field: required
+      function: truthy
+
+  aws-bedrock-model-id-format:
+    description: Model IDs in paths should follow AWS Bedrock model ID format
+    message: Model path parameter should document supported model ID formats
+    severity: info
+    given: "$.paths[*][*].parameters[?(@.name == 'modelId')]"
+    then:
+      field: description
+      function: truthy
+
+  aws-bedrock-error-responses:
+    description: All operations must define error responses
+    message: Operation must define 4xx or 5xx error responses
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            responses:
+              type: object
+              minProperties: 2

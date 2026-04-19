@@ -1,0 +1,40 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://bedrock-runtime.us-east-1.amazonaws.com/model/anthropic.claude-3-5-sonnet-20241022-v2:0/invoke",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "AWS4-HMAC-SHA256 Credential=..."
+    },
+    "body": {
+      "anthropic_version": "bedrock-2023-05-31",
+      "max_tokens": 1024,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Explain the benefits of serverless architecture in 3 bullet points."
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "msg_01XFDUDYJgAACzvnptvVoYEL",
+      "type": "message",
+      "role": "assistant",
+      "model": "claude-3-5-sonnet-20241022",
+      "content": [
+        {
+          "type": "text",
+          "text": "Here are 3 key benefits of serverless architecture:\n\n• **No server management** — Focus on code, not infrastructure. AWS handles provisioning, scaling, patching, and availability automatically.\n\n• **Pay-per-use pricing** — You only pay for actual compute time consumed, with no charges for idle capacity, making it highly cost-efficient for variable workloads.\n\n• **Automatic scaling** — Serverless functions scale instantly from zero to thousands of concurrent executions without any configuration, handling traffic spikes seamlessly."
+        }
+      ],
+      "stop_reason": "end_turn",
+      "usage": {
+        "input_tokens": 28,
+        "output_tokens": 112
+      }
+    }
+  }
+}

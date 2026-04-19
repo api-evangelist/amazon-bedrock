@@ -1,0 +1,51 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "https://bedrock-agent.us-east-1.amazonaws.com/knowledgebases/",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "AWS4-HMAC-SHA256 Credential=..."
+    },
+    "body": {
+      "name": "ProductDocumentationKB",
+      "description": "Knowledge base for product documentation and FAQs",
+      "roleArn": "arn:aws:iam::123456789012:role/AmazonBedrockExecutionRoleForKnowledgeBase",
+      "knowledgeBaseConfiguration": {
+        "type": "VECTOR",
+        "vectorKnowledgeBaseConfiguration": {
+          "embeddingModelArn": "arn:aws:bedrock:us-east-1::foundation-model/amazon.titan-embed-text-v2:0"
+        }
+      },
+      "storageConfiguration": {
+        "type": "OPENSEARCH_SERVERLESS",
+        "opensearchServerlessConfiguration": {
+          "collectionArn": "arn:aws:aoss:us-east-1:123456789012:collection/my-kb-collection",
+          "vectorIndexName": "my-kb-index",
+          "fieldMapping": {
+            "vectorField": "embedding",
+            "textField": "text",
+            "metadataField": "metadata"
+          }
+        }
+      },
+      "tags": {
+        "Purpose": "ProductSupport",
+        "Team": "CustomerSuccess"
+      }
+    }
+  },
+  "response": {
+    "status": 202,
+    "body": {
+      "knowledgeBase": {
+        "knowledgeBaseId": "kb-ABCDEF1234567890",
+        "knowledgeBaseArn": "arn:aws:bedrock:us-east-1:123456789012:knowledge-base/kb-ABCDEF1234567890",
+        "name": "ProductDocumentationKB",
+        "status": "CREATING",
+        "roleArn": "arn:aws:iam::123456789012:role/AmazonBedrockExecutionRoleForKnowledgeBase",
+        "createdAt": "2026-04-19T12:00:00Z",
+        "updatedAt": "2026-04-19T12:00:00Z"
+      }
+    }
+  }
+}
