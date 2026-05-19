@@ -1,0 +1,133 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Bedrock Runtime API — Converse
+  description: 'Amazon Bedrock Runtime API — Converse. 2 operations. Lead operation: Amazon Bedrock Converse with a model.
+    Self-contained Naftiko capability covering one Amazon Bedrock business surface.'
+  tags:
+  - Amazon Bedrock
+  - Converse
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_BEDROCK_API_KEY: AMAZON_BEDROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: runtime-converse
+    baseUri: https://bedrock-runtime.{region}.amazonaws.com
+    description: Amazon Bedrock Runtime API — Converse business capability. Self-contained, no shared references.
+    resources:
+    - name: model-modelId-converse
+      path: /model/{modelId}/converse
+      operations:
+      - name: converse
+        method: POST
+        description: Amazon Bedrock Converse with a model
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: modelId
+          in: path
+          type: string
+          description: The identifier of the model to converse with.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: model-modelId-converse-stream
+      path: /model/{modelId}/converse-stream
+      operations:
+      - name: conversestream
+        method: POST
+        description: Amazon Bedrock Converse with a model using streaming
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: modelId
+          in: path
+          type: string
+          description: The identifier of the model to converse with.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: runtime-converse-rest
+    port: 8080
+    description: REST adapter for Amazon Bedrock Runtime API — Converse. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/model/{modelid}/converse
+      name: model-modelid-converse
+      description: REST surface for model-modelId-converse.
+      operations:
+      - method: POST
+        name: converse
+        description: Amazon Bedrock Converse with a model
+        call: runtime-converse.converse
+        with:
+          modelId: rest.modelId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/model/{modelid}/converse-stream
+      name: model-modelid-converse-stream
+      description: REST surface for model-modelId-converse-stream.
+      operations:
+      - method: POST
+        name: conversestream
+        description: Amazon Bedrock Converse with a model using streaming
+        call: runtime-converse.conversestream
+        with:
+          modelId: rest.modelId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: runtime-converse-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Bedrock Runtime API — Converse. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: amazon-bedrock-converse-model
+      description: Amazon Bedrock Converse with a model
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: runtime-converse.converse
+      with:
+        modelId: tools.modelId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: amazon-bedrock-converse-model-using
+      description: Amazon Bedrock Converse with a model using streaming
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: runtime-converse.conversestream
+      with:
+        modelId: tools.modelId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

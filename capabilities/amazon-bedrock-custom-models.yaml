@@ -1,0 +1,88 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Amazon Bedrock API — Custom Models
+  description: 'Amazon Bedrock API — Custom Models. 1 operations. Lead operation: Amazon Bedrock List custom models. Self-contained
+    Naftiko capability covering one Amazon Bedrock business surface.'
+  tags:
+  - Amazon Bedrock
+  - Custom Models
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AMAZON_BEDROCK_API_KEY: AMAZON_BEDROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: amazon-bedrock-custom-models
+    baseUri: https://bedrock.{region}.amazonaws.com
+    description: Amazon Bedrock API — Custom Models business capability. Self-contained, no shared references.
+    resources:
+    - name: custom-models
+      path: /custom-models
+      operations:
+      - name: listcustommodels
+        method: GET
+        description: Amazon Bedrock List custom models
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: maxResults
+          in: query
+          type: integer
+          description: Maximum number of results to return.
+        - name: nextToken
+          in: query
+          type: string
+          description: Token for pagination.
+        - name: baseModelArnEquals
+          in: query
+          type: string
+          description: Filter by base model ARN.
+  exposes:
+  - type: rest
+    namespace: amazon-bedrock-custom-models-rest
+    port: 8080
+    description: REST adapter for Amazon Bedrock API — Custom Models. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/custom-models
+      name: custom-models
+      description: REST surface for custom-models.
+      operations:
+      - method: GET
+        name: listcustommodels
+        description: Amazon Bedrock List custom models
+        call: amazon-bedrock-custom-models.listcustommodels
+        with:
+          maxResults: rest.maxResults
+          nextToken: rest.nextToken
+          baseModelArnEquals: rest.baseModelArnEquals
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: amazon-bedrock-custom-models-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Amazon Bedrock API — Custom Models. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: amazon-bedrock-list-custom-models
+      description: Amazon Bedrock List custom models
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: amazon-bedrock-custom-models.listcustommodels
+      with:
+        maxResults: tools.maxResults
+        nextToken: tools.nextToken
+        baseModelArnEquals: tools.baseModelArnEquals
+      outputParameters:
+      - type: object
+        mapping: $.
