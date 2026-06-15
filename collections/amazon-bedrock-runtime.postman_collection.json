@@ -1,0 +1,1614 @@
+{
+  "item": [
+    {
+      "id": "06431711-dd96-420c-9ddd-ced8101f9937",
+      "name": "Converse",
+      "description": {
+        "content": "Operations for multi-turn conversations with models.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "71bb80ed-748f-420a-ac7e-66c5bdaf04ec",
+          "name": "Amazon Bedrock Converse with a model",
+          "request": {
+            "name": "Amazon Bedrock Converse with a model",
+            "description": {
+              "content": "Sends messages to the specified Amazon Bedrock model using the Converse API. This provides a consistent interface for multi-turn conversations across different foundation models, with support for system prompts, tool use, and structured message formatting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                ":modelId",
+                "converse"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "modelId",
+                  "description": "(Required) The identifier of the model to converse with."
+                },
+                {
+                  "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": [\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": [\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": \"<integer>\",\n    \"temperature\": \"<number>\",\n    \"topP\": \"<number>\",\n    \"stopSequences\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"inputSchema\": {\n            \"json\": \"<object>\"\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"inputSchema\": {\n            \"json\": \"<object>\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b1218fdb-f268-4292-9829-684e4ecc163a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 2222,\n    \"temperature\": 0.44435109627532143,\n    \"topP\": 0.7582388647665236,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"output\": {\n    \"message\": {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"png\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  },\n  \"stopReason\": \"end_turn\",\n  \"usage\": {\n    \"inputTokens\": 4066,\n    \"outputTokens\": 592,\n    \"totalTokens\": 7605\n  },\n  \"metrics\": {\n    \"latencyMs\": 6456\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47a8bcef-3039-4f06-8820-87bdaaf1fbc0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 2222,\n    \"temperature\": 0.44435109627532143,\n    \"topP\": 0.7582388647665236,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ed79e04-67b8-4ee3-a8d9-04014673fe54",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 2222,\n    \"temperature\": 0.44435109627532143,\n    \"topP\": 0.7582388647665236,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0706366c-0db8-4861-bbfa-47165d57b04c",
+              "name": "Model not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 2222,\n    \"temperature\": 0.44435109627532143,\n    \"topP\": 0.7582388647665236,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "574f85f2-4fed-4e27-a8c0-5a85027c67cb",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 2222,\n    \"temperature\": 0.44435109627532143,\n    \"topP\": 0.7582388647665236,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a79092b-ef36-40e6-b894-f8c7c5f00636",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 2222,\n    \"temperature\": 0.44435109627532143,\n    \"topP\": 0.7582388647665236,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "388f63af-bd0e-4449-b433-7fa5bfb917c0",
+          "name": "Amazon Bedrock Converse with a model using streaming",
+          "request": {
+            "name": "Amazon Bedrock Converse with a model using streaming",
+            "description": {
+              "content": "Sends messages to the specified Amazon Bedrock model and streams the response back in real time. This provides the same consistent multi-turn conversation interface as the Converse API, with the added benefit of streaming for lower perceived latency.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                ":modelId",
+                "converse-stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "modelId",
+                  "description": "(Required) The identifier of the model to converse with."
+                },
+                {
+                  "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.amazon.eventstream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": [\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": [\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": \"<integer>\",\n    \"temperature\": \"<number>\",\n    \"topP\": \"<number>\",\n    \"stopSequences\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"inputSchema\": {\n            \"json\": \"<object>\"\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"inputSchema\": {\n            \"json\": \"<object>\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c23430e-72b5-4f3a-b5b4-52b3b96dd403",
+              "name": "Successful streaming response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amazon.eventstream"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 2222,\n    \"temperature\": 0.44435109627532143,\n    \"topP\": 0.7582388647665236,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amazon.eventstream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cb0e2d5c-012c-42e0-a8cd-958c44011b4e",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 2222,\n    \"temperature\": 0.44435109627532143,\n    \"topP\": 0.7582388647665236,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21005032-0f89-4a4d-98a7-c663d36c702e",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 2222,\n    \"temperature\": 0.44435109627532143,\n    \"topP\": 0.7582388647665236,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cb5215b-bb6a-428e-ad8b-012f13d761e9",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 2222,\n    \"temperature\": 0.44435109627532143,\n    \"topP\": 0.7582388647665236,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "428b3caa-904a-494d-8cab-c03143e4755d",
+      "name": "Inference",
+      "description": {
+        "content": "Operations for invoking models and running inference.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a6f1b7c5-be88-4b5d-9698-e8bbd3bbbb04",
+          "name": "Amazon Bedrock Invoke a model",
+          "request": {
+            "name": "Amazon Bedrock Invoke a model",
+            "description": {
+              "content": "Invokes the specified Amazon Bedrock model to run inference using the prompt and inference parameters provided in the request body. The response is returned in a single response body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                ":modelId",
+                "invoke"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "modelId",
+                  "description": "(Required) The identifier of the model to invoke (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+                },
+                {
+                  "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"<byte>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8feb207c-10a3-407c-b41c-420b78737bb9",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "invoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to invoke (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The MIME type of the input data in the request body.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The desired MIME type of the inference body in the response.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<byte>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"body\": \"string\",\n  \"contentType\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c9081c4-9310-4400-a035-3be6ba9412af",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "invoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to invoke (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The MIME type of the input data in the request body.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The desired MIME type of the inference body in the response.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<byte>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d958d3f8-7628-45de-904b-b3207c3ff662",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "invoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to invoke (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The MIME type of the input data in the request body.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The desired MIME type of the inference body in the response.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<byte>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31926f47-467d-4e6c-940d-c61daa5545ca",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "invoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to invoke (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The MIME type of the input data in the request body.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The desired MIME type of the inference body in the response.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<byte>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2000ade8-ac8f-4fde-af1f-e0936f2a7a27",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "invoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to invoke (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The MIME type of the input data in the request body.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The desired MIME type of the inference body in the response.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<byte>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7433ae2-6dc2-4bdd-a0e0-ce7516fa9597",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "invoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to invoke (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The MIME type of the input data in the request body.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The desired MIME type of the inference body in the response.",
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<byte>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b6b3579-8a83-4aa9-9c20-3f35166221d4",
+          "name": "Amazon Bedrock Invoke a model with response streaming",
+          "request": {
+            "name": "Amazon Bedrock Invoke a model with response streaming",
+            "description": {
+              "content": "Invokes the specified Amazon Bedrock model to run inference using the prompt and parameters provided in the request body. The response is streamed back in real time, allowing the client to begin processing results before the full response is generated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                ":modelId",
+                "invoke-with-response-stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "modelId",
+                  "description": "(Required) The identifier of the model to invoke."
+                },
+                {
+                  "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The desired MIME type of the inference body in the response.",
+                "key": "X-Amzn-Bedrock-Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.amazon.eventstream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"<byte>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d3d53e14-849c-4468-ad16-ea049eca0189",
+              "name": "Successful streaming response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "invoke-with-response-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to invoke."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The MIME type of the input data in the request body.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The desired MIME type of the inference body in the response.",
+                    "key": "X-Amzn-Bedrock-Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amazon.eventstream"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<byte>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amazon.eventstream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ef4ce912-0981-48b9-a2bf-a9216ab063ed",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "invoke-with-response-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to invoke."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The MIME type of the input data in the request body.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The desired MIME type of the inference body in the response.",
+                    "key": "X-Amzn-Bedrock-Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<byte>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "578d112d-96a4-4dd0-b174-ec5b3e7ab611",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "invoke-with-response-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to invoke."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The MIME type of the input data in the request body.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The desired MIME type of the inference body in the response.",
+                    "key": "X-Amzn-Bedrock-Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<byte>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ae257f6-fa40-4b16-86ee-70d08fbf6e90",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "invoke-with-response-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to invoke."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The MIME type of the input data in the request body.",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The desired MIME type of the inference body in the response.",
+                    "key": "X-Amzn-Bedrock-Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<byte>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://bedrock-runtime.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7aae0dd1-7e6a-4256-a83c-e2fa198e9c9a",
+    "name": "Amazon Bedrock Runtime API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Amazon Bedrock Runtime API provides operations for invoking foundation models and running inference. Use this API to send prompts, receive generated responses, conduct multi-turn conversations, and stream responses in real time.\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}
