@@ -1,0 +1,1972 @@
+"""
+Amazon Bedrock GraphQL Schema
+Conceptual schema derived from the Amazon Bedrock REST API.
+Covers: model invocation, agents, knowledge bases, guardrails,
+model evaluation, provisioned throughput, and custom model fine-tuning.
+"""
+
+# ─────────────────────────────────────────────
+# Scalars
+# ─────────────────────────────────────────────
+
+scalar AWSDateTime
+scalar AWSJSON
+scalar Long
+
+# ─────────────────────────────────────────────
+# Enums
+# ─────────────────────────────────────────────
+
+enum ModelStatus {
+  ACTIVE
+  LEGACY
+  DEPRECATED
+}
+
+enum CustomizationType {
+  FINE_TUNING
+  CONTINUED_PRE_TRAINING
+  DISTILLATION
+}
+
+enum CustomizationJobStatus {
+  InProgress
+  Completed
+  Failed
+  Stopping
+  Stopped
+}
+
+enum ModelModalityType {
+  TEXT
+  IMAGE
+  EMBEDDING
+}
+
+enum ProvisionedThroughputStatus {
+  Creating
+  InService
+  Updating
+  Failed
+  Deleting
+}
+
+enum CommitmentDuration {
+  OneMonth
+  SixMonths
+}
+
+enum GuardrailStatus {
+  DRAFT
+  READY
+  FAILED
+  DELETING
+}
+
+enum GuardrailFilterStrength {
+  NONE
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum GuardrailAction {
+  NONE
+  BLOCKED
+}
+
+enum AgentStatus {
+  CREATING
+  PREPARING
+  PREPARED
+  NOT_PREPARED
+  DELETING
+  FAILED
+  VERSIONING
+  UPDATING
+}
+
+enum AgentAliasStatus {
+  CREATING
+  PREPARED
+  FAILED
+  UPDATING
+  DELETING
+}
+
+enum KnowledgeBaseStatus {
+  CREATING
+  ACTIVE
+  DELETING
+  UPDATING
+  FAILED
+  DELETE_UNSUCCESSFUL
+}
+
+enum DataSourceStatus {
+  AVAILABLE
+  DELETING
+  DELETE_UNSUCCESSFUL
+}
+
+enum IngestionJobStatus {
+  STARTING
+  IN_PROGRESS
+  COMPLETE
+  FAILED
+  STOPPING
+  STOPPED
+}
+
+enum VectorStorageType {
+  OPENSEARCH_SERVERLESS
+  PINECONE
+  REDIS_ENTERPRISE_CLOUD
+  RDS
+  MONGO_DB_ATLAS
+}
+
+enum EmbeddingModelDataType {
+  FLOAT32
+  BINARY
+}
+
+enum ModelEvaluationJobStatus {
+  InProgress
+  Completed
+  Failed
+  Stopping
+  Stopped
+  Deleting
+}
+
+enum ModelEvaluationTaskType {
+  Summarization
+  Classification
+  QuestionAndAnswer
+  Generation
+  Custom
+}
+
+enum InferenceType {
+  ON_DEMAND
+  PROVISIONED
+  ENDPOINT
+}
+
+enum SortOrder {
+  Ascending
+  Descending
+}
+
+enum StopReason {
+  end_turn
+  max_tokens
+  stop_sequence
+  tool_use
+  guardrail_intervened
+  content_filtered
+}
+
+enum ContentBlockType {
+  text
+  image
+  tool_use
+  tool_result
+  document
+  thinking
+  redirect_tool_result
+}
+
+enum ImageFormat {
+  jpeg
+  png
+  gif
+  webp
+}
+
+enum DocumentFormat {
+  pdf
+  csv
+  doc
+  docx
+  xls
+  xlsx
+  html
+  txt
+  md
+}
+
+enum ToolChoiceType {
+  AUTO
+  ANY
+  TOOL
+}
+
+enum FlowStatus {
+  Failed
+  Prepared
+  Preparing
+  NotPrepared
+}
+
+# ─────────────────────────────────────────────
+# Core Foundation Model Types
+# ─────────────────────────────────────────────
+
+type FoundationModel {
+  modelId: ID!
+  modelName: String!
+  providerName: String!
+  modelArn: String!
+  inputModalities: [ModelModalityType!]!
+  outputModalities: [ModelModalityType!]!
+  responseStreamingSupported: Boolean
+  customizationsSupported: [CustomizationType!]
+  inferenceTypesSupported: [InferenceType!]
+  modelLifecycle: ModelLifecycle
+  bedrockReadyEnabled: Boolean
+}
+
+type ModelLifecycle {
+  status: ModelStatus!
+}
+
+type FoundationModelSummary {
+  modelId: ID!
+  modelName: String!
+  providerName: String!
+  modelArn: String!
+  inputModalities: [ModelModalityType!]
+  outputModalities: [ModelModalityType!]
+  responseStreamingSupported: Boolean
+  customizationsSupported: [CustomizationType!]
+  inferenceTypesSupported: [InferenceType!]
+  modelLifecycle: ModelLifecycle
+}
+
+# ─────────────────────────────────────────────
+# Custom Model Types
+# ─────────────────────────────────────────────
+
+type CustomModel {
+  modelArn: String!
+  modelName: String!
+  jobArn: String
+  baseModelArn: String
+  customizationType: CustomizationType
+  modelKmsKeyArn: String
+  hyperParameters: AWSJSON
+  trainingDataConfig: TrainingDataConfig
+  validationDataConfig: ValidationDataConfig
+  outputDataConfig: OutputDataConfig
+  trainingMetrics: TrainingMetrics
+  validationMetrics: [ValidatorMetric!]
+  creationTime: AWSDateTime
+  modelStatus: CustomizationJobStatus
+}
+
+type CustomModelSummary {
+  modelArn: String!
+  modelName: String!
+  creationTime: AWSDateTime
+  baseModelArn: String
+  baseModelName: String
+  customizationType: CustomizationType
+  ownerAccountId: String
+  modelStatus: CustomizationJobStatus
+}
+
+type TrainingDataConfig {
+  s3Uri: String!
+}
+
+type ValidationDataConfig {
+  validators: [Validator!]!
+}
+
+type Validator {
+  s3Uri: String!
+}
+
+type OutputDataConfig {
+  s3Uri: String!
+}
+
+type TrainingMetrics {
+  trainingLoss: Float
+}
+
+type ValidatorMetric {
+  validationLoss: Float
+}
+
+# ─────────────────────────────────────────────
+# Customization Job Types
+# ─────────────────────────────────────────────
+
+type ModelCustomizationJob {
+  jobArn: String!
+  jobName: String!
+  outputModelArn: String
+  outputModelName: String
+  outputModelKmsKeyArn: String
+  baseModelArn: String!
+  customizationType: CustomizationType
+  hyperParameters: AWSJSON
+  trainingDataConfig: TrainingDataConfig
+  validationDataConfig: ValidationDataConfig
+  outputDataConfig: OutputDataConfig
+  trainingMetrics: TrainingMetrics
+  validationMetrics: [ValidatorMetric!]
+  roleArn: String!
+  status: CustomizationJobStatus!
+  failureMessage: String
+  creationTime: AWSDateTime
+  lastModifiedTime: AWSDateTime
+  endTime: AWSDateTime
+  vpcConfig: VpcConfig
+}
+
+type ModelCustomizationJobSummary {
+  jobArn: String!
+  baseModelArn: String!
+  jobName: String!
+  status: CustomizationJobStatus!
+  lastModifiedTime: AWSDateTime
+  creationTime: AWSDateTime
+  endTime: AWSDateTime
+  customModelArn: String
+  customModelName: String
+  customizationType: CustomizationType
+}
+
+# ─────────────────────────────────────────────
+# Provisioned Throughput Types
+# ─────────────────────────────────────────────
+
+type ProvisionedModelThroughput {
+  provisionedModelArn: String!
+  provisionedModelName: String!
+  modelArn: String!
+  desiredModelUnits: Int!
+  foundationModelArn: String
+  status: ProvisionedThroughputStatus!
+  creationTime: AWSDateTime
+  lastModifiedTime: AWSDateTime
+  failureMessage: String
+  commitmentDuration: CommitmentDuration
+  commitmentExpirationTime: AWSDateTime
+}
+
+type ProvisionedModelThroughputSummary {
+  provisionedModelArn: String!
+  provisionedModelName: String!
+  modelArn: String
+  desiredModelUnits: Int!
+  foundationModelArn: String
+  status: ProvisionedThroughputStatus!
+  creationTime: AWSDateTime
+  lastModifiedTime: AWSDateTime
+  commitmentDuration: CommitmentDuration
+  commitmentExpirationTime: AWSDateTime
+}
+
+# ─────────────────────────────────────────────
+# Guardrail Types
+# ─────────────────────────────────────────────
+
+type Guardrail {
+  guardrailId: ID!
+  guardrailArn: String!
+  name: String!
+  description: String
+  version: String!
+  status: GuardrailStatus!
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  failureRecommendations: [String!]
+  statusReasons: [String!]
+  topicPolicy: GuardrailTopicPolicy
+  contentPolicy: GuardrailContentPolicy
+  wordPolicy: GuardrailWordPolicy
+  sensitiveInformationPolicy: GuardrailSensitiveInformationPolicy
+  contextualGroundingPolicy: GuardrailContextualGroundingPolicy
+  blockedInputMessaging: String
+  blockedOutputsMessaging: String
+  kmsKeyArn: String
+}
+
+type GuardrailSummary {
+  id: ID!
+  arn: String!
+  name: String!
+  description: String
+  status: GuardrailStatus!
+  version: String!
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type GuardrailTopicPolicy {
+  topics: [GuardrailTopic!]!
+}
+
+type GuardrailTopic {
+  name: String!
+  definition: String!
+  examples: [String!]
+  type: String
+}
+
+type GuardrailContentPolicy {
+  filters: [GuardrailContentFilter!]!
+}
+
+type GuardrailContentFilter {
+  type: String!
+  inputStrength: GuardrailFilterStrength!
+  outputStrength: GuardrailFilterStrength!
+}
+
+type GuardrailWordPolicy {
+  words: [GuardrailWord!]
+  managedWordListsConfig: [GuardrailManagedWordsList!]
+}
+
+type GuardrailWord {
+  text: String!
+}
+
+type GuardrailManagedWordsList {
+  type: String!
+}
+
+type GuardrailSensitiveInformationPolicy {
+  piiEntities: [GuardrailPiiEntity!]
+  regexes: [GuardrailRegex!]
+}
+
+type GuardrailPiiEntity {
+  type: String!
+  action: GuardrailAction!
+}
+
+type GuardrailRegex {
+  name: String!
+  description: String
+  pattern: String!
+  action: GuardrailAction!
+}
+
+type GuardrailContextualGroundingPolicy {
+  filters: [GuardrailContextualGroundingFilter!]!
+}
+
+type GuardrailContextualGroundingFilter {
+  type: String!
+  threshold: Float!
+}
+
+# ─────────────────────────────────────────────
+# Agent Types
+# ─────────────────────────────────────────────
+
+type Agent {
+  agentId: ID!
+  agentName: String!
+  agentArn: String!
+  agentVersion: String!
+  agentStatus: AgentStatus!
+  agentResourceRoleArn: String!
+  description: String
+  instruction: String
+  foundationModel: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  preparedAt: AWSDateTime
+  idleSessionTTLInSeconds: Int
+  customerEncryptionKeyArn: String
+  failureReasons: [String!]
+  recommendedActions: [String!]
+  promptOverrideConfiguration: PromptOverrideConfiguration
+  guardrailConfiguration: GuardrailConfigurationWithArn
+}
+
+type AgentSummary {
+  agentId: ID!
+  agentName: String!
+  agentStatus: AgentStatus!
+  description: String
+  updatedAt: AWSDateTime
+  latestAgentVersion: String
+  guardrailConfiguration: GuardrailConfigurationWithArn
+}
+
+type AgentAlias {
+  agentId: String!
+  agentAliasId: ID!
+  agentAliasName: String!
+  agentAliasArn: String!
+  agentAliasStatus: AgentAliasStatus!
+  description: String
+  routingConfiguration: [AgentAliasRoutingConfigurationListItem!]
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type AgentAliasRoutingConfigurationListItem {
+  agentVersion: String
+  provisionedThroughput: String
+}
+
+type AgentVersion {
+  agentId: String!
+  version: String!
+  agentStatus: AgentStatus!
+  agentName: String!
+  agentArn: String!
+  agentResourceRoleArn: String!
+  instruction: String
+  foundationModel: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  idleSessionTTLInSeconds: Int
+  description: String
+  failureReasons: [String!]
+  recommendedActions: [String!]
+}
+
+type AgentActionGroup {
+  agentId: String!
+  agentVersion: String!
+  actionGroupId: ID!
+  actionGroupName: String!
+  actionGroupState: String!
+  description: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  actionGroupExecutor: ActionGroupExecutor
+  apiSchema: APISchema
+  functionSchema: FunctionSchema
+  parentActionGroupSignature: String
+}
+
+type ActionGroupExecutor {
+  lambda: String
+  customControl: String
+}
+
+type APISchema {
+  s3: S3Identifier
+  payload: String
+}
+
+type S3Identifier {
+  s3BucketName: String
+  s3ObjectKey: String
+}
+
+type FunctionSchema {
+  functions: [AgentFunction!]
+}
+
+type AgentFunction {
+  name: String!
+  description: String
+  parameters: AWSJSON
+  requireConfirmation: String
+}
+
+type PromptOverrideConfiguration {
+  promptConfigurations: [PromptConfiguration!]!
+  overrideLambda: String
+}
+
+type PromptConfiguration {
+  promptType: String!
+  promptCreationMode: String
+  promptState: String
+  basePromptTemplate: String
+  inferenceConfiguration: PromptInferenceConfiguration
+  parserMode: String
+}
+
+type PromptInferenceConfiguration {
+  temperature: Float
+  topP: Float
+  topK: Int
+  maximumLength: Int
+  stopSequences: [String!]
+}
+
+type GuardrailConfigurationWithArn {
+  guardrailIdentifier: String
+  guardrailVersion: String
+}
+
+# ─────────────────────────────────────────────
+# Knowledge Base Types
+# ─────────────────────────────────────────────
+
+type KnowledgeBase {
+  knowledgeBaseId: ID!
+  name: String!
+  knowledgeBaseArn: String!
+  description: String
+  roleArn: String!
+  knowledgeBaseConfiguration: KnowledgeBaseConfiguration!
+  storageConfiguration: StorageConfiguration!
+  status: KnowledgeBaseStatus!
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  failureReasons: [String!]
+}
+
+type KnowledgeBaseSummary {
+  knowledgeBaseId: ID!
+  name: String!
+  description: String
+  status: KnowledgeBaseStatus!
+  updatedAt: AWSDateTime
+}
+
+type KnowledgeBaseConfiguration {
+  type: String!
+  vectorKnowledgeBaseConfiguration: VectorKnowledgeBaseConfiguration
+}
+
+type VectorKnowledgeBaseConfiguration {
+  embeddingModelArn: String!
+  embeddingModelConfiguration: EmbeddingModelConfiguration
+}
+
+type EmbeddingModelConfiguration {
+  bedrockEmbeddingModelConfiguration: BedrockEmbeddingModelConfiguration
+}
+
+type BedrockEmbeddingModelConfiguration {
+  dimensions: Int
+  embeddingDataType: EmbeddingModelDataType
+}
+
+type StorageConfiguration {
+  type: VectorStorageType!
+  opensearchServerlessConfiguration: OpenSearchServerlessConfiguration
+  pineconeConfiguration: PineconeConfiguration
+  rdsConfiguration: RdsConfiguration
+}
+
+type OpenSearchServerlessConfiguration {
+  collectionArn: String!
+  vectorIndexName: String!
+  fieldMapping: OpenSearchServerlessFieldMapping!
+}
+
+type OpenSearchServerlessFieldMapping {
+  vectorField: String!
+  textField: String!
+  metadataField: String!
+}
+
+type PineconeConfiguration {
+  connectionString: String!
+  credentialsSecretArn: String!
+  namespace: String
+  fieldMapping: PineconeFieldMapping!
+}
+
+type PineconeFieldMapping {
+  textField: String!
+  metadataField: String!
+}
+
+type RdsConfiguration {
+  resourceArn: String!
+  credentialsSecretArn: String!
+  databaseName: String!
+  tableName: String!
+  fieldMapping: RdsFieldMapping!
+}
+
+type RdsFieldMapping {
+  primaryKeyField: String!
+  vectorField: String!
+  textField: String!
+  metadataField: String!
+}
+
+# ─────────────────────────────────────────────
+# Data Source & Ingestion Types
+# ─────────────────────────────────────────────
+
+type DataSource {
+  knowledgeBaseId: String!
+  dataSourceId: ID!
+  name: String!
+  description: String
+  status: DataSourceStatus!
+  dataSourceConfiguration: DataSourceConfiguration!
+  serverSideEncryptionConfiguration: ServerSideEncryptionConfiguration
+  vectorIngestionConfiguration: VectorIngestionConfiguration
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  failureReasons: [String!]
+}
+
+type DataSourceSummary {
+  knowledgeBaseId: String!
+  dataSourceId: ID!
+  name: String!
+  status: DataSourceStatus!
+  description: String
+  updatedAt: AWSDateTime
+}
+
+type DataSourceConfiguration {
+  type: String!
+  s3Configuration: S3DataSourceConfiguration
+  webConfiguration: WebDataSourceConfiguration
+}
+
+type S3DataSourceConfiguration {
+  bucketArn: String!
+  inclusionPrefixes: [String!]
+  bucketOwnerAccountId: String
+}
+
+type WebDataSourceConfiguration {
+  sourceConfiguration: WebSourceConfiguration!
+  crawlerConfiguration: WebCrawlerConfiguration
+}
+
+type WebSourceConfiguration {
+  urlConfiguration: UrlConfiguration!
+}
+
+type UrlConfiguration {
+  seedUrls: [SeedUrl!]!
+}
+
+type SeedUrl {
+  url: String!
+}
+
+type WebCrawlerConfiguration {
+  crawlerLimits: WebCrawlerLimits
+  inclusionFilters: [String!]
+  exclusionFilters: [String!]
+  scope: String
+}
+
+type WebCrawlerLimits {
+  rateLimit: Int
+}
+
+type ServerSideEncryptionConfiguration {
+  kmsKeyArn: String
+}
+
+type VectorIngestionConfiguration {
+  chunkingConfiguration: ChunkingConfiguration
+  parsingConfiguration: ParsingConfiguration
+}
+
+type ChunkingConfiguration {
+  chunkingStrategy: String!
+  fixedSizeChunkingConfiguration: FixedSizeChunkingConfiguration
+  hierarchicalChunkingConfiguration: HierarchicalChunkingConfiguration
+  semanticChunkingConfiguration: SemanticChunkingConfiguration
+}
+
+type FixedSizeChunkingConfiguration {
+  maxTokens: Int!
+  overlapPercentage: Int!
+}
+
+type HierarchicalChunkingConfiguration {
+  levelConfigurations: [HierarchicalChunkingLevelConfiguration!]!
+  overlapTokens: Int!
+}
+
+type HierarchicalChunkingLevelConfiguration {
+  maxTokens: Int!
+}
+
+type SemanticChunkingConfiguration {
+  maxTokens: Int!
+  bufferSize: Int!
+  breakpointPercentileThreshold: Int!
+}
+
+type ParsingConfiguration {
+  parsingStrategy: String!
+  bedrockFoundationModelConfiguration: BedrockFoundationModelParsingConfiguration
+}
+
+type BedrockFoundationModelParsingConfiguration {
+  modelArn: String!
+  parsingPrompt: ParsingPrompt
+}
+
+type ParsingPrompt {
+  parsingPromptText: String!
+}
+
+type IngestionJob {
+  knowledgeBaseId: String!
+  dataSourceId: String!
+  ingestionJobId: ID!
+  description: String
+  status: IngestionJobStatus!
+  statistics: IngestionJobStatistics
+  failureReasons: [String!]
+  startedAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type IngestionJobSummary {
+  knowledgeBaseId: String!
+  dataSourceId: String!
+  ingestionJobId: ID!
+  description: String
+  status: IngestionJobStatus!
+  startedAt: AWSDateTime
+  updatedAt: AWSDateTime
+  statistics: IngestionJobStatistics
+}
+
+type IngestionJobStatistics {
+  numberOfDocumentsScanned: Long
+  numberOfDocumentsDeleted: Long
+  numberOfDocumentsFailed: Long
+  numberOfDocumentsModified: Long
+  numberOfNewDocumentsIndexed: Long
+  numberOfModifiedDocumentsIndexed: Long
+  numberOfMetadataDocumentsModified: Long
+  numberOfMetadataDocumentsScanned: Long
+}
+
+# ─────────────────────────────────────────────
+# Model Evaluation Types
+# ─────────────────────────────────────────────
+
+type ModelEvaluationJob {
+  jobArn: String!
+  jobName: String!
+  status: ModelEvaluationJobStatus!
+  roleArn: String!
+  customerEncryptionKeyId: String
+  jobDescription: String
+  evaluationConfig: EvaluationConfig
+  inferenceConfig: EvaluationInferenceConfig
+  outputDataConfig: EvaluationOutputDataConfig
+  creationTime: AWSDateTime
+  lastModifiedTime: AWSDateTime
+  failureMessages: [String!]
+}
+
+type ModelEvaluationJobSummary {
+  jobArn: String!
+  jobName: String!
+  status: ModelEvaluationJobStatus!
+  creationTime: AWSDateTime
+  lastModifiedTime: AWSDateTime
+  evaluationTaskTypes: [ModelEvaluationTaskType!]
+  modelIdentifiers: [String!]
+}
+
+type EvaluationConfig {
+  automated: AutomatedEvaluationConfig
+  human: HumanEvaluationConfig
+}
+
+type AutomatedEvaluationConfig {
+  datasetMetricConfigs: [EvaluationDatasetMetricConfig!]!
+}
+
+type EvaluationDatasetMetricConfig {
+  taskType: ModelEvaluationTaskType!
+  dataset: EvaluationDataset!
+  metricNames: [String!]!
+}
+
+type EvaluationDataset {
+  name: String!
+  datasetLocation: EvaluationDatasetLocation
+}
+
+type EvaluationDatasetLocation {
+  s3Uri: String
+}
+
+type HumanEvaluationConfig {
+  humanWorkflowConfig: HumanWorkflowConfig
+  customMetrics: [HumanEvaluationCustomMetric!]
+  datasetMetricConfigs: [EvaluationDatasetMetricConfig!]!
+}
+
+type HumanWorkflowConfig {
+  flowDefinitionArn: String!
+  instructions: String
+}
+
+type HumanEvaluationCustomMetric {
+  name: String!
+  description: String
+  ratingMethod: String!
+}
+
+type EvaluationInferenceConfig {
+  models: [EvaluationModelConfig!]
+}
+
+type EvaluationModelConfig {
+  bedrockModel: EvaluationBedrockModel
+}
+
+type EvaluationBedrockModel {
+  modelIdentifier: String!
+  inferenceParams: String
+}
+
+type EvaluationOutputDataConfig {
+  s3Uri: String!
+}
+
+# ─────────────────────────────────────────────
+# Inference / Converse Types
+# ─────────────────────────────────────────────
+
+type ConverseResponse {
+  output: ConverseOutput!
+  stopReason: StopReason!
+  usage: TokenUsage!
+  metrics: ConverseMetrics
+  additionalModelResponseFields: AWSJSON
+  trace: ConverseTrace
+  performanceConfig: PerformanceConfiguration
+}
+
+type ConverseOutput {
+  message: Message
+}
+
+type Message {
+  role: String!
+  content: [ContentBlock!]!
+}
+
+type ContentBlock {
+  type: ContentBlockType!
+  text: String
+  image: ImageBlock
+  toolUse: ToolUseBlock
+  toolResult: ToolResultBlock
+  document: DocumentBlock
+  thinking: ThinkingBlock
+}
+
+type ImageBlock {
+  format: ImageFormat!
+  source: ImageSource!
+}
+
+type ImageSource {
+  bytes: String
+  s3Location: S3ImageSource
+}
+
+type S3ImageSource {
+  uri: String!
+  bucketOwner: String
+}
+
+type DocumentBlock {
+  format: DocumentFormat!
+  name: String!
+  source: DocumentSource!
+}
+
+type DocumentSource {
+  bytes: String
+  s3Location: S3DocumentSource
+}
+
+type S3DocumentSource {
+  uri: String!
+  bucketOwner: String
+}
+
+type ThinkingBlock {
+  thinking: String
+  signature: String
+}
+
+type ToolUseBlock {
+  toolUseId: String!
+  name: String!
+  input: AWSJSON!
+}
+
+type ToolResultBlock {
+  toolUseId: String!
+  content: [ToolResultContentBlock!]!
+  status: String
+}
+
+type ToolResultContentBlock {
+  text: String
+  image: ImageBlock
+  document: DocumentBlock
+  json: AWSJSON
+}
+
+type TokenUsage {
+  inputTokens: Int!
+  outputTokens: Int!
+  totalTokens: Int!
+  cacheReadInputTokenCount: Int
+  cacheWriteInputTokenCount: Int
+}
+
+type ConverseMetrics {
+  latencyMs: Long!
+}
+
+type ConverseTrace {
+  guardrail: GuardrailTraceAssessment
+  promptRouter: PromptRouterTrace
+}
+
+type GuardrailTraceAssessment {
+  modelOutput: [String!]
+  inputAssessment: AWSJSON
+  outputAssessments: AWSJSON
+}
+
+type PromptRouterTrace {
+  invokedModelId: String
+}
+
+type PerformanceConfiguration {
+  latency: String
+}
+
+type InvokeModelResponse {
+  body: String!
+  contentType: String!
+}
+
+# ─────────────────────────────────────────────
+# VPC Configuration
+# ─────────────────────────────────────────────
+
+type VpcConfig {
+  subnetIds: [String!]!
+  securityGroupIds: [String!]!
+}
+
+# ─────────────────────────────────────────────
+# Tag Types
+# ─────────────────────────────────────────────
+
+type Tag {
+  key: String!
+  value: String!
+}
+
+# ─────────────────────────────────────────────
+# Pagination / Connection Types
+# ─────────────────────────────────────────────
+
+type FoundationModelConnection {
+  items: [FoundationModelSummary!]!
+  nextToken: String
+}
+
+type CustomModelConnection {
+  items: [CustomModelSummary!]!
+  nextToken: String
+}
+
+type CustomizationJobConnection {
+  items: [ModelCustomizationJobSummary!]!
+  nextToken: String
+}
+
+type ProvisionedThroughputConnection {
+  items: [ProvisionedModelThroughputSummary!]!
+  nextToken: String
+}
+
+type GuardrailConnection {
+  items: [GuardrailSummary!]!
+  nextToken: String
+}
+
+type AgentConnection {
+  items: [AgentSummary!]!
+  nextToken: String
+}
+
+type AgentAliasConnection {
+  items: [AgentAlias!]!
+  nextToken: String
+}
+
+type AgentVersionConnection {
+  items: [AgentVersion!]!
+  nextToken: String
+}
+
+type AgentActionGroupConnection {
+  items: [AgentActionGroup!]!
+  nextToken: String
+}
+
+type KnowledgeBaseConnection {
+  items: [KnowledgeBaseSummary!]!
+  nextToken: String
+}
+
+type DataSourceConnection {
+  items: [DataSourceSummary!]!
+  nextToken: String
+}
+
+type IngestionJobConnection {
+  items: [IngestionJobSummary!]!
+  nextToken: String
+}
+
+type ModelEvaluationJobConnection {
+  items: [ModelEvaluationJobSummary!]!
+  nextToken: String
+}
+
+# ─────────────────────────────────────────────
+# Input Types
+# ─────────────────────────────────────────────
+
+input CreateCustomizationJobInput {
+  jobName: String!
+  customModelName: String!
+  roleArn: String!
+  baseModelIdentifier: String!
+  customizationType: CustomizationType
+  customModelKmsKeyId: String
+  hyperParameters: AWSJSON
+  trainingDataConfig: TrainingDataConfigInput!
+  validationDataConfig: ValidationDataConfigInput
+  outputDataConfig: OutputDataConfigInput!
+  vpcConfig: VpcConfigInput
+  tags: [TagInput!]
+}
+
+input TrainingDataConfigInput {
+  s3Uri: String!
+}
+
+input ValidationDataConfigInput {
+  validators: [ValidatorInput!]!
+}
+
+input ValidatorInput {
+  s3Uri: String!
+}
+
+input OutputDataConfigInput {
+  s3Uri: String!
+}
+
+input VpcConfigInput {
+  subnetIds: [String!]!
+  securityGroupIds: [String!]!
+}
+
+input TagInput {
+  key: String!
+  value: String!
+}
+
+input CreateProvisionedThroughputInput {
+  provisionedModelName: String!
+  modelId: String!
+  commitmentDuration: CommitmentDuration
+  modelUnits: Int!
+  tags: [TagInput!]
+}
+
+input UpdateProvisionedThroughputInput {
+  provisionedModelId: String!
+  provisionedModelName: String
+  desiredModelId: String
+}
+
+input CreateGuardrailInput {
+  name: String!
+  description: String
+  topicPolicyConfig: GuardrailTopicPolicyConfigInput
+  contentPolicyConfig: GuardrailContentPolicyConfigInput
+  wordPolicyConfig: GuardrailWordPolicyConfigInput
+  sensitiveInformationPolicyConfig: GuardrailSensitiveInformationPolicyConfigInput
+  contextualGroundingPolicyConfig: GuardrailContextualGroundingPolicyConfigInput
+  blockedInputMessaging: String!
+  blockedOutputsMessaging: String!
+  kmsKeyId: String
+  tags: [TagInput!]
+}
+
+input GuardrailTopicPolicyConfigInput {
+  topicsConfig: [GuardrailTopicConfigInput!]!
+}
+
+input GuardrailTopicConfigInput {
+  name: String!
+  definition: String!
+  examples: [String!]
+  type: String!
+}
+
+input GuardrailContentPolicyConfigInput {
+  filtersConfig: [GuardrailContentFilterConfigInput!]!
+}
+
+input GuardrailContentFilterConfigInput {
+  type: String!
+  inputStrength: GuardrailFilterStrength!
+  outputStrength: GuardrailFilterStrength!
+}
+
+input GuardrailWordPolicyConfigInput {
+  wordsConfig: [GuardrailWordConfigInput!]
+  managedWordListsConfig: [GuardrailManagedWordListsConfigInput!]
+}
+
+input GuardrailWordConfigInput {
+  text: String!
+}
+
+input GuardrailManagedWordListsConfigInput {
+  type: String!
+}
+
+input GuardrailSensitiveInformationPolicyConfigInput {
+  piiEntitiesConfig: [GuardrailPiiEntityConfigInput!]
+  regexesConfig: [GuardrailRegexConfigInput!]
+}
+
+input GuardrailPiiEntityConfigInput {
+  type: String!
+  action: GuardrailAction!
+}
+
+input GuardrailRegexConfigInput {
+  name: String!
+  description: String
+  pattern: String!
+  action: GuardrailAction!
+}
+
+input GuardrailContextualGroundingPolicyConfigInput {
+  filtersConfig: [GuardrailContextualGroundingFilterConfigInput!]!
+}
+
+input GuardrailContextualGroundingFilterConfigInput {
+  type: String!
+  threshold: Float!
+}
+
+input UpdateGuardrailInput {
+  guardrailIdentifier: String!
+  name: String!
+  description: String
+  blockedInputMessaging: String!
+  blockedOutputsMessaging: String!
+  topicPolicyConfig: GuardrailTopicPolicyConfigInput
+  contentPolicyConfig: GuardrailContentPolicyConfigInput
+  wordPolicyConfig: GuardrailWordPolicyConfigInput
+  sensitiveInformationPolicyConfig: GuardrailSensitiveInformationPolicyConfigInput
+  contextualGroundingPolicyConfig: GuardrailContextualGroundingPolicyConfigInput
+  kmsKeyId: String
+}
+
+input CreateAgentInput {
+  agentName: String!
+  agentResourceRoleArn: String!
+  description: String
+  instruction: String
+  foundationModel: String
+  idleSessionTTLInSeconds: Int
+  customerEncryptionKeyArn: String
+  tags: AWSJSON
+  guardrailConfiguration: GuardrailConfigInput
+}
+
+input GuardrailConfigInput {
+  guardrailIdentifier: String!
+  guardrailVersion: String!
+}
+
+input UpdateAgentInput {
+  agentId: String!
+  agentName: String!
+  agentResourceRoleArn: String!
+  description: String
+  instruction: String
+  foundationModel: String
+  idleSessionTTLInSeconds: Int
+  customerEncryptionKeyArn: String
+  guardrailConfiguration: GuardrailConfigInput
+}
+
+input CreateAgentAliasInput {
+  agentId: String!
+  agentAliasName: String!
+  description: String
+  routingConfiguration: [AgentAliasRoutingConfigInput!]
+  tags: AWSJSON
+}
+
+input AgentAliasRoutingConfigInput {
+  agentVersion: String!
+}
+
+input CreateKnowledgeBaseInput {
+  name: String!
+  description: String
+  roleArn: String!
+  knowledgeBaseConfiguration: KnowledgeBaseConfigurationInput!
+  storageConfiguration: StorageConfigurationInput!
+  tags: AWSJSON
+}
+
+input KnowledgeBaseConfigurationInput {
+  type: String!
+  vectorKnowledgeBaseConfiguration: VectorKnowledgeBaseConfigurationInput
+}
+
+input VectorKnowledgeBaseConfigurationInput {
+  embeddingModelArn: String!
+  embeddingModelConfiguration: EmbeddingModelConfigurationInput
+}
+
+input EmbeddingModelConfigurationInput {
+  bedrockEmbeddingModelConfiguration: BedrockEmbeddingModelConfigurationInput
+}
+
+input BedrockEmbeddingModelConfigurationInput {
+  dimensions: Int
+  embeddingDataType: EmbeddingModelDataType
+}
+
+input StorageConfigurationInput {
+  type: VectorStorageType!
+  opensearchServerlessConfiguration: OpenSearchServerlessConfigurationInput
+  pineconeConfiguration: PineconeConfigurationInput
+  rdsConfiguration: RdsConfigurationInput
+}
+
+input OpenSearchServerlessConfigurationInput {
+  collectionArn: String!
+  vectorIndexName: String!
+  fieldMapping: OpenSearchServerlessFieldMappingInput!
+}
+
+input OpenSearchServerlessFieldMappingInput {
+  vectorField: String!
+  textField: String!
+  metadataField: String!
+}
+
+input PineconeConfigurationInput {
+  connectionString: String!
+  credentialsSecretArn: String!
+  namespace: String
+  fieldMapping: PineconeFieldMappingInput!
+}
+
+input PineconeFieldMappingInput {
+  textField: String!
+  metadataField: String!
+}
+
+input RdsConfigurationInput {
+  resourceArn: String!
+  credentialsSecretArn: String!
+  databaseName: String!
+  tableName: String!
+  fieldMapping: RdsFieldMappingInput!
+}
+
+input RdsFieldMappingInput {
+  primaryKeyField: String!
+  vectorField: String!
+  textField: String!
+  metadataField: String!
+}
+
+input CreateDataSourceInput {
+  knowledgeBaseId: String!
+  name: String!
+  description: String
+  dataSourceConfiguration: DataSourceConfigurationInput!
+  serverSideEncryptionConfiguration: ServerSideEncryptionConfigurationInput
+  vectorIngestionConfiguration: VectorIngestionConfigurationInput
+}
+
+input DataSourceConfigurationInput {
+  type: String!
+  s3Configuration: S3DataSourceConfigurationInput
+}
+
+input S3DataSourceConfigurationInput {
+  bucketArn: String!
+  inclusionPrefixes: [String!]
+  bucketOwnerAccountId: String
+}
+
+input ServerSideEncryptionConfigurationInput {
+  kmsKeyArn: String
+}
+
+input VectorIngestionConfigurationInput {
+  chunkingConfiguration: ChunkingConfigurationInput
+}
+
+input ChunkingConfigurationInput {
+  chunkingStrategy: String!
+  fixedSizeChunkingConfiguration: FixedSizeChunkingConfigurationInput
+}
+
+input FixedSizeChunkingConfigurationInput {
+  maxTokens: Int!
+  overlapPercentage: Int!
+}
+
+input CreateModelEvaluationJobInput {
+  jobName: String!
+  roleArn: String!
+  customerEncryptionKeyId: String
+  jobDescription: String
+  evaluationConfig: EvaluationConfigInput!
+  inferenceConfig: EvaluationInferenceConfigInput!
+  outputDataConfig: EvaluationOutputDataConfigInput!
+}
+
+input EvaluationConfigInput {
+  automated: AutomatedEvaluationConfigInput
+}
+
+input AutomatedEvaluationConfigInput {
+  datasetMetricConfigs: [EvaluationDatasetMetricConfigInput!]!
+}
+
+input EvaluationDatasetMetricConfigInput {
+  taskType: ModelEvaluationTaskType!
+  dataset: EvaluationDatasetInput!
+  metricNames: [String!]!
+}
+
+input EvaluationDatasetInput {
+  name: String!
+  datasetLocation: EvaluationDatasetLocationInput
+}
+
+input EvaluationDatasetLocationInput {
+  s3Uri: String
+}
+
+input EvaluationInferenceConfigInput {
+  models: [EvaluationModelConfigInput!]
+}
+
+input EvaluationModelConfigInput {
+  bedrockModel: EvaluationBedrockModelInput
+}
+
+input EvaluationBedrockModelInput {
+  modelIdentifier: String!
+  inferenceParams: String
+}
+
+input EvaluationOutputDataConfigInput {
+  s3Uri: String!
+}
+
+input ConverseInput {
+  modelId: String!
+  messages: [MessageInput!]!
+  system: [SystemContentBlockInput!]
+  inferenceConfig: InferenceConfigurationInput
+  toolConfig: ToolConfigurationInput
+  guardrailConfig: GuardrailConverseConfigInput
+  additionalModelRequestFields: AWSJSON
+  additionalModelResponseFieldPaths: [String!]
+  performanceConfig: PerformanceConfigurationInput
+}
+
+input MessageInput {
+  role: String!
+  content: [ContentBlockInput!]!
+}
+
+input ContentBlockInput {
+  text: String
+  image: ImageBlockInput
+  toolUse: ToolUseBlockInput
+  toolResult: ToolResultBlockInput
+  document: DocumentBlockInput
+}
+
+input ImageBlockInput {
+  format: ImageFormat!
+  source: ImageSourceInput!
+}
+
+input ImageSourceInput {
+  bytes: String
+  s3Location: S3ImageSourceInput
+}
+
+input S3ImageSourceInput {
+  uri: String!
+  bucketOwner: String
+}
+
+input DocumentBlockInput {
+  format: DocumentFormat!
+  name: String!
+  source: DocumentSourceInput!
+}
+
+input DocumentSourceInput {
+  bytes: String
+}
+
+input ToolUseBlockInput {
+  toolUseId: String!
+  name: String!
+  input: AWSJSON!
+}
+
+input ToolResultBlockInput {
+  toolUseId: String!
+  content: [ToolResultContentBlockInput!]!
+  status: String
+}
+
+input ToolResultContentBlockInput {
+  text: String
+  image: ImageBlockInput
+  document: DocumentBlockInput
+  json: AWSJSON
+}
+
+input SystemContentBlockInput {
+  text: String
+  guardContent: GuardrailConverseContentBlockInput
+}
+
+input GuardrailConverseContentBlockInput {
+  text: GuardrailConverseTextBlockInput
+}
+
+input GuardrailConverseTextBlockInput {
+  text: String!
+  qualifiers: [String!]
+}
+
+input InferenceConfigurationInput {
+  maxTokens: Int
+  temperature: Float
+  topP: Float
+  stopSequences: [String!]
+}
+
+input ToolConfigurationInput {
+  tools: [ToolInput!]!
+  toolChoice: ToolChoiceInput
+}
+
+input ToolInput {
+  toolSpec: ToolSpecInput
+}
+
+input ToolSpecInput {
+  name: String!
+  description: String
+  inputSchema: ToolInputSchemaInput!
+}
+
+input ToolInputSchemaInput {
+  json: AWSJSON
+}
+
+input ToolChoiceInput {
+  auto: AWSJSON
+  any: AWSJSON
+  tool: SpecificToolChoiceInput
+}
+
+input SpecificToolChoiceInput {
+  name: String!
+}
+
+input GuardrailConverseConfigInput {
+  guardrailIdentifier: String!
+  guardrailVersion: String!
+  trace: String
+}
+
+input PerformanceConfigurationInput {
+  latency: String
+}
+
+input InvokeModelInput {
+  modelId: String!
+  body: String!
+  contentType: String
+  accept: String
+  guardrailIdentifier: String
+  guardrailVersion: String
+  guardrailTrace: String
+  performanceConfigLatency: String
+}
+
+# ─────────────────────────────────────────────
+# Mutation Result Types
+# ─────────────────────────────────────────────
+
+type CreateCustomizationJobResult {
+  jobArn: String!
+}
+
+type CreateProvisionedThroughputResult {
+  provisionedModelArn: String!
+}
+
+type CreateGuardrailResult {
+  guardrailId: String!
+  guardrailArn: String!
+  version: String!
+  createdAt: AWSDateTime!
+}
+
+type CreateGuardrailVersionResult {
+  guardrailId: String!
+  version: String!
+}
+
+type CreateAgentResult {
+  agent: Agent!
+}
+
+type PrepareAgentResult {
+  agentId: String!
+  agentStatus: AgentStatus!
+  agentVersion: String!
+  preparedAt: AWSDateTime!
+}
+
+type CreateAgentAliasResult {
+  agentAlias: AgentAlias!
+}
+
+type CreateKnowledgeBaseResult {
+  knowledgeBase: KnowledgeBase!
+}
+
+type AssociateAgentKnowledgeBaseResult {
+  agentKnowledgeBase: AgentKnowledgeBase!
+}
+
+type AgentKnowledgeBase {
+  agentId: String!
+  agentVersion: String!
+  knowledgeBaseId: String!
+  description: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  knowledgeBaseState: String!
+}
+
+type CreateDataSourceResult {
+  dataSource: DataSource!
+}
+
+type StartIngestionJobResult {
+  ingestionJob: IngestionJob!
+}
+
+type CreateModelEvaluationJobResult {
+  jobIdentifier: String!
+}
+
+type DeleteResult {
+  success: Boolean!
+}
+
+type UntagResult {
+  success: Boolean!
+}
+
+# ─────────────────────────────────────────────
+# Query Root
+# ─────────────────────────────────────────────
+
+type Query {
+  # Foundation Models
+  listFoundationModels(
+    byProvider: String
+    byCustomizationType: CustomizationType
+    byOutputModality: ModelModalityType
+    byInferenceType: InferenceType
+  ): FoundationModelConnection!
+
+  getFoundationModel(modelIdentifier: String!): FoundationModel!
+
+  # Custom Models
+  listCustomModels(
+    baseModelArnEquals: String
+    foundationModelArnEquals: String
+    creationTimeBefore: AWSDateTime
+    creationTimeAfter: AWSDateTime
+    nameContains: String
+    maxResults: Int
+    nextToken: String
+    sortBy: String
+    sortOrder: SortOrder
+  ): CustomModelConnection!
+
+  getCustomModel(modelIdentifier: String!): CustomModel!
+
+  # Customization Jobs
+  listModelCustomizationJobs(
+    creationTimeBefore: AWSDateTime
+    creationTimeAfter: AWSDateTime
+    statusEquals: CustomizationJobStatus
+    nameContains: String
+    maxResults: Int
+    nextToken: String
+    sortBy: String
+    sortOrder: SortOrder
+  ): CustomizationJobConnection!
+
+  getModelCustomizationJob(jobIdentifier: String!): ModelCustomizationJob!
+
+  # Provisioned Throughput
+  listProvisionedModelThroughputs(
+    creationTimeBefore: AWSDateTime
+    creationTimeAfter: AWSDateTime
+    statusEquals: ProvisionedThroughputStatus
+    modelArnEquals: String
+    nameContains: String
+    maxResults: Int
+    nextToken: String
+    sortBy: String
+    sortOrder: SortOrder
+  ): ProvisionedThroughputConnection!
+
+  getProvisionedModelThroughput(provisionedModelId: String!): ProvisionedModelThroughput!
+
+  # Guardrails
+  listGuardrails(
+    guardrailIdentifier: String
+    maxResults: Int
+    nextToken: String
+  ): GuardrailConnection!
+
+  getGuardrail(guardrailIdentifier: String!, guardrailVersion: String): Guardrail!
+
+  # Agents
+  listAgents(
+    maxResults: Int
+    nextToken: String
+  ): AgentConnection!
+
+  getAgent(agentId: String!): Agent!
+
+  listAgentAliases(
+    agentId: String!
+    maxResults: Int
+    nextToken: String
+  ): AgentAliasConnection!
+
+  getAgentAlias(agentId: String!, agentAliasId: String!): AgentAlias!
+
+  listAgentVersions(
+    agentId: String!
+    maxResults: Int
+    nextToken: String
+  ): AgentVersionConnection!
+
+  getAgentVersion(agentId: String!, agentVersion: String!): AgentVersion!
+
+  listAgentActionGroups(
+    agentId: String!
+    agentVersion: String!
+    maxResults: Int
+    nextToken: String
+  ): AgentActionGroupConnection!
+
+  getAgentActionGroup(agentId: String!, agentVersion: String!, actionGroupId: String!): AgentActionGroup!
+
+  # Knowledge Bases
+  listKnowledgeBases(
+    maxResults: Int
+    nextToken: String
+  ): KnowledgeBaseConnection!
+
+  getKnowledgeBase(knowledgeBaseId: String!): KnowledgeBase!
+
+  # Data Sources
+  listDataSources(
+    knowledgeBaseId: String!
+    maxResults: Int
+    nextToken: String
+  ): DataSourceConnection!
+
+  getDataSource(knowledgeBaseId: String!, dataSourceId: String!): DataSource!
+
+  # Ingestion Jobs
+  listIngestionJobs(
+    knowledgeBaseId: String!
+    dataSourceId: String!
+    maxResults: Int
+    nextToken: String
+    sortBy: String
+    sortOrder: SortOrder
+  ): IngestionJobConnection!
+
+  getIngestionJob(knowledgeBaseId: String!, dataSourceId: String!, ingestionJobId: String!): IngestionJob!
+
+  # Model Evaluation
+  listModelEvaluationJobs(
+    creationTimeBefore: AWSDateTime
+    creationTimeAfter: AWSDateTime
+    statusEquals: ModelEvaluationJobStatus
+    nameContains: String
+    maxResults: Int
+    nextToken: String
+    sortBy: String
+    sortOrder: SortOrder
+  ): ModelEvaluationJobConnection!
+
+  getModelEvaluationJob(jobIdentifier: String!): ModelEvaluationJob!
+
+  # Tags
+  listTagsForResource(resourceARN: String!): [Tag!]!
+}
+
+# ─────────────────────────────────────────────
+# Mutation Root
+# ─────────────────────────────────────────────
+
+type Mutation {
+  # Model Invocation
+  converse(input: ConverseInput!): ConverseResponse!
+  invokeModel(input: InvokeModelInput!): InvokeModelResponse!
+
+  # Custom Model Fine-Tuning
+  createModelCustomizationJob(input: CreateCustomizationJobInput!): CreateCustomizationJobResult!
+  stopModelCustomizationJob(jobIdentifier: String!): DeleteResult!
+  deleteCustomModel(modelIdentifier: String!): DeleteResult!
+
+  # Provisioned Throughput
+  createProvisionedModelThroughput(input: CreateProvisionedThroughputInput!): CreateProvisionedThroughputResult!
+  updateProvisionedModelThroughput(input: UpdateProvisionedThroughputInput!): ProvisionedModelThroughput!
+  deleteProvisionedModelThroughput(provisionedModelId: String!): DeleteResult!
+
+  # Guardrails
+  createGuardrail(input: CreateGuardrailInput!): CreateGuardrailResult!
+  updateGuardrail(input: UpdateGuardrailInput!): Guardrail!
+  deleteGuardrail(guardrailIdentifier: String!, guardrailVersion: String): DeleteResult!
+  createGuardrailVersion(guardrailIdentifier: String!, description: String, clientRequestToken: String): CreateGuardrailVersionResult!
+
+  # Agents
+  createAgent(input: CreateAgentInput!): CreateAgentResult!
+  updateAgent(input: UpdateAgentInput!): Agent!
+  deleteAgent(agentId: String!, skipResourceInUseCheck: Boolean): DeleteResult!
+  prepareAgent(agentId: String!): PrepareAgentResult!
+
+  createAgentAlias(input: CreateAgentAliasInput!): CreateAgentAliasResult!
+  updateAgentAlias(agentId: String!, agentAliasId: String!, agentAliasName: String!, description: String, routingConfiguration: [AgentAliasRoutingConfigInput!]): AgentAlias!
+  deleteAgentAlias(agentId: String!, agentAliasId: String!): DeleteResult!
+
+  createAgentVersion(agentId: String!, description: String): AgentVersion!
+  deleteAgentVersion(agentId: String!, agentVersion: String!, skipResourceInUseCheck: Boolean): DeleteResult!
+
+  createAgentActionGroup(agentId: String!, agentVersion: String!, actionGroupName: String!, description: String, actionGroupExecutor: AWSJSON, apiSchema: AWSJSON): AgentActionGroup!
+  updateAgentActionGroup(agentId: String!, agentVersion: String!, actionGroupId: String!, actionGroupName: String!, actionGroupState: String): AgentActionGroup!
+  deleteAgentActionGroup(agentId: String!, agentVersion: String!, actionGroupId: String!, skipResourceInUseCheck: Boolean): DeleteResult!
+
+  associateAgentKnowledgeBase(agentId: String!, agentVersion: String!, knowledgeBaseId: String!, description: String!, knowledgeBaseState: String): AssociateAgentKnowledgeBaseResult!
+  disassociateAgentKnowledgeBase(agentId: String!, agentVersion: String!, knowledgeBaseId: String!): DeleteResult!
+
+  # Knowledge Bases
+  createKnowledgeBase(input: CreateKnowledgeBaseInput!): CreateKnowledgeBaseResult!
+  updateKnowledgeBase(knowledgeBaseId: String!, name: String!, roleArn: String!, description: String, knowledgeBaseConfiguration: KnowledgeBaseConfigurationInput, storageConfiguration: StorageConfigurationInput): KnowledgeBase!
+  deleteKnowledgeBase(knowledgeBaseId: String!): DeleteResult!
+
+  # Data Sources
+  createDataSource(input: CreateDataSourceInput!): CreateDataSourceResult!
+  updateDataSource(knowledgeBaseId: String!, dataSourceId: String!, name: String!, description: String, dataSourceConfiguration: DataSourceConfigurationInput, serverSideEncryptionConfiguration: ServerSideEncryptionConfigurationInput, vectorIngestionConfiguration: VectorIngestionConfigurationInput): DataSource!
+  deleteDataSource(knowledgeBaseId: String!, dataSourceId: String!): DeleteResult!
+
+  # Ingestion Jobs
+  startIngestionJob(knowledgeBaseId: String!, dataSourceId: String!, description: String, clientToken: String): StartIngestionJobResult!
+  stopIngestionJob(knowledgeBaseId: String!, dataSourceId: String!, ingestionJobId: String!): IngestionJob!
+
+  # Model Evaluation
+  createModelEvaluationJob(input: CreateModelEvaluationJobInput!): CreateModelEvaluationJobResult!
+  stopModelEvaluationJob(jobIdentifier: String!): DeleteResult!
+  deleteModelEvaluationJob(jobIdentifier: String!): DeleteResult!
+
+  # Tags
+  tagResource(resourceARN: String!, tags: [TagInput!]!): DeleteResult!
+  untagResource(resourceARN: String!, tagKeys: [String!]!): UntagResult!
+}
+
+# ─────────────────────────────────────────────
+# Subscription Root
+# ─────────────────────────────────────────────
+
+type Subscription {
+  """
+  Subscribe to status changes for a model customization job.
+  """
+  onCustomizationJobStatusChange(jobArn: String!): ModelCustomizationJob
+    @aws_subscribe(mutations: ["createModelCustomizationJob", "stopModelCustomizationJob"])
+
+  """
+  Subscribe to status changes for a provisioned model throughput resource.
+  """
+  onProvisionedThroughputStatusChange(provisionedModelArn: String!): ProvisionedModelThroughput
+    @aws_subscribe(mutations: ["createProvisionedModelThroughput", "updateProvisionedModelThroughput"])
+
+  """
+  Subscribe to agent preparation status changes.
+  """
+  onAgentStatusChange(agentId: String!): Agent
+    @aws_subscribe(mutations: ["createAgent", "updateAgent", "prepareAgent"])
+
+  """
+  Subscribe to knowledge base status changes.
+  """
+  onKnowledgeBaseStatusChange(knowledgeBaseId: String!): KnowledgeBase
+    @aws_subscribe(mutations: ["createKnowledgeBase", "updateKnowledgeBase"])
+
+  """
+  Subscribe to ingestion job progress updates.
+  """
+  onIngestionJobUpdate(knowledgeBaseId: String!, dataSourceId: String!): IngestionJob
+    @aws_subscribe(mutations: ["startIngestionJob", "stopIngestionJob"])
+
+  """
+  Subscribe to model evaluation job status changes.
+  """
+  onModelEvaluationJobStatusChange(jobIdentifier: String!): ModelEvaluationJob
+    @aws_subscribe(mutations: ["createModelEvaluationJob", "stopModelEvaluationJob"])
+}
