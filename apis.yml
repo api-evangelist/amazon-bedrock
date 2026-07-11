@@ -107,6 +107,12 @@ apis:
   - type: Documentation
     url: https://docs.aws.amazon.com/bedrock/latest/APIReference/
 common:
+- type: TrustCenter
+  url: security/amazon-bedrock-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/amazon-bedrock-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/amazon-bedrock-domain-security.yml
 - type: Website
   url: https://aws.amazon.com/bedrock/
 - type: Documentation
