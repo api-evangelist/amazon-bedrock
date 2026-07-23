@@ -1,0 +1,220 @@
+openapi: 3.1.0
+info:
+  title: Amazon Bedrock Converse Inference API
+  description: The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.
+  version: '2023-04-20'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/support/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://bedrock.{region}.amazonaws.com
+  description: Amazon Bedrock Management API
+  variables:
+    region:
+      default: us-east-1
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-west-2
+      - eu-west-1
+      - ap-southeast-1
+tags:
+- name: Inference
+  description: Operations for invoking models and running inference.
+paths:
+  /model/{modelId}/invoke:
+    post:
+      operationId: InvokeModel
+      summary: Amazon Bedrock Invoke a model
+      description: Invokes the specified Amazon Bedrock model to run inference using the prompt and inference parameters provided in the request body. The response is returned in a single response body.
+      tags:
+      - Inference
+      parameters:
+      - name: modelId
+        in: path
+        required: true
+        description: The identifier of the model to invoke (e.g., anthropic.claude-3-sonnet-20240229-v1:0).
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: The MIME type of the input data in the request body.
+        schema:
+          type: string
+          default: application/json
+      - name: Accept
+        in: header
+        description: The desired MIME type of the inference body in the response.
+        schema:
+          type: string
+          default: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvokeModelRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvokeModelResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+  /model/{modelId}/invoke-with-response-stream:
+    post:
+      operationId: InvokeModelWithResponseStream
+      summary: Amazon Bedrock Invoke a model with response streaming
+      description: Invokes the specified Amazon Bedrock model to run inference using the prompt and parameters provided in the request body. The response is streamed back in real time, allowing the client to begin processing results before the full response is generated.
+      tags:
+      - Inference
+      parameters:
+      - name: modelId
+        in: path
+        required: true
+        description: The identifier of the model to invoke.
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: The MIME type of the input data in the request body.
+        schema:
+          type: string
+          default: application/json
+      - name: X-Amzn-Bedrock-Accept
+        in: header
+        description: The desired MIME type of the inference body in the response.
+        schema:
+          type: string
+          default: application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvokeModelRequest'
+      responses:
+        '200':
+          description: Successful streaming response
+          content:
+            application/vnd.amazon.eventstream:
+              schema:
+                $ref: '#/components/schemas/InvokeModelWithResponseStreamResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+components:
+  schemas:
+    ThrottlingException:
+      type: object
+      properties:
+        message:
+          type: string
+    InvokeModelResponse:
+      type: object
+      description: The response from the model invocation.
+      properties:
+        body:
+          type: string
+          format: byte
+          description: The inference response from the model, encoded as a JSON string.
+        contentType:
+          type: string
+          description: The MIME type of the response body.
+    AccessDeniedException:
+      type: object
+      properties:
+        message:
+          type: string
+    InvokeModelWithResponseStreamResponse:
+      type: object
+      description: The streaming response from the model invocation.
+      properties:
+        body:
+          type: object
+          description: The streaming response body as an event stream.
+          properties:
+            chunk:
+              type: object
+              properties:
+                bytes:
+                  type: string
+                  format: byte
+                  description: A chunk of the streamed response.
+    ResourceNotFoundException:
+      type: object
+      properties:
+        message:
+          type: string
+    InvokeModelRequest:
+      type: object
+      description: The request body for invoking a model. The structure depends on the model being invoked. This is passed as an opaque blob to the model.
+      properties:
+        body:
+          type: string
+          format: byte
+          description: The prompt and inference parameters encoded as a JSON string, in the format required by the specified model.
+        contentType:
+          type: string
+          description: The MIME type of the input data.
+        accept:
+          type: string
+          description: The desired MIME type of the response.
+    ValidationException:
+      type: object
+      properties:
+        message:
+          type: string
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string

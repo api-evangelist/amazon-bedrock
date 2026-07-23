@@ -1,0 +1,219 @@
+openapi: 3.1.0
+info:
+  title: Amazon Bedrock Converse Foundation Models API
+  description: The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.
+  version: '2023-04-20'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/support/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://bedrock.{region}.amazonaws.com
+  description: Amazon Bedrock Management API
+  variables:
+    region:
+      default: us-east-1
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-west-2
+      - eu-west-1
+      - ap-southeast-1
+tags:
+- name: Foundation Models
+  description: Operations for listing and describing foundation models.
+paths:
+  /foundation-models:
+    get:
+      operationId: ListFoundationModels
+      summary: Amazon Bedrock List foundation models
+      description: Lists the Amazon Bedrock foundation models that you can use. You can filter the results by provider, output modality, and inference type.
+      tags:
+      - Foundation Models
+      parameters:
+      - name: byProvider
+        in: query
+        description: Filter by model provider (e.g., amazon, anthropic, meta).
+        schema:
+          type: string
+      - name: byOutputModality
+        in: query
+        description: Filter by output modality (TEXT, IMAGE, EMBEDDING).
+        schema:
+          type: string
+          enum:
+          - TEXT
+          - IMAGE
+          - EMBEDDING
+      - name: byInferenceType
+        in: query
+        description: Filter by inference type (ON_DEMAND, PROVISIONED).
+        schema:
+          type: string
+          enum:
+          - ON_DEMAND
+          - PROVISIONED
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListFoundationModelsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+  /foundation-models/{modelIdentifier}:
+    get:
+      operationId: GetFoundationModel
+      summary: Amazon Bedrock Get foundation model details
+      description: Gets details about a specific Amazon Bedrock foundation model, including its capabilities, supported input and output modalities, and inference types.
+      tags:
+      - Foundation Models
+      parameters:
+      - name: modelIdentifier
+        in: path
+        required: true
+        description: The model identifier (e.g., anthropic.claude-3-sonnet-20240229-v1:0).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetFoundationModelResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+components:
+  schemas:
+    ThrottlingException:
+      type: object
+      properties:
+        message:
+          type: string
+    FoundationModelSummary:
+      type: object
+      properties:
+        modelArn:
+          type: string
+          description: The ARN of the foundation model.
+        modelId:
+          type: string
+          description: The model identifier.
+        modelName:
+          type: string
+          description: The name of the model.
+        providerName:
+          type: string
+          description: The model provider name.
+        inputModalities:
+          type: array
+          items:
+            type: string
+            enum:
+            - TEXT
+            - IMAGE
+            - EMBEDDING
+          description: The input modalities supported by the model.
+        outputModalities:
+          type: array
+          items:
+            type: string
+            enum:
+            - TEXT
+            - IMAGE
+            - EMBEDDING
+          description: The output modalities supported by the model.
+        responseStreamingSupported:
+          type: boolean
+          description: Whether response streaming is supported.
+        customizationsSupported:
+          type: array
+          items:
+            type: string
+            enum:
+            - FINE_TUNING
+            - CONTINUED_PRE_TRAINING
+          description: The customization types supported by the model.
+        inferenceTypesSupported:
+          type: array
+          items:
+            type: string
+            enum:
+            - ON_DEMAND
+            - PROVISIONED
+          description: The inference types supported by the model.
+    GetFoundationModelResponse:
+      type: object
+      properties:
+        modelDetails:
+          $ref: '#/components/schemas/FoundationModelSummary'
+    AccessDeniedException:
+      type: object
+      properties:
+        message:
+          type: string
+    ResourceNotFoundException:
+      type: object
+      properties:
+        message:
+          type: string
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
+    ValidationException:
+      type: object
+      properties:
+        message:
+          type: string
+    ListFoundationModelsResponse:
+      type: object
+      properties:
+        modelSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoundationModelSummary'
+          description: A list of foundation model summaries.

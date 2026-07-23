@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: Amazon Bedrock Converse Custom Models API
+  description: The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.
+  version: '2023-04-20'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/support/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://bedrock.{region}.amazonaws.com
+  description: Amazon Bedrock Management API
+  variables:
+    region:
+      default: us-east-1
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-west-2
+      - eu-west-1
+      - ap-southeast-1
+tags:
+- name: Custom Models
+  description: Operations for listing custom models.
+paths:
+  /custom-models:
+    get:
+      operationId: ListCustomModels
+      summary: Amazon Bedrock List custom models
+      description: Returns a list of the custom models that you have created with the CreateModelCustomizationJob operation.
+      tags:
+      - Custom Models
+      parameters:
+      - name: maxResults
+        in: query
+        description: Maximum number of results to return.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: nextToken
+        in: query
+        description: Token for pagination.
+        schema:
+          type: string
+      - name: baseModelArnEquals
+        in: query
+        description: Filter by base model ARN.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCustomModelsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+components:
+  schemas:
+    ValidationException:
+      type: object
+      properties:
+        message:
+          type: string
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
+    ListCustomModelsResponse:
+      type: object
+      properties:
+        modelSummaries:
+          type: array
+          items:
+            type: object
+            properties:
+              modelArn:
+                type: string
+              modelName:
+                type: string
+              baseModelArn:
+                type: string
+              baseModelName:
+                type: string
+              creationTime:
+                type: string
+                format: date-time
+        nextToken:
+          type: string

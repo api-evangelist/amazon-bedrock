@@ -1,0 +1,170 @@
+openapi: 3.1.0
+info:
+  title: Amazon Bedrock Converse Provisioned Throughput API
+  description: The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.
+  version: '2023-04-20'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/support/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://bedrock.{region}.amazonaws.com
+  description: Amazon Bedrock Management API
+  variables:
+    region:
+      default: us-east-1
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-west-2
+      - eu-west-1
+      - ap-southeast-1
+tags:
+- name: Provisioned Throughput
+  description: Operations for managing provisioned model throughput.
+paths:
+  /provisioned-model-throughput:
+    post:
+      operationId: CreateProvisionedModelThroughput
+      summary: Amazon Bedrock Create provisioned model throughput
+      description: Creates a provisioned throughput with dedicated capacity for a foundation model or custom model. Provisioned throughput provides guaranteed inference performance.
+      tags:
+      - Provisioned Throughput
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProvisionedModelThroughputRequest'
+      responses:
+        '201':
+          description: Provisioned throughput created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateProvisionedModelThroughputResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+    get:
+      operationId: ListProvisionedModelThroughputs
+      summary: Amazon Bedrock List provisioned model throughputs
+      description: Lists the provisioned throughputs that you have created.
+      tags:
+      - Provisioned Throughput
+      parameters:
+      - name: maxResults
+        in: query
+        description: Maximum number of results to return.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+      - name: nextToken
+        in: query
+        description: Token for pagination.
+        schema:
+          type: string
+      - name: statusEquals
+        in: query
+        description: Filter by status.
+        schema:
+          type: string
+          enum:
+          - Creating
+          - InService
+          - Updating
+          - Failed
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListProvisionedModelThroughputsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+components:
+  schemas:
+    CreateProvisionedModelThroughputResponse:
+      type: object
+      properties:
+        provisionedModelArn:
+          type: string
+          description: The ARN of the provisioned throughput.
+    ValidationException:
+      type: object
+      properties:
+        message:
+          type: string
+    CreateProvisionedModelThroughputRequest:
+      type: object
+      required:
+      - modelUnits
+      - provisionedModelName
+      - modelId
+      properties:
+        modelUnits:
+          type: integer
+          description: Number of model units to allocate.
+        provisionedModelName:
+          type: string
+          description: A name for the provisioned throughput.
+        modelId:
+          type: string
+          description: The ID of the model to provision.
+        commitmentDuration:
+          type: string
+          enum:
+          - OneMonth
+          - SixMonths
+          description: The commitment duration.
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
+    ListProvisionedModelThroughputsResponse:
+      type: object
+      properties:
+        provisionedModelSummaries:
+          type: array
+          items:
+            type: object
+            properties:
+              provisionedModelArn:
+                type: string
+              provisionedModelName:
+                type: string
+              modelArn:
+                type: string
+              status:
+                type: string
+              modelUnits:
+                type: integer
+              creationTime:
+                type: string
+                format: date-time
+        nextToken:
+          type: string
