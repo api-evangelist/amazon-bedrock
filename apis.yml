@@ -9,7 +9,19 @@ description: Amazon Bedrock is a fully managed AWS service that makes high-perfo
   accessed over HTTPS using AWS Signature Version 4 (SigV4) authentication, typically
   via the AWS SDKs.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-bedrock.png
 tags:
 - AI
 - AWS
@@ -25,26 +37,47 @@ created: '2026-05-11'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: amazon-bedrock:amazon-bedrock-api
-  name: Amazon Bedrock API
-  description: The Amazon Bedrock management API provides operations for managing
-    foundation models, custom models, model customization jobs, provisioned throughput,
-    guardrails, knowledge bases, agents, and model evaluation jobs. Authentication
-    uses AWS Signature Version 4 (SigV4).
+- aid: amazon-bedrock:amazon-bedrock-agent-api
+  name: Amazon Bedrock Agent API
+  description: >-
+    The Amazon Bedrock Agent API provides operations for managing and configuring autonomous AI agents,
+    knowledge bases for RAG, data sources, and ingestion jobs. Authentication uses AWS Signature Version
+    4 (SigV4).
   humanURL: https://docs.aws.amazon.com/bedrock/latest/APIReference/
-  baseURL: https://bedrock.us-east-1.amazonaws.com
+  baseURL: https://bedrock-agent.us-east-1.amazonaws.com
   tags:
-  - Foundation Models
-  - Generative AI
-  - Custom Models
-  - Guardrails
-  - Knowledge Bases
   - Agents
+  - Knowledge Bases
+  - RAG
   properties:
   - type: Documentation
     url: https://docs.aws.amazon.com/bedrock/latest/APIReference/
+- aid: amazon-bedrock:amazon-bedrock-agent-runtime-api
+  name: Amazon Bedrock Agent Runtime API
+  description: >-
+    The Amazon Bedrock Agent Runtime API provides operations for invoking Bedrock agents and retrieving
+    content from knowledge bases for RAG applications. Authentication uses AWS Signature Version 4 (SigV4).
+  humanURL: https://docs.aws.amazon.com/bedrock/latest/APIReference/
+  baseURL: https://bedrock-agent-runtime.us-east-1.amazonaws.com
+  tags:
+  - Agents
+  - RAG
+  - Retrieval
+  properties:
+  - type: Documentation
+    url: https://docs.aws.amazon.com/bedrock/latest/APIReference/
+- aid: amazon-bedrock:amazon-bedrock-converse-api
+  name: Amazon Bedrock Converse API
+  description: Operations for multi-turn conversations with models.
+  humanURL: https://docs.aws.amazon.com/bedrock/latest/APIReference/
+  baseURL: https://bedrock.us-east-1.amazonaws.com
+  tags:
+  - Converse
+  properties:
   - type: OpenAPI
-    url: openapi/amazon-bedrock-openapi.yml
+    url: openapi/amazon-bedrock-converse-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/bedrock/latest/APIReference/
   - type: JSONSchema
     url: json-schema/amazon-bedrock-model-schema.json
   - type: JSONStructure
@@ -57,56 +90,141 @@ apis:
     url: capabilities/capabilities.yml
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
-  - url: graphql/amazon-bedrock-graphql.md
-    type: GraphQL
-- aid: amazon-bedrock:amazon-bedrock-runtime-api
-  name: Amazon Bedrock Runtime API
-  description: The Amazon Bedrock Runtime API provides operations for invoking foundation
-    models for inference, including synchronous, streaming, and conversational invocation
-    patterns (Converse API). Also supports guardrail evaluation and async batch inference.
-    Authentication uses AWS Signature Version 4 (SigV4).
+  - type: GraphQL
+    url: graphql/amazon-bedrock-graphql.md
+- aid: amazon-bedrock:amazon-bedrock-custom-models-api
+  name: Amazon Bedrock Custom Models API
+  description: Operations for listing custom models.
   humanURL: https://docs.aws.amazon.com/bedrock/latest/APIReference/
-  baseURL: https://bedrock-runtime.us-east-1.amazonaws.com
+  baseURL: https://bedrock.us-east-1.amazonaws.com
+  tags:
+  - Custom Models
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-bedrock-custom-models-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/bedrock/latest/APIReference/
+  - type: JSONSchema
+    url: json-schema/amazon-bedrock-model-schema.json
+  - type: JSONStructure
+    url: json-structure/bedrock-resource-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-bedrock-context.jsonld
+  - type: SpectralRuleset
+    url: spectral/ruleset.yml
+  - type: Capabilities
+    url: capabilities/capabilities.yml
+  - type: Vocabulary
+    url: vocabulary/vocabulary.yml
+  - type: GraphQL
+    url: graphql/amazon-bedrock-graphql.md
+- aid: amazon-bedrock:amazon-bedrock-foundation-models-api
+  name: Amazon Bedrock Foundation Models API
+  description: Operations for listing and describing foundation models.
+  humanURL: https://docs.aws.amazon.com/bedrock/latest/APIReference/
+  baseURL: https://bedrock.us-east-1.amazonaws.com
   tags:
   - Foundation Models
-  - Generative AI
-  - Inference
-  - Streaming
-  - Converse
   properties:
-  - type: Documentation
-    url: https://docs.aws.amazon.com/bedrock/latest/APIReference/
   - type: OpenAPI
-    url: openapi/amazon-bedrock-runtime-openapi.yml
-- aid: amazon-bedrock:amazon-bedrock-agent-api
-  name: Amazon Bedrock Agent API
-  description: The Amazon Bedrock Agent API provides operations for managing and configuring
-    autonomous AI agents, knowledge bases for RAG, data sources, and ingestion jobs.
-    Authentication uses AWS Signature Version 4 (SigV4).
-  humanURL: https://docs.aws.amazon.com/bedrock/latest/APIReference/
-  baseURL: https://bedrock-agent.us-east-1.amazonaws.com
-  tags:
-  - Agents
-  - Knowledge Bases
-  - RAG
-  properties:
+    url: openapi/amazon-bedrock-foundation-models-api-openapi.yml
   - type: Documentation
     url: https://docs.aws.amazon.com/bedrock/latest/APIReference/
-- aid: amazon-bedrock:amazon-bedrock-agent-runtime-api
-  name: Amazon Bedrock Agent Runtime API
-  description: The Amazon Bedrock Agent Runtime API provides operations for invoking
-    Bedrock agents and retrieving content from knowledge bases for RAG applications.
-    Authentication uses AWS Signature Version 4 (SigV4).
+  - type: JSONSchema
+    url: json-schema/amazon-bedrock-model-schema.json
+  - type: JSONStructure
+    url: json-structure/bedrock-resource-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-bedrock-context.jsonld
+  - type: SpectralRuleset
+    url: spectral/ruleset.yml
+  - type: Capabilities
+    url: capabilities/capabilities.yml
+  - type: Vocabulary
+    url: vocabulary/vocabulary.yml
+  - type: GraphQL
+    url: graphql/amazon-bedrock-graphql.md
+- aid: amazon-bedrock:amazon-bedrock-inference-api
+  name: Amazon Bedrock Inference API
+  description: Operations for invoking models and running inference.
   humanURL: https://docs.aws.amazon.com/bedrock/latest/APIReference/
-  baseURL: https://bedrock-agent-runtime.us-east-1.amazonaws.com
+  baseURL: https://bedrock.us-east-1.amazonaws.com
   tags:
-  - Agents
-  - RAG
-  - Retrieval
+  - Inference
   properties:
+  - type: OpenAPI
+    url: openapi/amazon-bedrock-inference-api-openapi.yml
   - type: Documentation
     url: https://docs.aws.amazon.com/bedrock/latest/APIReference/
+  - type: JSONSchema
+    url: json-schema/amazon-bedrock-model-schema.json
+  - type: JSONStructure
+    url: json-structure/bedrock-resource-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-bedrock-context.jsonld
+  - type: SpectralRuleset
+    url: spectral/ruleset.yml
+  - type: Capabilities
+    url: capabilities/capabilities.yml
+  - type: Vocabulary
+    url: vocabulary/vocabulary.yml
+  - type: GraphQL
+    url: graphql/amazon-bedrock-graphql.md
+- aid: amazon-bedrock:amazon-bedrock-model-customization-api
+  name: Amazon Bedrock Model Customization API
+  description: Operations for creating and managing model customization jobs.
+  humanURL: https://docs.aws.amazon.com/bedrock/latest/APIReference/
+  baseURL: https://bedrock.us-east-1.amazonaws.com
+  tags:
+  - Model Customization
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-bedrock-model-customization-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/bedrock/latest/APIReference/
+  - type: JSONSchema
+    url: json-schema/amazon-bedrock-model-schema.json
+  - type: JSONStructure
+    url: json-structure/bedrock-resource-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-bedrock-context.jsonld
+  - type: SpectralRuleset
+    url: spectral/ruleset.yml
+  - type: Capabilities
+    url: capabilities/capabilities.yml
+  - type: Vocabulary
+    url: vocabulary/vocabulary.yml
+  - type: GraphQL
+    url: graphql/amazon-bedrock-graphql.md
+- aid: amazon-bedrock:amazon-bedrock-provisioned-throughput-api
+  name: Amazon Bedrock Provisioned Throughput API
+  description: Operations for managing provisioned model throughput.
+  humanURL: https://docs.aws.amazon.com/bedrock/latest/APIReference/
+  baseURL: https://bedrock.us-east-1.amazonaws.com
+  tags:
+  - Provisioned Throughput
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-bedrock-provisioned-throughput-api-openapi.yml
+  - type: Documentation
+    url: https://docs.aws.amazon.com/bedrock/latest/APIReference/
+  - type: JSONSchema
+    url: json-schema/amazon-bedrock-model-schema.json
+  - type: JSONStructure
+    url: json-structure/bedrock-resource-structure.json
+  - type: JSONLD
+    url: json-ld/amazon-bedrock-context.jsonld
+  - type: SpectralRuleset
+    url: spectral/ruleset.yml
+  - type: Capabilities
+    url: capabilities/capabilities.yml
+  - type: Vocabulary
+    url: vocabulary/vocabulary.yml
+  - type: GraphQL
+    url: graphql/amazon-bedrock-graphql.md
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/amazon-bedrock/overview
 - type: AgenticAccess
   url: agentic-access/amazon-bedrock-agentic-access.yml
 - type: TrustCenter
