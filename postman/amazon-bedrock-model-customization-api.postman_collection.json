@@ -1,0 +1,713 @@
+{
+  "info": {
+    "_postman_id": "738dca1f-bcc7-40bc-922f-5fa745826f59",
+    "name": "Amazon Bedrock Converse Model Customization API",
+    "description": "The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.\n\nContact Support:\n Name: AWS Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:30:30.000Z",
+    "updatedAt": "2026-07-28T00:30:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-738dca1f-bcc7-40bc-922f-5fa745826f59"
+  },
+  "item": [
+    {
+      "name": "model-customization-jobs",
+      "item": [
+        {
+          "name": "{jobIdentifier}",
+          "item": [
+            {
+              "name": "Amazon Bedrock Get model customization job details",
+              "id": "14d30f4f-cd3f-49cb-a7d7-c60a5f38b8f0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/model-customization-jobs/:jobIdentifier",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "model-customization-jobs",
+                    ":jobIdentifier"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8bfb312f-6e97-456b-b5d9-6ac90d998e4b",
+                      "key": "jobIdentifier",
+                      "value": "<string>",
+                      "description": "(Required) The identifier of the customization job."
+                    }
+                  ]
+                },
+                "description": "Retrieves the properties associated with a model customization job, including the status, creation time, and training metrics."
+              },
+              "response": [
+                {
+                  "id": "4e6d47ef-a813-46cd-9770-5fb2baa9dd69",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/model-customization-jobs/:jobIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "model-customization-jobs",
+                        ":jobIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "jobIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jobArn\": \"<string>\",\n  \"jobName\": \"<string>\",\n  \"status\": \"Stopping\",\n  \"baseModelArn\": \"<string>\",\n  \"customModelName\": \"<string>\",\n  \"customModelArn\": \"<string>\",\n  \"creationTime\": \"<dateTime>\",\n  \"lastModifiedTime\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T00:30:31.000Z",
+                  "updatedAt": "2026-07-28T00:30:31.000Z",
+                  "uid": "35240-4e6d47ef-a813-46cd-9770-5fb2baa9dd69"
+                },
+                {
+                  "id": "683624de-f0ae-4bd7-8378-bf2de3807474",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/model-customization-jobs/:jobIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "model-customization-jobs",
+                        ":jobIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "jobIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T00:30:31.000Z",
+                  "updatedAt": "2026-07-28T00:30:31.000Z",
+                  "uid": "35240-683624de-f0ae-4bd7-8378-bf2de3807474"
+                },
+                {
+                  "id": "0947e4e9-701e-47e3-8d28-dca2e7ce58a8",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/model-customization-jobs/:jobIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "model-customization-jobs",
+                        ":jobIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "jobIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T00:30:31.000Z",
+                  "updatedAt": "2026-07-28T00:30:31.000Z",
+                  "uid": "35240-0947e4e9-701e-47e3-8d28-dca2e7ce58a8"
+                },
+                {
+                  "id": "0f0648e1-5b73-4e0e-a9ba-60e0cf2f4183",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/model-customization-jobs/:jobIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "model-customization-jobs",
+                        ":jobIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "jobIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T00:30:31.000Z",
+                  "updatedAt": "2026-07-28T00:30:31.000Z",
+                  "uid": "35240-0f0648e1-5b73-4e0e-a9ba-60e0cf2f4183"
+                }
+              ],
+              "createdAt": "2026-07-28T00:30:31.000Z",
+              "updatedAt": "2026-07-28T00:30:31.000Z",
+              "uid": "35240-14d30f4f-cd3f-49cb-a7d7-c60a5f38b8f0"
+            }
+          ],
+          "id": "70134398-4117-4c6c-954a-16cad0164922",
+          "createdAt": "2026-07-28T00:30:31.000Z",
+          "updatedAt": "2026-07-28T00:30:31.000Z",
+          "uid": "35240-70134398-4117-4c6c-954a-16cad0164922"
+        },
+        {
+          "name": "Amazon Bedrock Create a model customization job",
+          "id": "f8277883-9a75-48c3-bae9-0ea7957961fe",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobName\": \"<string>\",\n  \"customModelName\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"baseModelIdentifier\": \"<string>\",\n  \"trainingDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"outputDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"customizationType\": \"FINE_TUNING\",\n  \"hyperParameters\": {\n    \"animf\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/model-customization-jobs",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "model-customization-jobs"
+              ]
+            },
+            "description": "Creates a fine-tuning job to customize a foundation model. You provide training data, a base model, and output configuration to produce a custom model tailored to your use case."
+          },
+          "response": [
+            {
+              "id": "a3e65756-2cc1-4228-87bb-dcca147d544a",
+              "name": "Job created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobName\": \"<string>\",\n  \"customModelName\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"baseModelIdentifier\": \"<string>\",\n  \"trainingDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"outputDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"customizationType\": \"FINE_TUNING\",\n  \"hyperParameters\": {\n    \"animf\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/model-customization-jobs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "model-customization-jobs"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"jobArn\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:31.000Z",
+              "updatedAt": "2026-07-28T00:30:31.000Z",
+              "uid": "35240-a3e65756-2cc1-4228-87bb-dcca147d544a"
+            },
+            {
+              "id": "e4c17d75-0226-45df-aaf7-a9033a8792d7",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobName\": \"<string>\",\n  \"customModelName\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"baseModelIdentifier\": \"<string>\",\n  \"trainingDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"outputDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"customizationType\": \"FINE_TUNING\",\n  \"hyperParameters\": {\n    \"animf\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/model-customization-jobs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "model-customization-jobs"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:31.000Z",
+              "updatedAt": "2026-07-28T00:30:31.000Z",
+              "uid": "35240-e4c17d75-0226-45df-aaf7-a9033a8792d7"
+            },
+            {
+              "id": "445c3d3c-617d-456c-991b-e21ef4392ab9",
+              "name": "Resource already exists",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobName\": \"<string>\",\n  \"customModelName\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"baseModelIdentifier\": \"<string>\",\n  \"trainingDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"outputDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"customizationType\": \"FINE_TUNING\",\n  \"hyperParameters\": {\n    \"animf\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/model-customization-jobs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "model-customization-jobs"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:31.000Z",
+              "updatedAt": "2026-07-28T00:30:31.000Z",
+              "uid": "35240-445c3d3c-617d-456c-991b-e21ef4392ab9"
+            },
+            {
+              "id": "8ba543ea-bc12-442e-b9d5-d599ba77cb94",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobName\": \"<string>\",\n  \"customModelName\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"baseModelIdentifier\": \"<string>\",\n  \"trainingDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"outputDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"customizationType\": \"FINE_TUNING\",\n  \"hyperParameters\": {\n    \"animf\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/model-customization-jobs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "model-customization-jobs"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:31.000Z",
+              "updatedAt": "2026-07-28T00:30:31.000Z",
+              "uid": "35240-8ba543ea-bc12-442e-b9d5-d599ba77cb94"
+            }
+          ],
+          "createdAt": "2026-07-28T00:30:31.000Z",
+          "updatedAt": "2026-07-28T00:30:31.000Z",
+          "uid": "35240-f8277883-9a75-48c3-bae9-0ea7957961fe"
+        },
+        {
+          "name": "Amazon Bedrock List model customization jobs",
+          "id": "bb399be8-1792-4b57-a757-c52ff5dcfd6f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/model-customization-jobs?maxResults=<integer>&nextToken=<string>&statusEquals=InProgress",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "model-customization-jobs"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return.",
+                  "key": "maxResults",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Token for pagination.",
+                  "key": "nextToken",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by job status.",
+                  "key": "statusEquals",
+                  "value": "InProgress"
+                }
+              ]
+            },
+            "description": "Returns a list of model customization jobs that you have submitted."
+          },
+          "response": [
+            {
+              "id": "fc308783-0431-4d93-b199-6de9ee352542",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/model-customization-jobs?maxResults=<integer>&nextToken=<string>&statusEquals=InProgress",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "model-customization-jobs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return.",
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Token for pagination.",
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by job status.",
+                      "key": "statusEquals",
+                      "value": "InProgress"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"modelCustomizationJobSummaries\": [\n    {\n      \"jobArn\": \"<string>\",\n      \"jobName\": \"<string>\",\n      \"status\": \"<string>\",\n      \"baseModelArn\": \"<string>\",\n      \"creationTime\": \"<dateTime>\"\n    },\n    {\n      \"jobArn\": \"<string>\",\n      \"jobName\": \"<string>\",\n      \"status\": \"<string>\",\n      \"baseModelArn\": \"<string>\",\n      \"creationTime\": \"<dateTime>\"\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:31.000Z",
+              "updatedAt": "2026-07-28T00:30:31.000Z",
+              "uid": "35240-fc308783-0431-4d93-b199-6de9ee352542"
+            },
+            {
+              "id": "242c55e2-72bb-4c5d-ae82-1f714ccd3b53",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/model-customization-jobs?maxResults=<integer>&nextToken=<string>&statusEquals=InProgress",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "model-customization-jobs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return.",
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Token for pagination.",
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by job status.",
+                      "key": "statusEquals",
+                      "value": "InProgress"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:31.000Z",
+              "updatedAt": "2026-07-28T00:30:31.000Z",
+              "uid": "35240-242c55e2-72bb-4c5d-ae82-1f714ccd3b53"
+            },
+            {
+              "id": "691c921e-9765-45db-9f5a-5a4108f0e061",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/model-customization-jobs?maxResults=<integer>&nextToken=<string>&statusEquals=InProgress",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "model-customization-jobs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return.",
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Token for pagination.",
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by job status.",
+                      "key": "statusEquals",
+                      "value": "InProgress"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:31.000Z",
+              "updatedAt": "2026-07-28T00:30:31.000Z",
+              "uid": "35240-691c921e-9765-45db-9f5a-5a4108f0e061"
+            }
+          ],
+          "createdAt": "2026-07-28T00:30:31.000Z",
+          "updatedAt": "2026-07-28T00:30:31.000Z",
+          "uid": "35240-bb399be8-1792-4b57-a757-c52ff5dcfd6f"
+        }
+      ],
+      "id": "6f596e99-d1f2-45f4-bf7e-fa1535234737",
+      "createdAt": "2026-07-28T00:30:31.000Z",
+      "updatedAt": "2026-07-28T00:30:31.000Z",
+      "uid": "35240-6f596e99-d1f2-45f4-bf7e-fa1535234737"
+    }
+  ],
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://bedrock.{{region}}.amazonaws.com"
+    }
+  ]
+}

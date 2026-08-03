@@ -1,0 +1,24 @@
+{
+  "provider": "amazon-bedrock",
+  "sources": [
+    "amazon-bedrock-converse-api-openapi.yml",
+    "amazon-bedrock-custom-models-api-openapi.yml",
+    "amazon-bedrock-foundation-models-api-openapi.yml",
+    "amazon-bedrock-inference-api-openapi.yml",
+    "amazon-bedrock-model-customization-api-openapi.yml",
+    "amazon-bedrock-provisioned-throughput-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-bedrock-converse-api-openapi.yml",
+    "amazon-bedrock-custom-models-api-openapi.yml",
+    "amazon-bedrock-foundation-models-api-openapi.yml",
+    "amazon-bedrock-inference-api-openapi.yml",
+    "amazon-bedrock-model-customization-api-openapi.yml",
+    "amazon-bedrock-provisioned-throughput-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

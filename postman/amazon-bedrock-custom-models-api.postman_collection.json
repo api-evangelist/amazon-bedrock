@@ -1,0 +1,243 @@
+{
+  "info": {
+    "_postman_id": "39dd45b6-1870-4c11-a17d-491792539eae",
+    "name": "Amazon Bedrock Converse Custom Models API",
+    "description": "The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.\n\nContact Support:\n Name: AWS Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:30:27.000Z",
+    "updatedAt": "2026-07-28T00:30:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-39dd45b6-1870-4c11-a17d-491792539eae"
+  },
+  "item": [
+    {
+      "name": "custom-models",
+      "item": [
+        {
+          "name": "Amazon Bedrock List custom models",
+          "id": "1868503a-a0dd-4b55-9618-8e921416f511",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/custom-models?maxResults=<integer>&nextToken=<string>&baseModelArnEquals=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "custom-models"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return.",
+                  "key": "maxResults",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Token for pagination.",
+                  "key": "nextToken",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by base model ARN.",
+                  "key": "baseModelArnEquals",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of the custom models that you have created with the CreateModelCustomizationJob operation."
+          },
+          "response": [
+            {
+              "id": "b03e994b-f9b1-4d6a-8bd8-ba198fc490af",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/custom-models?maxResults=<integer>&nextToken=<string>&baseModelArnEquals=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "custom-models"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return.",
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Token for pagination.",
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by base model ARN.",
+                      "key": "baseModelArnEquals",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"modelSummaries\": [\n    {\n      \"modelArn\": \"<string>\",\n      \"modelName\": \"<string>\",\n      \"baseModelArn\": \"<string>\",\n      \"baseModelName\": \"<string>\",\n      \"creationTime\": \"<dateTime>\"\n    },\n    {\n      \"modelArn\": \"<string>\",\n      \"modelName\": \"<string>\",\n      \"baseModelArn\": \"<string>\",\n      \"baseModelName\": \"<string>\",\n      \"creationTime\": \"<dateTime>\"\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:28.000Z",
+              "updatedAt": "2026-07-28T00:30:28.000Z",
+              "uid": "35240-b03e994b-f9b1-4d6a-8bd8-ba198fc490af"
+            },
+            {
+              "id": "be1f7ec4-ec68-46e5-81ad-5f3395901323",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/custom-models?maxResults=<integer>&nextToken=<string>&baseModelArnEquals=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "custom-models"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return.",
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Token for pagination.",
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by base model ARN.",
+                      "key": "baseModelArnEquals",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:28.000Z",
+              "updatedAt": "2026-07-28T00:30:28.000Z",
+              "uid": "35240-be1f7ec4-ec68-46e5-81ad-5f3395901323"
+            },
+            {
+              "id": "395a17c2-1465-47de-96fc-d83900938f8f",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/custom-models?maxResults=<integer>&nextToken=<string>&baseModelArnEquals=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "custom-models"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return.",
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Token for pagination.",
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by base model ARN.",
+                      "key": "baseModelArnEquals",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:28.000Z",
+              "updatedAt": "2026-07-28T00:30:28.000Z",
+              "uid": "35240-395a17c2-1465-47de-96fc-d83900938f8f"
+            }
+          ],
+          "createdAt": "2026-07-28T00:30:28.000Z",
+          "updatedAt": "2026-07-28T00:30:28.000Z",
+          "uid": "35240-1868503a-a0dd-4b55-9618-8e921416f511"
+        }
+      ],
+      "id": "e4feb60f-035b-4128-a43a-4956a0411f85",
+      "createdAt": "2026-07-28T00:30:28.000Z",
+      "updatedAt": "2026-07-28T00:30:28.000Z",
+      "uid": "35240-e4feb60f-035b-4128-a43a-4956a0411f85"
+    }
+  ],
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://bedrock.{{region}}.amazonaws.com"
+    }
+  ]
+}

@@ -1,0 +1,441 @@
+{
+  "info": {
+    "_postman_id": "61082042-b611-497f-9009-313ba89856b2",
+    "name": "Amazon Bedrock Converse Provisioned Throughput API",
+    "description": "The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.\n\nContact Support:\n Name: AWS Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:30:31.000Z",
+    "updatedAt": "2026-07-28T00:30:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-61082042-b611-497f-9009-313ba89856b2"
+  },
+  "item": [
+    {
+      "name": "provisioned-model-throughput",
+      "item": [
+        {
+          "name": "Amazon Bedrock Create provisioned model throughput",
+          "id": "6bd272e4-76e1-418f-956a-b24fcd38bdb8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"modelUnits\": \"<integer>\",\n  \"provisionedModelName\": \"<string>\",\n  \"modelId\": \"<string>\",\n  \"commitmentDuration\": \"OneMonth\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/provisioned-model-throughput",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "provisioned-model-throughput"
+              ]
+            },
+            "description": "Creates a provisioned throughput with dedicated capacity for a foundation model or custom model. Provisioned throughput provides guaranteed inference performance."
+          },
+          "response": [
+            {
+              "id": "448302d2-0b91-4014-8935-d9544c38ef08",
+              "name": "Provisioned throughput created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"modelUnits\": \"<integer>\",\n  \"provisionedModelName\": \"<string>\",\n  \"modelId\": \"<string>\",\n  \"commitmentDuration\": \"OneMonth\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/provisioned-model-throughput",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "provisioned-model-throughput"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"provisionedModelArn\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:32.000Z",
+              "updatedAt": "2026-07-28T00:30:32.000Z",
+              "uid": "35240-448302d2-0b91-4014-8935-d9544c38ef08"
+            },
+            {
+              "id": "59c9606f-b53e-43b1-8fb5-67be2c830599",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"modelUnits\": \"<integer>\",\n  \"provisionedModelName\": \"<string>\",\n  \"modelId\": \"<string>\",\n  \"commitmentDuration\": \"OneMonth\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/provisioned-model-throughput",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "provisioned-model-throughput"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:32.000Z",
+              "updatedAt": "2026-07-28T00:30:32.000Z",
+              "uid": "35240-59c9606f-b53e-43b1-8fb5-67be2c830599"
+            },
+            {
+              "id": "729045ee-8a41-4144-8f26-a365166ab192",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"modelUnits\": \"<integer>\",\n  \"provisionedModelName\": \"<string>\",\n  \"modelId\": \"<string>\",\n  \"commitmentDuration\": \"OneMonth\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/provisioned-model-throughput",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "provisioned-model-throughput"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:32.000Z",
+              "updatedAt": "2026-07-28T00:30:32.000Z",
+              "uid": "35240-729045ee-8a41-4144-8f26-a365166ab192"
+            }
+          ],
+          "createdAt": "2026-07-28T00:30:32.000Z",
+          "updatedAt": "2026-07-28T00:30:32.000Z",
+          "uid": "35240-6bd272e4-76e1-418f-956a-b24fcd38bdb8"
+        },
+        {
+          "name": "Amazon Bedrock List provisioned model throughputs",
+          "id": "47ed1278-cebb-4171-bb5e-70433bf43134",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/provisioned-model-throughput?maxResults=<integer>&nextToken=<string>&statusEquals=InService",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "provisioned-model-throughput"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of results to return.",
+                  "key": "maxResults",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Token for pagination.",
+                  "key": "nextToken",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by status.",
+                  "key": "statusEquals",
+                  "value": "InService"
+                }
+              ]
+            },
+            "description": "Lists the provisioned throughputs that you have created."
+          },
+          "response": [
+            {
+              "id": "c0ec765f-0611-47fa-a3f6-0cf73c4ae985",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/provisioned-model-throughput?maxResults=<integer>&nextToken=<string>&statusEquals=InService",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "provisioned-model-throughput"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return.",
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Token for pagination.",
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by status.",
+                      "key": "statusEquals",
+                      "value": "InService"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"provisionedModelSummaries\": [\n    {\n      \"provisionedModelArn\": \"<string>\",\n      \"provisionedModelName\": \"<string>\",\n      \"modelArn\": \"<string>\",\n      \"status\": \"<string>\",\n      \"modelUnits\": \"<integer>\",\n      \"creationTime\": \"<dateTime>\"\n    },\n    {\n      \"provisionedModelArn\": \"<string>\",\n      \"provisionedModelName\": \"<string>\",\n      \"modelArn\": \"<string>\",\n      \"status\": \"<string>\",\n      \"modelUnits\": \"<integer>\",\n      \"creationTime\": \"<dateTime>\"\n    }\n  ],\n  \"nextToken\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:32.000Z",
+              "updatedAt": "2026-07-28T00:30:32.000Z",
+              "uid": "35240-c0ec765f-0611-47fa-a3f6-0cf73c4ae985"
+            },
+            {
+              "id": "3b457def-244d-428c-8718-eb31d127ce83",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/provisioned-model-throughput?maxResults=<integer>&nextToken=<string>&statusEquals=InService",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "provisioned-model-throughput"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return.",
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Token for pagination.",
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by status.",
+                      "key": "statusEquals",
+                      "value": "InService"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:32.000Z",
+              "updatedAt": "2026-07-28T00:30:32.000Z",
+              "uid": "35240-3b457def-244d-428c-8718-eb31d127ce83"
+            },
+            {
+              "id": "75015818-9ba7-4b7f-9a6a-312d1840f7c4",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/provisioned-model-throughput?maxResults=<integer>&nextToken=<string>&statusEquals=InService",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "provisioned-model-throughput"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return.",
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Token for pagination.",
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by status.",
+                      "key": "statusEquals",
+                      "value": "InService"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:32.000Z",
+              "updatedAt": "2026-07-28T00:30:32.000Z",
+              "uid": "35240-75015818-9ba7-4b7f-9a6a-312d1840f7c4"
+            }
+          ],
+          "createdAt": "2026-07-28T00:30:32.000Z",
+          "updatedAt": "2026-07-28T00:30:32.000Z",
+          "uid": "35240-47ed1278-cebb-4171-bb5e-70433bf43134"
+        }
+      ],
+      "id": "23e9db61-f827-44df-93cd-e6413e02c859",
+      "createdAt": "2026-07-28T00:30:32.000Z",
+      "updatedAt": "2026-07-28T00:30:32.000Z",
+      "uid": "35240-23e9db61-f827-44df-93cd-e6413e02c859"
+    }
+  ],
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://bedrock.{{region}}.amazonaws.com"
+    }
+  ]
+}

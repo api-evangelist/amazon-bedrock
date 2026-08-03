@@ -1,0 +1,775 @@
+{
+  "info": {
+    "_postman_id": "40c24f59-454a-4fad-995d-c2959eb0fe09",
+    "name": "Amazon Bedrock Converse Inference API",
+    "description": "The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.\n\nContact Support:\n Name: AWS Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:30:29.000Z",
+    "updatedAt": "2026-07-28T00:30:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-40c24f59-454a-4fad-995d-c2959eb0fe09"
+  },
+  "item": [
+    {
+      "name": "model",
+      "item": [
+        {
+          "name": "{modelId}",
+          "item": [
+            {
+              "name": "invoke",
+              "item": [
+                {
+                  "name": "Amazon Bedrock Invoke a model",
+                  "id": "67a76212-b994-49da-a5d0-2b5ed4fdaf0c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"body\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/model/:modelId/invoke",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "model",
+                        ":modelId",
+                        "invoke"
+                      ],
+                      "variable": [
+                        {
+                          "id": "33c737e0-0a6f-4b9e-80d9-c7bb0a09efd3",
+                          "key": "modelId",
+                          "value": "<string>",
+                          "description": "(Required) The identifier of the model to invoke (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+                        }
+                      ]
+                    },
+                    "description": "Invokes the specified Amazon Bedrock model to run inference using the prompt and inference parameters provided in the request body. The response is returned in a single response body."
+                  },
+                  "response": [
+                    {
+                      "id": "f33c76f8-9105-4071-9e3e-806e54b077e6",
+                      "name": "Successful response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"body\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/model/:modelId/invoke",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "model",
+                            ":modelId",
+                            "invoke"
+                          ],
+                          "variable": [
+                            {
+                              "key": "modelId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"body\": \"<string>\",\n  \"contentType\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:30:30.000Z",
+                      "updatedAt": "2026-07-28T00:30:30.000Z",
+                      "uid": "35240-f33c76f8-9105-4071-9e3e-806e54b077e6"
+                    },
+                    {
+                      "id": "709cd244-63f8-4605-a832-7d6da5ff4615",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"body\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/model/:modelId/invoke",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "model",
+                            ":modelId",
+                            "invoke"
+                          ],
+                          "variable": [
+                            {
+                              "key": "modelId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:30:30.000Z",
+                      "updatedAt": "2026-07-28T00:30:30.000Z",
+                      "uid": "35240-709cd244-63f8-4605-a832-7d6da5ff4615"
+                    },
+                    {
+                      "id": "821d2040-497f-4733-a95f-9e656c12c2be",
+                      "name": "Access denied",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"body\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/model/:modelId/invoke",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "model",
+                            ":modelId",
+                            "invoke"
+                          ],
+                          "variable": [
+                            {
+                              "key": "modelId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:30:30.000Z",
+                      "updatedAt": "2026-07-28T00:30:30.000Z",
+                      "uid": "35240-821d2040-497f-4733-a95f-9e656c12c2be"
+                    },
+                    {
+                      "id": "fcc9bd80-1840-40e3-af95-ac7818584c18",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"body\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/model/:modelId/invoke",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "model",
+                            ":modelId",
+                            "invoke"
+                          ],
+                          "variable": [
+                            {
+                              "key": "modelId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:30:30.000Z",
+                      "updatedAt": "2026-07-28T00:30:30.000Z",
+                      "uid": "35240-fcc9bd80-1840-40e3-af95-ac7818584c18"
+                    },
+                    {
+                      "id": "2976675d-0db6-4b7c-b8e7-d9559840f6ad",
+                      "name": "Too many requests",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"body\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/model/:modelId/invoke",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "model",
+                            ":modelId",
+                            "invoke"
+                          ],
+                          "variable": [
+                            {
+                              "key": "modelId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:30:30.000Z",
+                      "updatedAt": "2026-07-28T00:30:30.000Z",
+                      "uid": "35240-2976675d-0db6-4b7c-b8e7-d9559840f6ad"
+                    },
+                    {
+                      "id": "209fd1f1-e445-498f-85b3-cbed80850410",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"body\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/model/:modelId/invoke",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "model",
+                            ":modelId",
+                            "invoke"
+                          ],
+                          "variable": [
+                            {
+                              "key": "modelId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:30:30.000Z",
+                      "updatedAt": "2026-07-28T00:30:30.000Z",
+                      "uid": "35240-209fd1f1-e445-498f-85b3-cbed80850410"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:30:30.000Z",
+                  "updatedAt": "2026-07-28T00:30:30.000Z",
+                  "uid": "35240-67a76212-b994-49da-a5d0-2b5ed4fdaf0c"
+                }
+              ],
+              "id": "0fc01c20-9177-479a-aafd-741a6f81ffaf",
+              "createdAt": "2026-07-28T00:30:30.000Z",
+              "updatedAt": "2026-07-28T00:30:30.000Z",
+              "uid": "35240-0fc01c20-9177-479a-aafd-741a6f81ffaf"
+            },
+            {
+              "name": "invoke-with-response-stream",
+              "item": [
+                {
+                  "name": "Amazon Bedrock Invoke a model with response streaming",
+                  "id": "65bd3e0f-6e28-4044-b599-f7aaab657cb8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "The desired MIME type of the inference body in the response.",
+                        "key": "X-Amzn-Bedrock-Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.amazon.eventstream"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"body\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/model/:modelId/invoke-with-response-stream",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "model",
+                        ":modelId",
+                        "invoke-with-response-stream"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5379d44c-b5c3-4ca3-8990-f972664640ca",
+                          "key": "modelId",
+                          "value": "<string>",
+                          "description": "(Required) The identifier of the model to invoke."
+                        }
+                      ]
+                    },
+                    "description": "Invokes the specified Amazon Bedrock model to run inference using the prompt and parameters provided in the request body. The response is streamed back in real time, allowing the client to begin processing results before the full response is generated."
+                  },
+                  "response": [
+                    {
+                      "id": "ec66c43f-ffbc-4460-8220-2c0ec624a162",
+                      "name": "Successful streaming response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The desired MIME type of the inference body in the response.",
+                            "key": "X-Amzn-Bedrock-Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.amazon.eventstream"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"body\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/model/:modelId/invoke-with-response-stream",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "model",
+                            ":modelId",
+                            "invoke-with-response-stream"
+                          ],
+                          "variable": [
+                            {
+                              "key": "modelId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.amazon.eventstream"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"body\": {\n    \"chunk\": {\n      \"bytes\": \"<string>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T00:30:30.000Z",
+                      "updatedAt": "2026-07-28T00:30:30.000Z",
+                      "uid": "35240-ec66c43f-ffbc-4460-8220-2c0ec624a162"
+                    },
+                    {
+                      "id": "202a6a87-919c-4d28-82b9-cdd59c40d698",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The desired MIME type of the inference body in the response.",
+                            "key": "X-Amzn-Bedrock-Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"body\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/model/:modelId/invoke-with-response-stream",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "model",
+                            ":modelId",
+                            "invoke-with-response-stream"
+                          ],
+                          "variable": [
+                            {
+                              "key": "modelId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:30:30.000Z",
+                      "updatedAt": "2026-07-28T00:30:30.000Z",
+                      "uid": "35240-202a6a87-919c-4d28-82b9-cdd59c40d698"
+                    },
+                    {
+                      "id": "0060bc77-8848-4e19-948b-62207a1d4e96",
+                      "name": "Too many requests",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The desired MIME type of the inference body in the response.",
+                            "key": "X-Amzn-Bedrock-Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"body\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/model/:modelId/invoke-with-response-stream",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "model",
+                            ":modelId",
+                            "invoke-with-response-stream"
+                          ],
+                          "variable": [
+                            {
+                              "key": "modelId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:30:30.000Z",
+                      "updatedAt": "2026-07-28T00:30:30.000Z",
+                      "uid": "35240-0060bc77-8848-4e19-948b-62207a1d4e96"
+                    },
+                    {
+                      "id": "e0834cf9-16fa-4a21-90b7-9a4b9b687271",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The desired MIME type of the inference body in the response.",
+                            "key": "X-Amzn-Bedrock-Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"body\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"accept\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/model/:modelId/invoke-with-response-stream",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "model",
+                            ":modelId",
+                            "invoke-with-response-stream"
+                          ],
+                          "variable": [
+                            {
+                              "key": "modelId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:30:30.000Z",
+                      "updatedAt": "2026-07-28T00:30:30.000Z",
+                      "uid": "35240-e0834cf9-16fa-4a21-90b7-9a4b9b687271"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:30:30.000Z",
+                  "updatedAt": "2026-07-28T00:30:30.000Z",
+                  "uid": "35240-65bd3e0f-6e28-4044-b599-f7aaab657cb8"
+                }
+              ],
+              "id": "67a48e9a-88aa-4acb-8d7a-753bd089b38d",
+              "createdAt": "2026-07-28T00:30:30.000Z",
+              "updatedAt": "2026-07-28T00:30:30.000Z",
+              "uid": "35240-67a48e9a-88aa-4acb-8d7a-753bd089b38d"
+            }
+          ],
+          "id": "b71fed97-5622-4852-96aa-80dd7baa30b2",
+          "createdAt": "2026-07-28T00:30:30.000Z",
+          "updatedAt": "2026-07-28T00:30:30.000Z",
+          "uid": "35240-b71fed97-5622-4852-96aa-80dd7baa30b2"
+        }
+      ],
+      "id": "608b6889-5c8c-4aae-9644-3ff9f6b575df",
+      "createdAt": "2026-07-28T00:30:30.000Z",
+      "updatedAt": "2026-07-28T00:30:30.000Z",
+      "uid": "35240-608b6889-5c8c-4aae-9644-3ff9f6b575df"
+    }
+  ],
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://bedrock.{{region}}.amazonaws.com"
+    }
+  ]
+}

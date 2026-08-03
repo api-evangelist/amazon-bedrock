@@ -1,0 +1,572 @@
+{
+  "info": {
+    "_postman_id": "e94f7eda-a092-4e2f-b6eb-0e37b78d7a9c",
+    "name": "Amazon Bedrock Converse Foundation Models API",
+    "description": "The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.\n\nContact Support:\n Name: AWS Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:30:28.000Z",
+    "updatedAt": "2026-07-28T00:30:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e94f7eda-a092-4e2f-b6eb-0e37b78d7a9c"
+  },
+  "item": [
+    {
+      "name": "foundation-models",
+      "item": [
+        {
+          "name": "{modelIdentifier}",
+          "item": [
+            {
+              "name": "Amazon Bedrock Get foundation model details",
+              "id": "5e15d6a8-c6d2-4a9c-935d-854e7c391cf5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/foundation-models/:modelIdentifier",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "foundation-models",
+                    ":modelIdentifier"
+                  ],
+                  "variable": [
+                    {
+                      "id": "305c8c7c-a04b-4c55-bf51-315b98f7bde1",
+                      "key": "modelIdentifier",
+                      "value": "<string>",
+                      "description": "(Required) The model identifier (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+                    }
+                  ]
+                },
+                "description": "Gets details about a specific Amazon Bedrock foundation model, including its capabilities, supported input and output modalities, and inference types."
+              },
+              "response": [
+                {
+                  "id": "9a2fd515-45b4-4e9d-96bd-f7b2e9021799",
+                  "name": "Successful response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/foundation-models/:modelIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "foundation-models",
+                        ":modelIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "modelIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"modelDetails\": {\n    \"modelArn\": \"<string>\",\n    \"modelId\": \"<string>\",\n    \"modelName\": \"<string>\",\n    \"providerName\": \"<string>\",\n    \"inputModalities\": [\n      \"EMBEDDING\",\n      \"TEXT\"\n    ],\n    \"outputModalities\": [\n      \"IMAGE\",\n      \"TEXT\"\n    ],\n    \"responseStreamingSupported\": \"<boolean>\",\n    \"customizationsSupported\": [\n      \"FINE_TUNING\",\n      \"FINE_TUNING\"\n    ],\n    \"inferenceTypesSupported\": [\n      \"PROVISIONED\",\n      \"ON_DEMAND\"\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T00:30:29.000Z",
+                  "updatedAt": "2026-07-28T00:30:29.000Z",
+                  "uid": "35240-9a2fd515-45b4-4e9d-96bd-f7b2e9021799"
+                },
+                {
+                  "id": "7fc29eae-7e60-4376-a31b-f5b35885fc06",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/foundation-models/:modelIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "foundation-models",
+                        ":modelIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "modelIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T00:30:29.000Z",
+                  "updatedAt": "2026-07-28T00:30:29.000Z",
+                  "uid": "35240-7fc29eae-7e60-4376-a31b-f5b35885fc06"
+                },
+                {
+                  "id": "8aa71196-d7bb-4561-b43b-cf97221c278f",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/foundation-models/:modelIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "foundation-models",
+                        ":modelIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "modelIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T00:30:29.000Z",
+                  "updatedAt": "2026-07-28T00:30:29.000Z",
+                  "uid": "35240-8aa71196-d7bb-4561-b43b-cf97221c278f"
+                },
+                {
+                  "id": "510e8c15-54c2-4b3f-91a1-eb12b8f2b047",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/foundation-models/:modelIdentifier",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "foundation-models",
+                        ":modelIdentifier"
+                      ],
+                      "variable": [
+                        {
+                          "key": "modelIdentifier"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T00:30:29.000Z",
+                  "updatedAt": "2026-07-28T00:30:29.000Z",
+                  "uid": "35240-510e8c15-54c2-4b3f-91a1-eb12b8f2b047"
+                }
+              ],
+              "createdAt": "2026-07-28T00:30:29.000Z",
+              "updatedAt": "2026-07-28T00:30:29.000Z",
+              "uid": "35240-5e15d6a8-c6d2-4a9c-935d-854e7c391cf5"
+            }
+          ],
+          "id": "ce07bb5f-369a-4d87-8b59-d32dd8ef38b8",
+          "createdAt": "2026-07-28T00:30:29.000Z",
+          "updatedAt": "2026-07-28T00:30:29.000Z",
+          "uid": "35240-ce07bb5f-369a-4d87-8b59-d32dd8ef38b8"
+        },
+        {
+          "name": "Amazon Bedrock List foundation models",
+          "id": "0c53a58f-626a-49bc-a402-f5ea7a41c1ae",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/foundation-models?byProvider=<string>&byOutputModality=TEXT&byInferenceType=ON_DEMAND",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "foundation-models"
+              ],
+              "query": [
+                {
+                  "description": "Filter by model provider (e.g., amazon, anthropic, meta).",
+                  "key": "byProvider",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by output modality (TEXT, IMAGE, EMBEDDING).",
+                  "key": "byOutputModality",
+                  "value": "TEXT"
+                },
+                {
+                  "description": "Filter by inference type (ON_DEMAND, PROVISIONED).",
+                  "key": "byInferenceType",
+                  "value": "ON_DEMAND"
+                }
+              ]
+            },
+            "description": "Lists the Amazon Bedrock foundation models that you can use. You can filter the results by provider, output modality, and inference type."
+          },
+          "response": [
+            {
+              "id": "56e77dd1-3f65-4db7-bfbe-100f0240c6af",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/foundation-models?byProvider=<string>&byOutputModality=TEXT&byInferenceType=ON_DEMAND",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "foundation-models"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by model provider (e.g., amazon, anthropic, meta).",
+                      "key": "byProvider",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by output modality (TEXT, IMAGE, EMBEDDING).",
+                      "key": "byOutputModality",
+                      "value": "TEXT"
+                    },
+                    {
+                      "description": "Filter by inference type (ON_DEMAND, PROVISIONED).",
+                      "key": "byInferenceType",
+                      "value": "ON_DEMAND"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"modelSummaries\": [\n    {\n      \"modelArn\": \"<string>\",\n      \"modelId\": \"<string>\",\n      \"modelName\": \"<string>\",\n      \"providerName\": \"<string>\",\n      \"inputModalities\": [\n        \"IMAGE\",\n        \"IMAGE\"\n      ],\n      \"outputModalities\": [\n        \"EMBEDDING\",\n        \"EMBEDDING\"\n      ],\n      \"responseStreamingSupported\": \"<boolean>\",\n      \"customizationsSupported\": [\n        \"FINE_TUNING\",\n        \"CONTINUED_PRE_TRAINING\"\n      ],\n      \"inferenceTypesSupported\": [\n        \"PROVISIONED\",\n        \"PROVISIONED\"\n      ]\n    },\n    {\n      \"modelArn\": \"<string>\",\n      \"modelId\": \"<string>\",\n      \"modelName\": \"<string>\",\n      \"providerName\": \"<string>\",\n      \"inputModalities\": [\n        \"IMAGE\",\n        \"EMBEDDING\"\n      ],\n      \"outputModalities\": [\n        \"IMAGE\",\n        \"TEXT\"\n      ],\n      \"responseStreamingSupported\": \"<boolean>\",\n      \"customizationsSupported\": [\n        \"FINE_TUNING\",\n        \"CONTINUED_PRE_TRAINING\"\n      ],\n      \"inferenceTypesSupported\": [\n        \"ON_DEMAND\",\n        \"ON_DEMAND\"\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T00:30:29.000Z",
+              "updatedAt": "2026-07-28T00:30:29.000Z",
+              "uid": "35240-56e77dd1-3f65-4db7-bfbe-100f0240c6af"
+            },
+            {
+              "id": "10f7a074-51b0-4896-b924-45c4036309bf",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/foundation-models?byProvider=<string>&byOutputModality=TEXT&byInferenceType=ON_DEMAND",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "foundation-models"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by model provider (e.g., amazon, anthropic, meta).",
+                      "key": "byProvider",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by output modality (TEXT, IMAGE, EMBEDDING).",
+                      "key": "byOutputModality",
+                      "value": "TEXT"
+                    },
+                    {
+                      "description": "Filter by inference type (ON_DEMAND, PROVISIONED).",
+                      "key": "byInferenceType",
+                      "value": "ON_DEMAND"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:29.000Z",
+              "updatedAt": "2026-07-28T00:30:29.000Z",
+              "uid": "35240-10f7a074-51b0-4896-b924-45c4036309bf"
+            },
+            {
+              "id": "47d6e336-d68d-492d-9515-ed6aa6a742e2",
+              "name": "Access denied",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/foundation-models?byProvider=<string>&byOutputModality=TEXT&byInferenceType=ON_DEMAND",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "foundation-models"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by model provider (e.g., amazon, anthropic, meta).",
+                      "key": "byProvider",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by output modality (TEXT, IMAGE, EMBEDDING).",
+                      "key": "byOutputModality",
+                      "value": "TEXT"
+                    },
+                    {
+                      "description": "Filter by inference type (ON_DEMAND, PROVISIONED).",
+                      "key": "byInferenceType",
+                      "value": "ON_DEMAND"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:29.000Z",
+              "updatedAt": "2026-07-28T00:30:29.000Z",
+              "uid": "35240-47d6e336-d68d-492d-9515-ed6aa6a742e2"
+            },
+            {
+              "id": "1deb8356-4980-4976-9f9a-d3ac8856fcaa",
+              "name": "Too many requests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/foundation-models?byProvider=<string>&byOutputModality=TEXT&byInferenceType=ON_DEMAND",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "foundation-models"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by model provider (e.g., amazon, anthropic, meta).",
+                      "key": "byProvider",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by output modality (TEXT, IMAGE, EMBEDDING).",
+                      "key": "byOutputModality",
+                      "value": "TEXT"
+                    },
+                    {
+                      "description": "Filter by inference type (ON_DEMAND, PROVISIONED).",
+                      "key": "byInferenceType",
+                      "value": "ON_DEMAND"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:29.000Z",
+              "updatedAt": "2026-07-28T00:30:29.000Z",
+              "uid": "35240-1deb8356-4980-4976-9f9a-d3ac8856fcaa"
+            },
+            {
+              "id": "5e64158e-62d8-4d2f-bf30-9c15e4b194b5",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/foundation-models?byProvider=<string>&byOutputModality=TEXT&byInferenceType=ON_DEMAND",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "foundation-models"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by model provider (e.g., amazon, anthropic, meta).",
+                      "key": "byProvider",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by output modality (TEXT, IMAGE, EMBEDDING).",
+                      "key": "byOutputModality",
+                      "value": "TEXT"
+                    },
+                    {
+                      "description": "Filter by inference type (ON_DEMAND, PROVISIONED).",
+                      "key": "byInferenceType",
+                      "value": "ON_DEMAND"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:30:29.000Z",
+              "updatedAt": "2026-07-28T00:30:29.000Z",
+              "uid": "35240-5e64158e-62d8-4d2f-bf30-9c15e4b194b5"
+            }
+          ],
+          "createdAt": "2026-07-28T00:30:29.000Z",
+          "updatedAt": "2026-07-28T00:30:29.000Z",
+          "uid": "35240-0c53a58f-626a-49bc-a402-f5ea7a41c1ae"
+        }
+      ],
+      "id": "75ae4d3d-a990-4633-bc64-8f74efedfe40",
+      "createdAt": "2026-07-28T00:30:29.000Z",
+      "updatedAt": "2026-07-28T00:30:29.000Z",
+      "uid": "35240-75ae4d3d-a990-4633-bc64-8f74efedfe40"
+    }
+  ],
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-east-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://bedrock.{{region}}.amazonaws.com"
+    }
+  ]
+}
