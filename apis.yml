@@ -86,8 +86,6 @@ apis:
     url: json-ld/amazon-bedrock-context.jsonld
   - type: SpectralRuleset
     url: spectral/ruleset.yml
-  - type: Capabilities
-    url: capabilities/capabilities.yml
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
   - type: GraphQL
@@ -112,8 +110,6 @@ apis:
     url: json-ld/amazon-bedrock-context.jsonld
   - type: SpectralRuleset
     url: spectral/ruleset.yml
-  - type: Capabilities
-    url: capabilities/capabilities.yml
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
   - type: GraphQL
@@ -138,8 +134,6 @@ apis:
     url: json-ld/amazon-bedrock-context.jsonld
   - type: SpectralRuleset
     url: spectral/ruleset.yml
-  - type: Capabilities
-    url: capabilities/capabilities.yml
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
   - type: GraphQL
@@ -164,8 +158,6 @@ apis:
     url: json-ld/amazon-bedrock-context.jsonld
   - type: SpectralRuleset
     url: spectral/ruleset.yml
-  - type: Capabilities
-    url: capabilities/capabilities.yml
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
   - type: GraphQL
@@ -190,8 +182,6 @@ apis:
     url: json-ld/amazon-bedrock-context.jsonld
   - type: SpectralRuleset
     url: spectral/ruleset.yml
-  - type: Capabilities
-    url: capabilities/capabilities.yml
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
   - type: GraphQL
@@ -216,8 +206,6 @@ apis:
     url: json-ld/amazon-bedrock-context.jsonld
   - type: SpectralRuleset
     url: spectral/ruleset.yml
-  - type: Capabilities
-    url: capabilities/capabilities.yml
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
   - type: GraphQL
