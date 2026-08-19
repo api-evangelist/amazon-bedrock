@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Bedrock Converse Provisioned Throughput API",
+    "version": "2023-04-20"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Provisioned Throughput",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Bedrock List provisioned model throughputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bedrock.{region}.amazonaws.com/provisioned-model-throughput",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Token for pagination."
+              },
+              {
+                "name": "statusEquals",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status."
+              }
+            ]
+          },
+          "docs": "Lists the provisioned throughputs that you have created."
+        },
+        {
+          "info": {
+            "name": "Amazon Bedrock Create provisioned model throughput",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://bedrock.{region}.amazonaws.com/provisioned-model-throughput",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a provisioned throughput with dedicated capacity for a foundation model or custom model. Provisioned throughput provides guaranteed inference performance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

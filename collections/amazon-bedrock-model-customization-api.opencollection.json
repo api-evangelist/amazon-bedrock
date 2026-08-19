@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Bedrock Converse Model Customization API",
+    "version": "2023-04-20"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Model Customization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Bedrock List model customization jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bedrock.{region}.amazonaws.com/model-customization-jobs",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Token for pagination."
+              },
+              {
+                "name": "statusEquals",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job status."
+              }
+            ]
+          },
+          "docs": "Returns a list of model customization jobs that you have submitted."
+        },
+        {
+          "info": {
+            "name": "Amazon Bedrock Create a model customization job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://bedrock.{region}.amazonaws.com/model-customization-jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a fine-tuning job to customize a foundation model. You provide training data, a base model, and output configuration to produce a custom model tailored to your use case."
+        },
+        {
+          "info": {
+            "name": "Amazon Bedrock Get model customization job details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bedrock.{region}.amazonaws.com/model-customization-jobs/:jobIdentifier",
+            "params": [
+              {
+                "name": "jobIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the customization job."
+              }
+            ]
+          },
+          "docs": "Retrieves the properties associated with a model customization job, including the status, creation time, and training metrics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

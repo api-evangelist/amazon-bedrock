@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Bedrock Converse Inference API",
+    "version": "2023-04-20"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inference",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Bedrock Invoke a model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://bedrock.{region}.amazonaws.com/model/:modelId/invoke",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the model to invoke (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the specified Amazon Bedrock model to run inference using the prompt and inference parameters provided in the request body. The response is returned in a single response body."
+        },
+        {
+          "info": {
+            "name": "Amazon Bedrock Invoke a model with response streaming",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://bedrock.{region}.amazonaws.com/model/:modelId/invoke-with-response-stream",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "X-Amzn-Bedrock-Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the model to invoke."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invokes the specified Amazon Bedrock model to run inference using the prompt and parameters provided in the request body. The response is streamed back in real time, allowing the client to begin processing results before the full response is generated."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

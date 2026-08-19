@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Bedrock Converse Custom Models API",
+    "version": "2023-04-20"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Bedrock List custom models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bedrock.{region}.amazonaws.com/custom-models",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Token for pagination."
+              },
+              {
+                "name": "baseModelArnEquals",
+                "value": "",
+                "type": "query",
+                "description": "Filter by base model ARN."
+              }
+            ]
+          },
+          "docs": "Returns a list of the custom models that you have created with the CreateModelCustomizationJob operation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

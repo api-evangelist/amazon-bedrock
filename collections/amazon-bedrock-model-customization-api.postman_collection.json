@@ -1,0 +1,772 @@
+{
+  "item": [
+    {
+      "id": "5ad4a450-1ce8-49a3-a02f-44579be9b614",
+      "name": "Model Customization",
+      "description": {
+        "content": "Operations for creating and managing model customization jobs.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ebb9d318-96d5-4149-82ce-0d7be7abca39",
+          "name": "Amazon Bedrock Create a model customization job",
+          "request": {
+            "name": "Amazon Bedrock Create a model customization job",
+            "description": {
+              "content": "Creates a fine-tuning job to customize a foundation model. You provide training data, a base model, and output configuration to produce a custom model tailored to your use case.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model-customization-jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jobName\": \"<string>\",\n  \"customModelName\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"baseModelIdentifier\": \"<string>\",\n  \"trainingDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"outputDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"customizationType\": \"<string>\",\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d69920ab-42cd-4161-8a24-e6560c80264d",
+              "name": "Job created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-customization-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobName\": \"<string>\",\n  \"customModelName\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"baseModelIdentifier\": \"<string>\",\n  \"trainingDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"outputDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"customizationType\": \"<string>\",\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobArn\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f33ea9e6-48d4-4a74-80bc-c50e9b73ebaa",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-customization-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobName\": \"<string>\",\n  \"customModelName\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"baseModelIdentifier\": \"<string>\",\n  \"trainingDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"outputDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"customizationType\": \"<string>\",\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca247ac0-cf1f-4538-9dfc-3c8d169504c2",
+              "name": "Resource already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-customization-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobName\": \"<string>\",\n  \"customModelName\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"baseModelIdentifier\": \"<string>\",\n  \"trainingDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"outputDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"customizationType\": \"<string>\",\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "776dc370-d64f-4686-8fc3-49e5535aec40",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-customization-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jobName\": \"<string>\",\n  \"customModelName\": \"<string>\",\n  \"roleArn\": \"<string>\",\n  \"baseModelIdentifier\": \"<string>\",\n  \"trainingDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"outputDataConfig\": {\n    \"s3Uri\": \"<string>\"\n  },\n  \"customizationType\": \"<string>\",\n  \"hyperParameters\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5472e9f3-3fb3-48c0-beee-f4fc97be4452",
+          "name": "Amazon Bedrock List model customization jobs",
+          "request": {
+            "name": "Amazon Bedrock List model customization jobs",
+            "description": {
+              "content": "Returns a list of model customization jobs that you have submitted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model-customization-jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>",
+                  "description": "Token for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "statusEquals",
+                  "value": "<string>",
+                  "description": "Filter by job status."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9dd7f959-752f-4238-97c3-7f1b706adbb6",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-customization-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statusEquals",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"modelCustomizationJobSummaries\": [\n    {\n      \"jobArn\": \"string\",\n      \"jobName\": \"string\",\n      \"status\": \"string\",\n      \"baseModelArn\": \"string\",\n      \"creationTime\": \"1983-10-02T03:30:13.718Z\"\n    },\n    {\n      \"jobArn\": \"string\",\n      \"jobName\": \"string\",\n      \"status\": \"string\",\n      \"baseModelArn\": \"string\",\n      \"creationTime\": \"1979-05-19T12:54:58.567Z\"\n    }\n  ],\n  \"nextToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "535419d1-dbb5-4845-bdb5-d42be8ecb74b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-customization-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statusEquals",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d670091f-9c49-40e0-a050-83b97640bcdb",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-customization-jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statusEquals",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1f1fa36-213d-4282-8a4f-be97133009c0",
+          "name": "Amazon Bedrock Get model customization job details",
+          "request": {
+            "name": "Amazon Bedrock Get model customization job details",
+            "description": {
+              "content": "Retrieves the properties associated with a model customization job, including the status, creation time, and training metrics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model-customization-jobs",
+                ":jobIdentifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobIdentifier",
+                  "description": "(Required) The identifier of the customization job."
+                },
+                {
+                  "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a733ac5-0818-4ba5-b887-2e3c4eee018a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-customization-jobs",
+                    ":jobIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobIdentifier",
+                      "description": "(Required) The identifier of the customization job."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobArn\": \"string\",\n  \"jobName\": \"string\",\n  \"status\": \"Stopping\",\n  \"baseModelArn\": \"string\",\n  \"customModelName\": \"string\",\n  \"customModelArn\": \"string\",\n  \"creationTime\": \"1988-05-15T19:55:47.764Z\",\n  \"lastModifiedTime\": \"1976-02-15T13:01:21.328Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4be7137a-118c-4050-9757-59b046709a23",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-customization-jobs",
+                    ":jobIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobIdentifier",
+                      "description": "(Required) The identifier of the customization job."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c6c32b1-c438-4254-a64d-fe09289224ed",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-customization-jobs",
+                    ":jobIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobIdentifier",
+                      "description": "(Required) The identifier of the customization job."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11e3ebf5-c191-411d-9c83-96ec2f31f84e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model-customization-jobs",
+                    ":jobIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobIdentifier",
+                      "description": "(Required) The identifier of the customization job."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://bedrock.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d1a2ca55-5144-4493-b021-7b1191944886",
+    "name": "Amazon Bedrock Converse Model Customization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Bedrock Converse Foundation Models API",
+    "version": "2023-04-20"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Foundation Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Bedrock List foundation models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bedrock.{region}.amazonaws.com/foundation-models",
+            "params": [
+              {
+                "name": "byProvider",
+                "value": "",
+                "type": "query",
+                "description": "Filter by model provider (e.g., amazon, anthropic, meta)."
+              },
+              {
+                "name": "byOutputModality",
+                "value": "",
+                "type": "query",
+                "description": "Filter by output modality (TEXT, IMAGE, EMBEDDING)."
+              },
+              {
+                "name": "byInferenceType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by inference type (ON_DEMAND, PROVISIONED)."
+              }
+            ]
+          },
+          "docs": "Lists the Amazon Bedrock foundation models that you can use. You can filter the results by provider, output modality, and inference type."
+        },
+        {
+          "info": {
+            "name": "Amazon Bedrock Get foundation model details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bedrock.{region}.amazonaws.com/foundation-models/:modelIdentifier",
+            "params": [
+              {
+                "name": "modelIdentifier",
+                "value": "",
+                "type": "path",
+                "description": "The model identifier (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+              }
+            ]
+          },
+          "docs": "Gets details about a specific Amazon Bedrock foundation model, including its capabilities, supported input and output modalities, and inference types."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

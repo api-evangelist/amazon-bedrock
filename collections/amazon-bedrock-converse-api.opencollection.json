@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Bedrock Converse API",
+    "version": "2023-04-20"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Converse",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Bedrock Converse with a model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://bedrock.{region}.amazonaws.com/model/:modelId/converse",
+            "params": [
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the model to converse with."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends messages to the specified Amazon Bedrock model using the Converse API. This provides a consistent interface for multi-turn conversations across different foundation models, with support for system prompts, tool use, and structured message formatting."
+        },
+        {
+          "info": {
+            "name": "Amazon Bedrock Converse with a model using streaming",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://bedrock.{region}.amazonaws.com/model/:modelId/converse-stream",
+            "params": [
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the model to converse with."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends messages to the specified Amazon Bedrock model and streams the response back in real time. This provides the same consistent multi-turn conversation interface as the Converse API, with the added benefit of streaming for lower perceived latency."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

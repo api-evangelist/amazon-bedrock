@@ -1,0 +1,627 @@
+{
+  "item": [
+    {
+      "id": "e29e28ce-a0a6-40e7-933e-5013099b38d9",
+      "name": "Foundation Models",
+      "description": {
+        "content": "Operations for listing and describing foundation models.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "867f5999-deaf-4c4d-be1d-8d17b234b0bf",
+          "name": "Amazon Bedrock List foundation models",
+          "request": {
+            "name": "Amazon Bedrock List foundation models",
+            "description": {
+              "content": "Lists the Amazon Bedrock foundation models that you can use. You can filter the results by provider, output modality, and inference type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "foundation-models"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "byProvider",
+                  "value": "<string>",
+                  "description": "Filter by model provider (e.g., amazon, anthropic, meta)."
+                },
+                {
+                  "disabled": false,
+                  "key": "byOutputModality",
+                  "value": "<string>",
+                  "description": "Filter by output modality (TEXT, IMAGE, EMBEDDING)."
+                },
+                {
+                  "disabled": false,
+                  "key": "byInferenceType",
+                  "value": "<string>",
+                  "description": "Filter by inference type (ON_DEMAND, PROVISIONED)."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "134f8791-0a00-431f-b898-373055c83853",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "foundation-models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "byProvider",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "byOutputModality",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "byInferenceType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"modelSummaries\": [\n    {\n      \"modelArn\": \"string\",\n      \"modelId\": \"string\",\n      \"modelName\": \"string\",\n      \"providerName\": \"string\",\n      \"inputModalities\": [\n        \"IMAGE\",\n        \"IMAGE\"\n      ],\n      \"outputModalities\": [\n        \"TEXT\",\n        \"IMAGE\"\n      ],\n      \"responseStreamingSupported\": true,\n      \"customizationsSupported\": [\n        \"CONTINUED_PRE_TRAINING\",\n        \"CONTINUED_PRE_TRAINING\"\n      ],\n      \"inferenceTypesSupported\": [\n        \"ON_DEMAND\",\n        \"ON_DEMAND\"\n      ]\n    },\n    {\n      \"modelArn\": \"string\",\n      \"modelId\": \"string\",\n      \"modelName\": \"string\",\n      \"providerName\": \"string\",\n      \"inputModalities\": [\n        \"TEXT\",\n        \"TEXT\"\n      ],\n      \"outputModalities\": [\n        \"IMAGE\",\n        \"TEXT\"\n      ],\n      \"responseStreamingSupported\": true,\n      \"customizationsSupported\": [\n        \"FINE_TUNING\",\n        \"CONTINUED_PRE_TRAINING\"\n      ],\n      \"inferenceTypesSupported\": [\n        \"ON_DEMAND\",\n        \"PROVISIONED\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e41735a8-fb2e-436c-a579-867056396342",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "foundation-models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "byProvider",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "byOutputModality",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "byInferenceType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a59ea08a-6aef-4636-93c6-71ad6b4cf5f5",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "foundation-models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "byProvider",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "byOutputModality",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "byInferenceType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7f5ddf6-9e20-4753-9064-796eb554d009",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "foundation-models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "byProvider",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "byOutputModality",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "byInferenceType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74bab29e-c3cc-4a74-b622-037344c1ba04",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "foundation-models"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "byProvider",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "byOutputModality",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "byInferenceType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "acd3fca6-4883-44aa-a0f3-15cea7d838f3",
+          "name": "Amazon Bedrock Get foundation model details",
+          "request": {
+            "name": "Amazon Bedrock Get foundation model details",
+            "description": {
+              "content": "Gets details about a specific Amazon Bedrock foundation model, including its capabilities, supported input and output modalities, and inference types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "foundation-models",
+                ":modelIdentifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "modelIdentifier",
+                  "description": "(Required) The model identifier (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+                },
+                {
+                  "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "364c4f52-370c-4c6f-bff8-fa911afb0477",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "foundation-models",
+                    ":modelIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelIdentifier",
+                      "description": "(Required) The model identifier (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"modelDetails\": {\n    \"modelArn\": \"string\",\n    \"modelId\": \"string\",\n    \"modelName\": \"string\",\n    \"providerName\": \"string\",\n    \"inputModalities\": [\n      \"IMAGE\",\n      \"IMAGE\"\n    ],\n    \"outputModalities\": [\n      \"EMBEDDING\",\n      \"IMAGE\"\n    ],\n    \"responseStreamingSupported\": false,\n    \"customizationsSupported\": [\n      \"FINE_TUNING\",\n      \"FINE_TUNING\"\n    ],\n    \"inferenceTypesSupported\": [\n      \"ON_DEMAND\",\n      \"PROVISIONED\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c89f47fa-c402-42ee-bce4-1adcbb126572",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "foundation-models",
+                    ":modelIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelIdentifier",
+                      "description": "(Required) The model identifier (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bd2e2d6-cfe1-4eb4-a02a-e7594e60d01f",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "foundation-models",
+                    ":modelIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelIdentifier",
+                      "description": "(Required) The model identifier (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46f844fc-8b89-40e7-b82d-504aedeefb7f",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "foundation-models",
+                    ":modelIdentifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelIdentifier",
+                      "description": "(Required) The model identifier (e.g., anthropic.claude-3-sonnet-20240229-v1:0)."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://bedrock.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a3e3a63f-6261-46ca-8010-cf863e4659f8",
+    "name": "Amazon Bedrock Converse Foundation Models API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}

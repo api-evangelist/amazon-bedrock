@@ -1,0 +1,759 @@
+{
+  "item": [
+    {
+      "id": "2980274c-2b9d-4092-b7f5-c68426839765",
+      "name": "Converse",
+      "description": {
+        "content": "Operations for multi-turn conversations with models.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f9b4ba10-6585-4378-a42d-9a49ac8b6dd9",
+          "name": "Amazon Bedrock Converse with a model",
+          "request": {
+            "name": "Amazon Bedrock Converse with a model",
+            "description": {
+              "content": "Sends messages to the specified Amazon Bedrock model using the Converse API. This provides a consistent interface for multi-turn conversations across different foundation models, with support for system prompts, tool use, and structured message formatting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                ":modelId",
+                "converse"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "modelId",
+                  "description": "(Required) The identifier of the model to converse with."
+                },
+                {
+                  "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": [\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": [\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": \"<integer>\",\n    \"temperature\": \"<number>\",\n    \"topP\": \"<number>\",\n    \"stopSequences\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"inputSchema\": {\n            \"json\": \"<object>\"\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"inputSchema\": {\n            \"json\": \"<object>\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c0913e5c-af40-4870-a739-74e2810a3f9c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 8809,\n    \"temperature\": 0.6801973882584972,\n    \"topP\": 0.775430398975719,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"output\": {\n    \"message\": {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"png\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  },\n  \"stopReason\": \"tool_use\",\n  \"usage\": {\n    \"inputTokens\": 6687,\n    \"outputTokens\": 7060,\n    \"totalTokens\": 3392\n  },\n  \"metrics\": {\n    \"latencyMs\": 3155\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "152f0770-651f-4f7c-8e5b-16fda43f7e6e",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 8809,\n    \"temperature\": 0.6801973882584972,\n    \"topP\": 0.775430398975719,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5f244f3-c28a-4f49-b25c-6c1453f48044",
+              "name": "Access denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 8809,\n    \"temperature\": 0.6801973882584972,\n    \"topP\": 0.775430398975719,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9769a9af-590e-40cc-8c2f-0fee52106008",
+              "name": "Model not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 8809,\n    \"temperature\": 0.6801973882584972,\n    \"topP\": 0.775430398975719,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "432f32aa-80b0-4663-81bf-8dc1adb84e66",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 8809,\n    \"temperature\": 0.6801973882584972,\n    \"topP\": 0.775430398975719,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4dd78636-db3a-4f07-98d4-864d4827d4e8",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 8809,\n    \"temperature\": 0.6801973882584972,\n    \"topP\": 0.775430398975719,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d11f7ea-d2cc-4286-85ee-09282bf46c71",
+          "name": "Amazon Bedrock Converse with a model using streaming",
+          "request": {
+            "name": "Amazon Bedrock Converse with a model using streaming",
+            "description": {
+              "content": "Sends messages to the specified Amazon Bedrock model and streams the response back in real time. This provides the same consistent multi-turn conversation interface as the Converse API, with the added benefit of streaming for lower perceived latency.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "model",
+                ":modelId",
+                "converse-stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "modelId",
+                  "description": "(Required) The identifier of the model to converse with."
+                },
+                {
+                  "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.amazon.eventstream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"<string>\",\n      \"content\": [\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"<string>\",\n      \"content\": [\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"<string>\",\n          \"image\": {\n            \"format\": \"<string>\",\n            \"source\": {\n              \"bytes\": \"<byte>\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"<string>\",\n            \"name\": \"<string>\",\n            \"input\": \"<object>\"\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"<string>\",\n            \"content\": [\n              {\n                \"text\": \"<string>\"\n              },\n              {\n                \"text\": \"<string>\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"<string>\"\n    },\n    {\n      \"text\": \"<string>\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": \"<integer>\",\n    \"temperature\": \"<number>\",\n    \"topP\": \"<number>\",\n    \"stopSequences\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"inputSchema\": {\n            \"json\": \"<object>\"\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"inputSchema\": {\n            \"json\": \"<object>\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dd7b9cee-2789-46cc-9708-967a3e6de32a",
+              "name": "Successful streaming response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.amazon.eventstream"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 8809,\n    \"temperature\": 0.6801973882584972,\n    \"topP\": 0.775430398975719,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.amazon.eventstream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0a414ff8-6102-4f4e-b3f2-a768c6657c62",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 8809,\n    \"temperature\": 0.6801973882584972,\n    \"topP\": 0.775430398975719,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b330a8fa-de70-481a-992d-11a0ba5f0c0b",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 8809,\n    \"temperature\": 0.6801973882584972,\n    \"topP\": 0.775430398975719,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6b7a94d-8a20-45e3-ab48-250f17348d28",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "model",
+                    ":modelId",
+                    "converse-stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "modelId",
+                      "description": "(Required) The identifier of the model to converse with."
+                    },
+                    {
+                      "description": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"role\": \"assistant\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"webp\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        },\n        {\n          \"text\": \"string\",\n          \"image\": {\n            \"format\": \"jpeg\",\n            \"source\": {\n              \"bytes\": \"string\"\n            }\n          },\n          \"toolUse\": {\n            \"toolUseId\": \"string\",\n            \"name\": \"string\",\n            \"input\": {}\n          },\n          \"toolResult\": {\n            \"toolUseId\": \"string\",\n            \"content\": [\n              {\n                \"text\": \"string\"\n              },\n              {\n                \"text\": \"string\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ],\n  \"system\": [\n    {\n      \"text\": \"string\"\n    },\n    {\n      \"text\": \"string\"\n    }\n  ],\n  \"inferenceConfig\": {\n    \"maxTokens\": 8809,\n    \"temperature\": 0.6801973882584972,\n    \"topP\": 0.775430398975719,\n    \"stopSequences\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"toolConfig\": {\n    \"tools\": [\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      },\n      {\n        \"toolSpec\": {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"inputSchema\": {\n            \"json\": {}\n          }\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AWS region (This can only be one of us-east-1,us-west-2,eu-west-1,ap-southeast-1)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-east-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://bedrock.{{region}}.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "40fdad4f-3225-4400-b29d-4bf0a2ad4f07",
+    "name": "Amazon Bedrock Converse API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}
