@@ -23,6 +23,16 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-bedrock.png
 tags:
+- Artificial Intelligence
+- AWS
+- Foundation Models
+- Generative AI
+- LLM
+- Machine-Learning
+- RAG
+- Agents
+- Responsible AI
+tags_raw:
 - AI
 - AWS
 - Foundation Models
