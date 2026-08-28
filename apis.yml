@@ -9,6 +9,18 @@ description: Amazon Bedrock is a fully managed AWS service that makes high-perfo
   accessed over HTTPS using AWS Signature Version 4 (SigV4) authentication, typically
   via the AWS SDKs.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: unknown
