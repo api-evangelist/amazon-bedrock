@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Amazon Bedrock Converse Model Customization API
+  title: Amazon Bedrock Model Customization API
   description: The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.
   version: '2023-04-20'
   contact:
@@ -153,38 +153,22 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
-    ConflictException:
+    InternalServerException:
       type: object
       properties:
         message:
           type: string
-    GetModelCustomizationJobResponse:
+    CreateModelCustomizationJobResponse:
       type: object
       properties:
         jobArn:
           type: string
-        jobName:
+          description: The ARN of the customization job.
+    ValidationException:
+      type: object
+      properties:
+        message:
           type: string
-        status:
-          type: string
-          enum:
-          - InProgress
-          - Completed
-          - Failed
-          - Stopping
-          - Stopped
-        baseModelArn:
-          type: string
-        customModelName:
-          type: string
-        customModelArn:
-          type: string
-        creationTime:
-          type: string
-          format: date-time
-        lastModifiedTime:
-          type: string
-          format: date-time
     CreateModelCustomizationJobRequest:
       type: object
       required:
@@ -230,27 +214,6 @@ components:
           additionalProperties:
             type: string
           description: Hyperparameters for the customization job.
-    CreateModelCustomizationJobResponse:
-      type: object
-      properties:
-        jobArn:
-          type: string
-          description: The ARN of the customization job.
-    ResourceNotFoundException:
-      type: object
-      properties:
-        message:
-          type: string
-    InternalServerException:
-      type: object
-      properties:
-        message:
-          type: string
-    ValidationException:
-      type: object
-      properties:
-        message:
-          type: string
     ListModelCustomizationJobsResponse:
       type: object
       properties:
@@ -271,4 +234,41 @@ components:
                 type: string
                 format: date-time
         nextToken:
+          type: string
+    GetModelCustomizationJobResponse:
+      type: object
+      properties:
+        jobArn:
+          type: string
+        jobName:
+          type: string
+        status:
+          type: string
+          enum:
+          - InProgress
+          - Completed
+          - Failed
+          - Stopping
+          - Stopped
+        baseModelArn:
+          type: string
+        customModelName:
+          type: string
+        customModelArn:
+          type: string
+        creationTime:
+          type: string
+          format: date-time
+        lastModifiedTime:
+          type: string
+          format: date-time
+    ResourceNotFoundException:
+      type: object
+      properties:
+        message:
+          type: string
+    ConflictException:
+      type: object
+      properties:
+        message:
           type: string

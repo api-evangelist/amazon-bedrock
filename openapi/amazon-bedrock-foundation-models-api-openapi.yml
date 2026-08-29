@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Amazon Bedrock Converse Foundation Models API
+  title: Amazon Bedrock Foundation Models API
   description: The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.
   version: '2023-04-20'
   contact:
@@ -127,11 +127,34 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
     ThrottlingException:
       type: object
       properties:
         message:
           type: string
+    ValidationException:
+      type: object
+      properties:
+        message:
+          type: string
+    AccessDeniedException:
+      type: object
+      properties:
+        message:
+          type: string
+    ListFoundationModelsResponse:
+      type: object
+      properties:
+        modelSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoundationModelSummary'
+          description: A list of foundation model summaries.
     FoundationModelSummary:
       type: object
       properties:
@@ -184,36 +207,13 @@ components:
             - ON_DEMAND
             - PROVISIONED
           description: The inference types supported by the model.
-    GetFoundationModelResponse:
-      type: object
-      properties:
-        modelDetails:
-          $ref: '#/components/schemas/FoundationModelSummary'
-    AccessDeniedException:
-      type: object
-      properties:
-        message:
-          type: string
     ResourceNotFoundException:
       type: object
       properties:
         message:
           type: string
-    InternalServerException:
+    GetFoundationModelResponse:
       type: object
       properties:
-        message:
-          type: string
-    ValidationException:
-      type: object
-      properties:
-        message:
-          type: string
-    ListFoundationModelsResponse:
-      type: object
-      properties:
-        modelSummaries:
-          type: array
-          items:
-            $ref: '#/components/schemas/FoundationModelSummary'
-          description: A list of foundation model summaries.
+        modelDetails:
+          $ref: '#/components/schemas/FoundationModelSummary'

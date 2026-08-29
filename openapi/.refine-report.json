@@ -1,24 +1,31 @@
 {
   "provider": "amazon-bedrock",
   "sources": [
-    "amazon-bedrock-converse-api-openapi.yml",
-    "amazon-bedrock-custom-models-api-openapi.yml",
-    "amazon-bedrock-foundation-models-api-openapi.yml",
-    "amazon-bedrock-inference-api-openapi.yml",
-    "amazon-bedrock-model-customization-api-openapi.yml",
-    "amazon-bedrock-provisioned-throughput-api-openapi.yml"
+    "_original/amazon-bedrock-openapi.yml",
+    "_original/amazon-bedrock-runtime-openapi.yml"
   ],
   "outputs": [
-    "amazon-bedrock-converse-api-openapi.yml",
     "amazon-bedrock-custom-models-api-openapi.yml",
     "amazon-bedrock-foundation-models-api-openapi.yml",
-    "amazon-bedrock-inference-api-openapi.yml",
     "amazon-bedrock-model-customization-api-openapi.yml",
-    "amazon-bedrock-provisioned-throughput-api-openapi.yml"
+    "amazon-bedrock-provisioned-throughput-api-openapi.yml",
+    "amazon-bedrock-converse-api-openapi.yml",
+    "amazon-bedrock-inference-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "amazon-bedrock-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "amazon-bedrock-runtime-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "amazon-bedrock-converse-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-bedrock-custom-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-bedrock-foundation-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-bedrock-inference-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-bedrock-model-customization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "amazon-bedrock-provisioned-throughput-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

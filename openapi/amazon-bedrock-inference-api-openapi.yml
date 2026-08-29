@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Amazon Bedrock Converse Inference API
-  description: The Amazon Bedrock management API provides operations for managing foundation models, custom models, model customization jobs, provisioned throughput, and other Bedrock resources.
-  version: '2023-04-20'
+  title: Amazon Bedrock Runtime Inference API
+  description: The Amazon Bedrock Runtime API provides operations for invoking foundation models and running inference. Use this API to send prompts, receive generated responses, conduct multi-turn conversations, and stream responses in real time.
+  version: '2023-09-30'
   contact:
     name: AWS Support
     url: https://aws.amazon.com/support/
@@ -10,8 +10,8 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
 servers:
-- url: https://bedrock.{region}.amazonaws.com
-  description: Amazon Bedrock Management API
+- url: https://bedrock-runtime.{region}.amazonaws.com
+  description: Amazon Bedrock Runtime API
   variables:
     region:
       default: us-east-1
@@ -153,23 +153,7 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
-    ThrottlingException:
-      type: object
-      properties:
-        message:
-          type: string
-    InvokeModelResponse:
-      type: object
-      description: The response from the model invocation.
-      properties:
-        body:
-          type: string
-          format: byte
-          description: The inference response from the model, encoded as a JSON string.
-        contentType:
-          type: string
-          description: The MIME type of the response body.
-    AccessDeniedException:
+    InternalServerException:
       type: object
       properties:
         message:
@@ -189,6 +173,32 @@ components:
                   type: string
                   format: byte
                   description: A chunk of the streamed response.
+    ThrottlingException:
+      type: object
+      properties:
+        message:
+          type: string
+    ValidationException:
+      type: object
+      properties:
+        message:
+          type: string
+    AccessDeniedException:
+      type: object
+      properties:
+        message:
+          type: string
+    InvokeModelResponse:
+      type: object
+      description: The response from the model invocation.
+      properties:
+        body:
+          type: string
+          format: byte
+          description: The inference response from the model, encoded as a JSON string.
+        contentType:
+          type: string
+          description: The MIME type of the response body.
     ResourceNotFoundException:
       type: object
       properties:
@@ -208,13 +218,3 @@ components:
         accept:
           type: string
           description: The desired MIME type of the response.
-    ValidationException:
-      type: object
-      properties:
-        message:
-          type: string
-    InternalServerException:
-      type: object
-      properties:
-        message:
-          type: string
