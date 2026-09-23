@@ -129,52 +129,42 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
-    InternalServerException:
+    ConverseResponse:
       type: object
+      description: The response from the Converse API.
       properties:
-        message:
+        output:
+          type: object
+          properties:
+            message:
+              $ref: '#/components/schemas/Message'
+        stopReason:
           type: string
-    SystemContentBlock:
-      type: object
-      properties:
-        text:
-          type: string
-          description: System prompt text.
-    ConverseRequest:
-      type: object
-      required:
-      - messages
-      description: The request body for the Converse API.
-      properties:
-        messages:
-          type: array
-          description: The messages in the conversation.
-          items:
-            $ref: '#/components/schemas/Message'
-        system:
-          type: array
-          description: System prompts for the conversation.
-          items:
-            $ref: '#/components/schemas/SystemContentBlock'
-        inferenceConfig:
-          $ref: '#/components/schemas/InferenceConfiguration'
-        toolConfig:
-          $ref: '#/components/schemas/ToolConfiguration'
-    ThrottlingException:
-      type: object
-      properties:
-        message:
-          type: string
-    ValidationException:
-      type: object
-      properties:
-        message:
-          type: string
-    AccessDeniedException:
-      type: object
-      properties:
-        message:
-          type: string
+          enum:
+          - end_turn
+          - tool_use
+          - max_tokens
+          - stop_sequence
+          - content_filtered
+          description: The reason the model stopped generating.
+        usage:
+          type: object
+          properties:
+            inputTokens:
+              type: integer
+              description: The number of input tokens processed.
+            outputTokens:
+              type: integer
+              description: The number of output tokens generated.
+            totalTokens:
+              type: integer
+              description: The total number of tokens.
+        metrics:
+          type: object
+          properties:
+            latencyMs:
+              type: integer
+              description: The latency of the response in milliseconds.
     Message:
       type: object
       required:
@@ -236,6 +226,11 @@ components:
                       properties:
                         text:
                           type: string
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
     InferenceConfiguration:
       type: object
       properties:
@@ -320,6 +315,41 @@ components:
                   properties:
                     latencyMs:
                       type: integer
+    ValidationException:
+      type: object
+      properties:
+        message:
+          type: string
+    ThrottlingException:
+      type: object
+      properties:
+        message:
+          type: string
+    ResourceNotFoundException:
+      type: object
+      properties:
+        message:
+          type: string
+    ConverseRequest:
+      type: object
+      required:
+      - messages
+      description: The request body for the Converse API.
+      properties:
+        messages:
+          type: array
+          description: The messages in the conversation.
+          items:
+            $ref: '#/components/schemas/Message'
+        system:
+          type: array
+          description: System prompts for the conversation.
+          items:
+            $ref: '#/components/schemas/SystemContentBlock'
+        inferenceConfig:
+          $ref: '#/components/schemas/InferenceConfiguration'
+        toolConfig:
+          $ref: '#/components/schemas/ToolConfiguration'
     ToolConfiguration:
       type: object
       properties:
@@ -344,44 +374,14 @@ components:
                       json:
                         type: object
                         description: The JSON Schema for the tool input.
-    ConverseResponse:
-      type: object
-      description: The response from the Converse API.
-      properties:
-        output:
-          type: object
-          properties:
-            message:
-              $ref: '#/components/schemas/Message'
-        stopReason:
-          type: string
-          enum:
-          - end_turn
-          - tool_use
-          - max_tokens
-          - stop_sequence
-          - content_filtered
-          description: The reason the model stopped generating.
-        usage:
-          type: object
-          properties:
-            inputTokens:
-              type: integer
-              description: The number of input tokens processed.
-            outputTokens:
-              type: integer
-              description: The number of output tokens generated.
-            totalTokens:
-              type: integer
-              description: The total number of tokens.
-        metrics:
-          type: object
-          properties:
-            latencyMs:
-              type: integer
-              description: The latency of the response in milliseconds.
-    ResourceNotFoundException:
+    AccessDeniedException:
       type: object
       properties:
         message:
           type: string
+    SystemContentBlock:
+      type: object
+      properties:
+        text:
+          type: string
+          description: System prompt text.

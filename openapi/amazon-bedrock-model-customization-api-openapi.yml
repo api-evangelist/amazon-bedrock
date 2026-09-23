@@ -158,17 +158,6 @@ components:
       properties:
         message:
           type: string
-    CreateModelCustomizationJobResponse:
-      type: object
-      properties:
-        jobArn:
-          type: string
-          description: The ARN of the customization job.
-    ValidationException:
-      type: object
-      properties:
-        message:
-          type: string
     CreateModelCustomizationJobRequest:
       type: object
       required:
@@ -235,6 +224,21 @@ components:
                 format: date-time
         nextToken:
           type: string
+    ConflictException:
+      type: object
+      properties:
+        message:
+          type: string
+    ValidationException:
+      type: object
+      properties:
+        message:
+          type: string
+    ResourceNotFoundException:
+      type: object
+      properties:
+        message:
+          type: string
     GetModelCustomizationJobResponse:
       type: object
       properties:
@@ -262,13 +266,9 @@ components:
         lastModifiedTime:
           type: string
           format: date-time
-    ResourceNotFoundException:
+    CreateModelCustomizationJobResponse:
       type: object
       properties:
-        message:
+        jobArn:
           type: string
-    ConflictException:
-      type: object
-      properties:
-        message:
-          type: string
+          description: The ARN of the customization job.

@@ -158,6 +158,20 @@ components:
       properties:
         message:
           type: string
+    InvokeModelRequest:
+      type: object
+      description: The request body for invoking a model. The structure depends on the model being invoked. This is passed as an opaque blob to the model.
+      properties:
+        body:
+          type: string
+          format: byte
+          description: The prompt and inference parameters encoded as a JSON string, in the format required by the specified model.
+        contentType:
+          type: string
+          description: The MIME type of the input data.
+        accept:
+          type: string
+          description: The desired MIME type of the response.
     InvokeModelWithResponseStreamResponse:
       type: object
       description: The streaming response from the model invocation.
@@ -173,17 +187,17 @@ components:
                   type: string
                   format: byte
                   description: A chunk of the streamed response.
-    ThrottlingException:
-      type: object
-      properties:
-        message:
-          type: string
     ValidationException:
       type: object
       properties:
         message:
           type: string
-    AccessDeniedException:
+    ThrottlingException:
+      type: object
+      properties:
+        message:
+          type: string
+    ResourceNotFoundException:
       type: object
       properties:
         message:
@@ -199,22 +213,8 @@ components:
         contentType:
           type: string
           description: The MIME type of the response body.
-    ResourceNotFoundException:
+    AccessDeniedException:
       type: object
       properties:
         message:
           type: string
-    InvokeModelRequest:
-      type: object
-      description: The request body for invoking a model. The structure depends on the model being invoked. This is passed as an opaque blob to the model.
-      properties:
-        body:
-          type: string
-          format: byte
-          description: The prompt and inference parameters encoded as a JSON string, in the format required by the specified model.
-        contentType:
-          type: string
-          description: The MIME type of the input data.
-        accept:
-          type: string
-          description: The desired MIME type of the response.

@@ -107,7 +107,34 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
+    CreateProvisionedModelThroughputRequest:
+      type: object
+      required:
+      - modelUnits
+      - provisionedModelName
+      - modelId
+      properties:
+        modelUnits:
+          type: integer
+          description: Number of model units to allocate.
+        provisionedModelName:
+          type: string
+          description: A name for the provisioned throughput.
+        modelId:
+          type: string
+          description: The ID of the model to provision.
+        commitmentDuration:
+          type: string
+          enum:
+          - OneMonth
+          - SixMonths
+          description: The commitment duration.
     InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
+    ValidationException:
       type: object
       properties:
         message:
@@ -118,11 +145,6 @@ components:
         provisionedModelArn:
           type: string
           description: The ARN of the provisioned throughput.
-    ValidationException:
-      type: object
-      properties:
-        message:
-          type: string
     ListProvisionedModelThroughputsResponse:
       type: object
       properties:
@@ -146,25 +168,3 @@ components:
                 format: date-time
         nextToken:
           type: string
-    CreateProvisionedModelThroughputRequest:
-      type: object
-      required:
-      - modelUnits
-      - provisionedModelName
-      - modelId
-      properties:
-        modelUnits:
-          type: integer
-          description: Number of model units to allocate.
-        provisionedModelName:
-          type: string
-          description: A name for the provisioned throughput.
-        modelId:
-          type: string
-          description: The ID of the model to provision.
-        commitmentDuration:
-          type: string
-          enum:
-          - OneMonth
-          - SixMonths
-          description: The commitment duration.

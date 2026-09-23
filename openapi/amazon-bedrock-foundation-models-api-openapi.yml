@@ -127,34 +127,6 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
-    InternalServerException:
-      type: object
-      properties:
-        message:
-          type: string
-    ThrottlingException:
-      type: object
-      properties:
-        message:
-          type: string
-    ValidationException:
-      type: object
-      properties:
-        message:
-          type: string
-    AccessDeniedException:
-      type: object
-      properties:
-        message:
-          type: string
-    ListFoundationModelsResponse:
-      type: object
-      properties:
-        modelSummaries:
-          type: array
-          items:
-            $ref: '#/components/schemas/FoundationModelSummary'
-          description: A list of foundation model summaries.
     FoundationModelSummary:
       type: object
       properties:
@@ -207,7 +179,17 @@ components:
             - ON_DEMAND
             - PROVISIONED
           description: The inference types supported by the model.
-    ResourceNotFoundException:
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
+    ValidationException:
+      type: object
+      properties:
+        message:
+          type: string
+    ThrottlingException:
       type: object
       properties:
         message:
@@ -217,3 +199,21 @@ components:
       properties:
         modelDetails:
           $ref: '#/components/schemas/FoundationModelSummary'
+    ResourceNotFoundException:
+      type: object
+      properties:
+        message:
+          type: string
+    ListFoundationModelsResponse:
+      type: object
+      properties:
+        modelSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/FoundationModelSummary'
+          description: A list of foundation model summaries.
+    AccessDeniedException:
+      type: object
+      properties:
+        message:
+          type: string
