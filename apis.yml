@@ -40,7 +40,7 @@ tags:
 - Foundation Models
 - Generative AI
 - LLM
-- Machine-Learning
+- Machine Learning
 - RAG
 - Agents
 - Responsible AI
@@ -54,6 +54,7 @@ tags_raw:
 - RAG
 - Agents
 - Responsible AI
+- Machine-Learning
 url: https://raw.githubusercontent.com/api-evangelist/amazon-bedrock/refs/heads/main/apis.yml
 created: '2026-05-11'
 modified: '2026-05-19'
@@ -110,8 +111,6 @@ apis:
     url: spectral/ruleset.yml
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
-  - type: GraphQL
-    url: graphql/amazon-bedrock-graphql.md
 - aid: amazon-bedrock:amazon-bedrock-custom-models-api
   name: Amazon Bedrock Custom Models API
   description: Operations for listing custom models.
@@ -134,8 +133,6 @@ apis:
     url: spectral/ruleset.yml
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
-  - type: GraphQL
-    url: graphql/amazon-bedrock-graphql.md
 - aid: amazon-bedrock:amazon-bedrock-foundation-models-api
   name: Amazon Bedrock Foundation Models API
   description: Operations for listing and describing foundation models.
@@ -158,8 +155,6 @@ apis:
     url: spectral/ruleset.yml
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
-  - type: GraphQL
-    url: graphql/amazon-bedrock-graphql.md
 - aid: amazon-bedrock:amazon-bedrock-inference-api
   name: Amazon Bedrock Inference API
   description: Operations for invoking models and running inference.
@@ -182,8 +177,6 @@ apis:
     url: spectral/ruleset.yml
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
-  - type: GraphQL
-    url: graphql/amazon-bedrock-graphql.md
 - aid: amazon-bedrock:amazon-bedrock-model-customization-api
   name: Amazon Bedrock Model Customization API
   description: Operations for creating and managing model customization jobs.
@@ -206,8 +199,6 @@ apis:
     url: spectral/ruleset.yml
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
-  - type: GraphQL
-    url: graphql/amazon-bedrock-graphql.md
 - aid: amazon-bedrock:amazon-bedrock-provisioned-throughput-api
   name: Amazon Bedrock Provisioned Throughput API
   description: Operations for managing provisioned model throughput.
@@ -230,8 +221,6 @@ apis:
     url: spectral/ruleset.yml
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
-  - type: GraphQL
-    url: graphql/amazon-bedrock-graphql.md
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/amazon-bedrock/overview
@@ -276,5 +265,5 @@ common:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
-x-parent: aws
+x-parent: amazon-web-services
 x-relationship: product
