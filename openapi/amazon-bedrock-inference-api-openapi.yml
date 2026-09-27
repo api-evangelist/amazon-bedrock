@@ -153,51 +153,17 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
-    InternalServerException:
-      type: object
-      properties:
-        message:
-          type: string
-    InvokeModelRequest:
-      type: object
-      description: The request body for invoking a model. The structure depends on the model being invoked. This is passed as an opaque blob to the model.
-      properties:
-        body:
-          type: string
-          format: byte
-          description: The prompt and inference parameters encoded as a JSON string, in the format required by the specified model.
-        contentType:
-          type: string
-          description: The MIME type of the input data.
-        accept:
-          type: string
-          description: The desired MIME type of the response.
-    InvokeModelWithResponseStreamResponse:
-      type: object
-      description: The streaming response from the model invocation.
-      properties:
-        body:
-          type: object
-          description: The streaming response body as an event stream.
-          properties:
-            chunk:
-              type: object
-              properties:
-                bytes:
-                  type: string
-                  format: byte
-                  description: A chunk of the streamed response.
     ValidationException:
       type: object
       properties:
         message:
           type: string
-    ThrottlingException:
+    ResourceNotFoundException:
       type: object
       properties:
         message:
           type: string
-    ResourceNotFoundException:
+    ThrottlingException:
       type: object
       properties:
         message:
@@ -218,3 +184,37 @@ components:
       properties:
         message:
           type: string
+    InvokeModelWithResponseStreamResponse:
+      type: object
+      description: The streaming response from the model invocation.
+      properties:
+        body:
+          type: object
+          description: The streaming response body as an event stream.
+          properties:
+            chunk:
+              type: object
+              properties:
+                bytes:
+                  type: string
+                  format: byte
+                  description: A chunk of the streamed response.
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
+    InvokeModelRequest:
+      type: object
+      description: The request body for invoking a model. The structure depends on the model being invoked. This is passed as an opaque blob to the model.
+      properties:
+        body:
+          type: string
+          format: byte
+          description: The prompt and inference parameters encoded as a JSON string, in the format required by the specified model.
+        contentType:
+          type: string
+          description: The MIME type of the input data.
+        accept:
+          type: string
+          description: The desired MIME type of the response.

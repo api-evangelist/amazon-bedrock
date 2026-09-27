@@ -129,104 +129,13 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
-    ConverseResponse:
+    SystemContentBlock:
       type: object
-      description: The response from the Converse API.
       properties:
-        output:
-          type: object
-          properties:
-            message:
-              $ref: '#/components/schemas/Message'
-        stopReason:
+        text:
           type: string
-          enum:
-          - end_turn
-          - tool_use
-          - max_tokens
-          - stop_sequence
-          - content_filtered
-          description: The reason the model stopped generating.
-        usage:
-          type: object
-          properties:
-            inputTokens:
-              type: integer
-              description: The number of input tokens processed.
-            outputTokens:
-              type: integer
-              description: The number of output tokens generated.
-            totalTokens:
-              type: integer
-              description: The total number of tokens.
-        metrics:
-          type: object
-          properties:
-            latencyMs:
-              type: integer
-              description: The latency of the response in milliseconds.
-    Message:
-      type: object
-      required:
-      - role
-      - content
-      properties:
-        role:
-          type: string
-          enum:
-          - user
-          - assistant
-          description: The role of the message sender.
-        content:
-          type: array
-          description: The content of the message.
-          items:
-            type: object
-            properties:
-              text:
-                type: string
-                description: Text content.
-              image:
-                type: object
-                description: Image content.
-                properties:
-                  format:
-                    type: string
-                    enum:
-                    - png
-                    - jpeg
-                    - gif
-                    - webp
-                  source:
-                    type: object
-                    properties:
-                      bytes:
-                        type: string
-                        format: byte
-              toolUse:
-                type: object
-                description: Tool use content.
-                properties:
-                  toolUseId:
-                    type: string
-                  name:
-                    type: string
-                  input:
-                    type: object
-              toolResult:
-                type: object
-                description: Tool result content.
-                properties:
-                  toolUseId:
-                    type: string
-                  content:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        text:
-                          type: string
-    InternalServerException:
+          description: System prompt text.
+    ValidationException:
       type: object
       properties:
         message:
@@ -252,6 +161,11 @@ components:
           items:
             type: string
           description: Stop sequences that will halt generation.
+    ResourceNotFoundException:
+      type: object
+      properties:
+        message:
+          type: string
     ConverseStreamResponse:
       type: object
       description: The streaming response from the ConverseStream API.
@@ -315,21 +229,6 @@ components:
                   properties:
                     latencyMs:
                       type: integer
-    ValidationException:
-      type: object
-      properties:
-        message:
-          type: string
-    ThrottlingException:
-      type: object
-      properties:
-        message:
-          type: string
-    ResourceNotFoundException:
-      type: object
-      properties:
-        message:
-          type: string
     ConverseRequest:
       type: object
       required:
@@ -350,6 +249,82 @@ components:
           $ref: '#/components/schemas/InferenceConfiguration'
         toolConfig:
           $ref: '#/components/schemas/ToolConfiguration'
+    ThrottlingException:
+      type: object
+      properties:
+        message:
+          type: string
+    Message:
+      type: object
+      required:
+      - role
+      - content
+      properties:
+        role:
+          type: string
+          enum:
+          - user
+          - assistant
+          description: The role of the message sender.
+        content:
+          type: array
+          description: The content of the message.
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+                description: Text content.
+              image:
+                type: object
+                description: Image content.
+                properties:
+                  format:
+                    type: string
+                    enum:
+                    - png
+                    - jpeg
+                    - gif
+                    - webp
+                  source:
+                    type: object
+                    properties:
+                      bytes:
+                        type: string
+                        format: byte
+              toolUse:
+                type: object
+                description: Tool use content.
+                properties:
+                  toolUseId:
+                    type: string
+                  name:
+                    type: string
+                  input:
+                    type: object
+              toolResult:
+                type: object
+                description: Tool result content.
+                properties:
+                  toolUseId:
+                    type: string
+                  content:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        text:
+                          type: string
+    AccessDeniedException:
+      type: object
+      properties:
+        message:
+          type: string
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
     ToolConfiguration:
       type: object
       properties:
@@ -374,14 +349,39 @@ components:
                       json:
                         type: object
                         description: The JSON Schema for the tool input.
-    AccessDeniedException:
+    ConverseResponse:
       type: object
+      description: The response from the Converse API.
       properties:
-        message:
+        output:
+          type: object
+          properties:
+            message:
+              $ref: '#/components/schemas/Message'
+        stopReason:
           type: string
-    SystemContentBlock:
-      type: object
-      properties:
-        text:
-          type: string
-          description: System prompt text.
+          enum:
+          - end_turn
+          - tool_use
+          - max_tokens
+          - stop_sequence
+          - content_filtered
+          description: The reason the model stopped generating.
+        usage:
+          type: object
+          properties:
+            inputTokens:
+              type: integer
+              description: The number of input tokens processed.
+            outputTokens:
+              type: integer
+              description: The number of output tokens generated.
+            totalTokens:
+              type: integer
+              description: The total number of tokens.
+        metrics:
+          type: object
+          properties:
+            latencyMs:
+              type: integer
+              description: The latency of the response in milliseconds.

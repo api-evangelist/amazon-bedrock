@@ -129,11 +129,6 @@ components:
           - OneMonth
           - SixMonths
           description: The commitment duration.
-    InternalServerException:
-      type: object
-      properties:
-        message:
-          type: string
     ValidationException:
       type: object
       properties:
@@ -167,4 +162,9 @@ components:
                 type: string
                 format: date-time
         nextToken:
+          type: string
+    InternalServerException:
+      type: object
+      properties:
+        message:
           type: string
