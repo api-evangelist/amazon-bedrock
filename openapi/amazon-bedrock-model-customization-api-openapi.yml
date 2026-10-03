@@ -153,43 +153,17 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
-    ResourceNotFoundException:
-      type: object
-      properties:
-        message:
-          type: string
-    ValidationException:
-      type: object
-      properties:
-        message:
-          type: string
-    ListModelCustomizationJobsResponse:
-      type: object
-      properties:
-        modelCustomizationJobSummaries:
-          type: array
-          items:
-            type: object
-            properties:
-              jobArn:
-                type: string
-              jobName:
-                type: string
-              status:
-                type: string
-              baseModelArn:
-                type: string
-              creationTime:
-                type: string
-                format: date-time
-        nextToken:
-          type: string
     CreateModelCustomizationJobResponse:
       type: object
       properties:
         jobArn:
           type: string
           description: The ARN of the customization job.
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
     GetModelCustomizationJobResponse:
       type: object
       properties:
@@ -217,6 +191,42 @@ components:
         lastModifiedTime:
           type: string
           format: date-time
+    ValidationException:
+      type: object
+      properties:
+        message:
+          type: string
+    ResourceNotFoundException:
+      type: object
+      properties:
+        message:
+          type: string
+    ConflictException:
+      type: object
+      properties:
+        message:
+          type: string
+    ListModelCustomizationJobsResponse:
+      type: object
+      properties:
+        modelCustomizationJobSummaries:
+          type: array
+          items:
+            type: object
+            properties:
+              jobArn:
+                type: string
+              jobName:
+                type: string
+              status:
+                type: string
+              baseModelArn:
+                type: string
+              creationTime:
+                type: string
+                format: date-time
+        nextToken:
+          type: string
     CreateModelCustomizationJobRequest:
       type: object
       required:
@@ -262,13 +272,3 @@ components:
           additionalProperties:
             type: string
           description: Hyperparameters for the customization job.
-    ConflictException:
-      type: object
-      properties:
-        message:
-          type: string
-    InternalServerException:
-      type: object
-      properties:
-        message:
-          type: string

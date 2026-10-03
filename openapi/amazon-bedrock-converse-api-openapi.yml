@@ -129,131 +129,6 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
-    SystemContentBlock:
-      type: object
-      properties:
-        text:
-          type: string
-          description: System prompt text.
-    ValidationException:
-      type: object
-      properties:
-        message:
-          type: string
-    InferenceConfiguration:
-      type: object
-      properties:
-        maxTokens:
-          type: integer
-          description: The maximum number of tokens to generate.
-        temperature:
-          type: number
-          description: The sampling temperature (0.0 to 1.0).
-          minimum: 0.0
-          maximum: 1.0
-        topP:
-          type: number
-          description: The nucleus sampling parameter.
-          minimum: 0.0
-          maximum: 1.0
-        stopSequences:
-          type: array
-          items:
-            type: string
-          description: Stop sequences that will halt generation.
-    ResourceNotFoundException:
-      type: object
-      properties:
-        message:
-          type: string
-    ConverseStreamResponse:
-      type: object
-      description: The streaming response from the ConverseStream API.
-      properties:
-        stream:
-          type: object
-          description: The event stream of response chunks.
-          properties:
-            messageStart:
-              type: object
-              properties:
-                role:
-                  type: string
-            contentBlockStart:
-              type: object
-              properties:
-                contentBlockIndex:
-                  type: integer
-                start:
-                  type: object
-                  properties:
-                    toolUse:
-                      type: object
-                      properties:
-                        toolUseId:
-                          type: string
-                        name:
-                          type: string
-            contentBlockDelta:
-              type: object
-              properties:
-                contentBlockIndex:
-                  type: integer
-                delta:
-                  type: object
-                  properties:
-                    text:
-                      type: string
-            contentBlockStop:
-              type: object
-              properties:
-                contentBlockIndex:
-                  type: integer
-            messageStop:
-              type: object
-              properties:
-                stopReason:
-                  type: string
-            metadata:
-              type: object
-              properties:
-                usage:
-                  type: object
-                  properties:
-                    inputTokens:
-                      type: integer
-                    outputTokens:
-                      type: integer
-                metrics:
-                  type: object
-                  properties:
-                    latencyMs:
-                      type: integer
-    ConverseRequest:
-      type: object
-      required:
-      - messages
-      description: The request body for the Converse API.
-      properties:
-        messages:
-          type: array
-          description: The messages in the conversation.
-          items:
-            $ref: '#/components/schemas/Message'
-        system:
-          type: array
-          description: System prompts for the conversation.
-          items:
-            $ref: '#/components/schemas/SystemContentBlock'
-        inferenceConfig:
-          $ref: '#/components/schemas/InferenceConfiguration'
-        toolConfig:
-          $ref: '#/components/schemas/ToolConfiguration'
-    ThrottlingException:
-      type: object
-      properties:
-        message:
-          type: string
     Message:
       type: object
       required:
@@ -325,30 +200,11 @@ components:
       properties:
         message:
           type: string
-    ToolConfiguration:
+    ValidationException:
       type: object
       properties:
-        tools:
-          type: array
-          description: A list of tools available to the model.
-          items:
-            type: object
-            properties:
-              toolSpec:
-                type: object
-                properties:
-                  name:
-                    type: string
-                    description: The name of the tool.
-                  description:
-                    type: string
-                    description: A description of what the tool does.
-                  inputSchema:
-                    type: object
-                    properties:
-                      json:
-                        type: object
-                        description: The JSON Schema for the tool input.
+        message:
+          type: string
     ConverseResponse:
       type: object
       description: The response from the Converse API.
@@ -385,3 +241,147 @@ components:
             latencyMs:
               type: integer
               description: The latency of the response in milliseconds.
+    ConverseStreamResponse:
+      type: object
+      description: The streaming response from the ConverseStream API.
+      properties:
+        stream:
+          type: object
+          description: The event stream of response chunks.
+          properties:
+            messageStart:
+              type: object
+              properties:
+                role:
+                  type: string
+            contentBlockStart:
+              type: object
+              properties:
+                contentBlockIndex:
+                  type: integer
+                start:
+                  type: object
+                  properties:
+                    toolUse:
+                      type: object
+                      properties:
+                        toolUseId:
+                          type: string
+                        name:
+                          type: string
+            contentBlockDelta:
+              type: object
+              properties:
+                contentBlockIndex:
+                  type: integer
+                delta:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+            contentBlockStop:
+              type: object
+              properties:
+                contentBlockIndex:
+                  type: integer
+            messageStop:
+              type: object
+              properties:
+                stopReason:
+                  type: string
+            metadata:
+              type: object
+              properties:
+                usage:
+                  type: object
+                  properties:
+                    inputTokens:
+                      type: integer
+                    outputTokens:
+                      type: integer
+                metrics:
+                  type: object
+                  properties:
+                    latencyMs:
+                      type: integer
+    ToolConfiguration:
+      type: object
+      properties:
+        tools:
+          type: array
+          description: A list of tools available to the model.
+          items:
+            type: object
+            properties:
+              toolSpec:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: The name of the tool.
+                  description:
+                    type: string
+                    description: A description of what the tool does.
+                  inputSchema:
+                    type: object
+                    properties:
+                      json:
+                        type: object
+                        description: The JSON Schema for the tool input.
+    ResourceNotFoundException:
+      type: object
+      properties:
+        message:
+          type: string
+    SystemContentBlock:
+      type: object
+      properties:
+        text:
+          type: string
+          description: System prompt text.
+    ThrottlingException:
+      type: object
+      properties:
+        message:
+          type: string
+    ConverseRequest:
+      type: object
+      required:
+      - messages
+      description: The request body for the Converse API.
+      properties:
+        messages:
+          type: array
+          description: The messages in the conversation.
+          items:
+            $ref: '#/components/schemas/Message'
+        system:
+          type: array
+          description: System prompts for the conversation.
+          items:
+            $ref: '#/components/schemas/SystemContentBlock'
+        inferenceConfig:
+          $ref: '#/components/schemas/InferenceConfiguration'
+        toolConfig:
+          $ref: '#/components/schemas/ToolConfiguration'
+    InferenceConfiguration:
+      type: object
+      properties:
+        maxTokens:
+          type: integer
+          description: The maximum number of tokens to generate.
+        temperature:
+          type: number
+          description: The sampling temperature (0.0 to 1.0).
+          minimum: 0.0
+          maximum: 1.0
+        topP:
+          type: number
+          description: The nucleus sampling parameter.
+          minimum: 0.0
+          maximum: 1.0
+        stopSequences:
+          type: array
+          items:
+            type: string
+          description: Stop sequences that will halt generation.

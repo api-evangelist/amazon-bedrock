@@ -107,6 +107,22 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
+    CreateProvisionedModelThroughputResponse:
+      type: object
+      properties:
+        provisionedModelArn:
+          type: string
+          description: The ARN of the provisioned throughput.
+    ValidationException:
+      type: object
+      properties:
+        message:
+          type: string
     CreateProvisionedModelThroughputRequest:
       type: object
       required:
@@ -129,17 +145,6 @@ components:
           - OneMonth
           - SixMonths
           description: The commitment duration.
-    ValidationException:
-      type: object
-      properties:
-        message:
-          type: string
-    CreateProvisionedModelThroughputResponse:
-      type: object
-      properties:
-        provisionedModelArn:
-          type: string
-          description: The ARN of the provisioned throughput.
     ListProvisionedModelThroughputsResponse:
       type: object
       properties:
@@ -162,9 +167,4 @@ components:
                 type: string
                 format: date-time
         nextToken:
-          type: string
-    InternalServerException:
-      type: object
-      properties:
-        message:
           type: string
