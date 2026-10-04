@@ -153,16 +153,21 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
-    AccessDeniedException:
+    InvokeModelWithResponseStreamResponse:
       type: object
+      description: The streaming response from the model invocation.
       properties:
-        message:
-          type: string
-    InternalServerException:
-      type: object
-      properties:
-        message:
-          type: string
+        body:
+          type: object
+          description: The streaming response body as an event stream.
+          properties:
+            chunk:
+              type: object
+              properties:
+                bytes:
+                  type: string
+                  format: byte
+                  description: A chunk of the streamed response.
     ValidationException:
       type: object
       properties:
@@ -182,6 +187,11 @@ components:
         accept:
           type: string
           description: The desired MIME type of the response.
+    ThrottlingException:
+      type: object
+      properties:
+        message:
+          type: string
     ResourceNotFoundException:
       type: object
       properties:
@@ -198,23 +208,13 @@ components:
         contentType:
           type: string
           description: The MIME type of the response body.
-    ThrottlingException:
+    AccessDeniedException:
       type: object
       properties:
         message:
           type: string
-    InvokeModelWithResponseStreamResponse:
+    InternalServerException:
       type: object
-      description: The streaming response from the model invocation.
       properties:
-        body:
-          type: object
-          description: The streaming response body as an event stream.
-          properties:
-            chunk:
-              type: object
-              properties:
-                bytes:
-                  type: string
-                  format: byte
-                  description: A chunk of the streamed response.
+        message:
+          type: string

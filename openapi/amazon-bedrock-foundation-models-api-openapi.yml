@@ -135,27 +135,7 @@ components:
           items:
             $ref: '#/components/schemas/FoundationModelSummary'
           description: A list of foundation model summaries.
-    AccessDeniedException:
-      type: object
-      properties:
-        message:
-          type: string
-    InternalServerException:
-      type: object
-      properties:
-        message:
-          type: string
     ValidationException:
-      type: object
-      properties:
-        message:
-          type: string
-    GetFoundationModelResponse:
-      type: object
-      properties:
-        modelDetails:
-          $ref: '#/components/schemas/FoundationModelSummary'
-    ResourceNotFoundException:
       type: object
       properties:
         message:
@@ -165,6 +145,16 @@ components:
       properties:
         message:
           type: string
+    ResourceNotFoundException:
+      type: object
+      properties:
+        message:
+          type: string
+    GetFoundationModelResponse:
+      type: object
+      properties:
+        modelDetails:
+          $ref: '#/components/schemas/FoundationModelSummary'
     FoundationModelSummary:
       type: object
       properties:
@@ -217,3 +207,13 @@ components:
             - ON_DEMAND
             - PROVISIONED
           description: The inference types supported by the model.
+    AccessDeniedException:
+      type: object
+      properties:
+        message:
+          type: string
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string

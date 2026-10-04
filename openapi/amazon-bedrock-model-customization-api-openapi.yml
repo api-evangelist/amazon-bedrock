@@ -153,59 +153,6 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
-    CreateModelCustomizationJobResponse:
-      type: object
-      properties:
-        jobArn:
-          type: string
-          description: The ARN of the customization job.
-    InternalServerException:
-      type: object
-      properties:
-        message:
-          type: string
-    GetModelCustomizationJobResponse:
-      type: object
-      properties:
-        jobArn:
-          type: string
-        jobName:
-          type: string
-        status:
-          type: string
-          enum:
-          - InProgress
-          - Completed
-          - Failed
-          - Stopping
-          - Stopped
-        baseModelArn:
-          type: string
-        customModelName:
-          type: string
-        customModelArn:
-          type: string
-        creationTime:
-          type: string
-          format: date-time
-        lastModifiedTime:
-          type: string
-          format: date-time
-    ValidationException:
-      type: object
-      properties:
-        message:
-          type: string
-    ResourceNotFoundException:
-      type: object
-      properties:
-        message:
-          type: string
-    ConflictException:
-      type: object
-      properties:
-        message:
-          type: string
     ListModelCustomizationJobsResponse:
       type: object
       properties:
@@ -226,6 +173,11 @@ components:
                 type: string
                 format: date-time
         nextToken:
+          type: string
+    ValidationException:
+      type: object
+      properties:
+        message:
           type: string
     CreateModelCustomizationJobRequest:
       type: object
@@ -272,3 +224,51 @@ components:
           additionalProperties:
             type: string
           description: Hyperparameters for the customization job.
+    ConflictException:
+      type: object
+      properties:
+        message:
+          type: string
+    CreateModelCustomizationJobResponse:
+      type: object
+      properties:
+        jobArn:
+          type: string
+          description: The ARN of the customization job.
+    ResourceNotFoundException:
+      type: object
+      properties:
+        message:
+          type: string
+    GetModelCustomizationJobResponse:
+      type: object
+      properties:
+        jobArn:
+          type: string
+        jobName:
+          type: string
+        status:
+          type: string
+          enum:
+          - InProgress
+          - Completed
+          - Failed
+          - Stopping
+          - Stopped
+        baseModelArn:
+          type: string
+        customModelName:
+          type: string
+        customModelArn:
+          type: string
+        creationTime:
+          type: string
+          format: date-time
+        lastModifiedTime:
+          type: string
+          format: date-time
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string

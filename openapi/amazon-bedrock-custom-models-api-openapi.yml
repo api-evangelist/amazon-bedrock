@@ -71,12 +71,12 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
-    InternalServerException:
+    ValidationException:
       type: object
       properties:
         message:
           type: string
-    ValidationException:
+    InternalServerException:
       type: object
       properties:
         message:
