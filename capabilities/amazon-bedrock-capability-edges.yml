@@ -1,0 +1,61 @@
+slug: amazon-bedrock
+provider: Amazon Bedrock
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Model Customization
+  spec_file: amazon-bedrock-model-customization-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.8
+  evidence: POST /model-customization-jobs  CreateModelCustomizationJob  Amazon Bedrock Create a model
+    customization job
+  reason: Fine-tuning/customization jobs are squarely AI/ML model lifecycle (training) management.
+- tag: Converse
+  spec_file: amazon-bedrock-converse-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.75
+  evidence: '"Amazon Bedrock Converse with a model"; "operations for invoking foundation models and running
+    inference"'
+  reason: Runtime inference against foundation models is AI/ML capability delivery (AI model lifecycle
+    / MLOps). It is a technical AI service, best placed under Artificial Intelligence Management.
+- tag: Custom Models
+  spec_file: amazon-bedrock-custom-models-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.75
+  evidence: GET /custom-models  ListCustomModels  Amazon Bedrock List custom models
+  reason: Operations enumerate customized machine-learning models in the AI platform, which is AI/ML model
+    lifecycle management under Information & Data Management.
+- tag: Foundation Models
+  spec_file: amazon-bedrock-foundation-models-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.75
+  evidence: GetFoundationModel  Amazon Bedrock Get foundation model details
+  reason: Cataloguing and inspecting available foundation models is part of AI/ML model lifecycle management,
+    not a generic IT or business capability.
+- tag: Inference
+  spec_file: amazon-bedrock-inference-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.7
+  evidence: POST /model/{modelId}/invoke  InvokeModel  Amazon Bedrock Invoke a model
+  reason: Runtime invocation of foundation models for generative AI is AI model operation (MLOps/AI management);
+    no other candidate capability fits model inference.

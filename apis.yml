@@ -44,6 +44,7 @@ tags:
 - RAG
 - Agents
 - Responsible AI
+- Model Serving
 tags_raw:
 - AI
 - AWS
@@ -55,6 +56,7 @@ tags_raw:
 - Agents
 - Responsible AI
 - Machine-Learning
+- Model Serving
 url: https://raw.githubusercontent.com/api-evangelist/amazon-bedrock/refs/heads/main/apis.yml
 created: '2026-05-11'
 modified: '2026-05-19'
@@ -222,6 +224,9 @@ apis:
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
 common:
+- type: CapabilityMap
+  url: capabilities/amazon-bedrock-capability-edges.yml
+  name: Amazon Bedrock Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/amazon-bedrock/overview
 - type: AgenticAccess
