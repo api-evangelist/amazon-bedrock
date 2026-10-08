@@ -224,6 +224,10 @@ apis:
   - type: Vocabulary
     url: vocabulary/vocabulary.yml
 common:
+- type: RateLimits
+  url: rate-limits/amazon-bedrock-rate-limits.yml
+- type: FinOps
+  url: finops/amazon-bedrock-finops.yml
 - type: Plans
   url: plans/amazon-bedrock-plans-pricing.yml
 - type: CapabilityMap
