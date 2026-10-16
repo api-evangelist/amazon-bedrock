@@ -58,17 +58,6 @@
   relationship: system-coverage
   status: not-a-workflow
   arazzo: null
-- slug: amazon-bedrock-livekit-agents
-  label: LiveKit Agents
-  partner: livekit
-  partner_name: LiveKit Agents
-  type: coverage
-  channel: partner-built
-  evidence: https://github.com/livekit/agents/tree/main/livekit-plugins/livekit-plugins-aws
-  source: edge
-  relationship: system-coverage
-  status: not-a-workflow
-  arazzo: null
 - slug: amazon-bedrock-llamaindex
   label: LlamaIndex
   partner: llamaindex
@@ -87,6 +76,17 @@
   type: coverage
   channel: partner-built
   evidence: https://github.com/langchain-ai/langchain-aws
+  source: edge
+  relationship: system-coverage
+  status: not-a-workflow
+  arazzo: null
+- slug: amazon-bedrock-livekit-agents
+  label: LiveKit Agents
+  partner: livekit
+  partner_name: LiveKit Agents
+  type: coverage
+  channel: partner-built
+  evidence: https://github.com/livekit/agents/tree/main/livekit-plugins/livekit-plugins-aws
   source: edge
   relationship: system-coverage
   status: not-a-workflow
