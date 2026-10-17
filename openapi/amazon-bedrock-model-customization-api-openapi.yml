@@ -153,32 +153,43 @@ paths:
                 $ref: '#/components/schemas/InternalServerException'
 components:
   schemas:
-    ListModelCustomizationJobsResponse:
-      type: object
-      properties:
-        modelCustomizationJobSummaries:
-          type: array
-          items:
-            type: object
-            properties:
-              jobArn:
-                type: string
-              jobName:
-                type: string
-              status:
-                type: string
-              baseModelArn:
-                type: string
-              creationTime:
-                type: string
-                format: date-time
-        nextToken:
-          type: string
     ValidationException:
       type: object
       properties:
         message:
           type: string
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
+    GetModelCustomizationJobResponse:
+      type: object
+      properties:
+        jobArn:
+          type: string
+        jobName:
+          type: string
+        status:
+          type: string
+          enum:
+          - InProgress
+          - Completed
+          - Failed
+          - Stopping
+          - Stopped
+        baseModelArn:
+          type: string
+        customModelName:
+          type: string
+        customModelArn:
+          type: string
+        creationTime:
+          type: string
+          format: date-time
+        lastModifiedTime:
+          type: string
+          format: date-time
     CreateModelCustomizationJobRequest:
       type: object
       required:
@@ -224,10 +235,26 @@ components:
           additionalProperties:
             type: string
           description: Hyperparameters for the customization job.
-    ConflictException:
+    ListModelCustomizationJobsResponse:
       type: object
       properties:
-        message:
+        modelCustomizationJobSummaries:
+          type: array
+          items:
+            type: object
+            properties:
+              jobArn:
+                type: string
+              jobName:
+                type: string
+              status:
+                type: string
+              baseModelArn:
+                type: string
+              creationTime:
+                type: string
+                format: date-time
+        nextToken:
           type: string
     CreateModelCustomizationJobResponse:
       type: object
@@ -240,34 +267,7 @@ components:
       properties:
         message:
           type: string
-    GetModelCustomizationJobResponse:
-      type: object
-      properties:
-        jobArn:
-          type: string
-        jobName:
-          type: string
-        status:
-          type: string
-          enum:
-          - InProgress
-          - Completed
-          - Failed
-          - Stopping
-          - Stopped
-        baseModelArn:
-          type: string
-        customModelName:
-          type: string
-        customModelArn:
-          type: string
-        creationTime:
-          type: string
-          format: date-time
-        lastModifiedTime:
-          type: string
-          format: date-time
-    InternalServerException:
+    ConflictException:
       type: object
       properties:
         message:

@@ -112,6 +112,11 @@ components:
       properties:
         message:
           type: string
+    InternalServerException:
+      type: object
+      properties:
+        message:
+          type: string
     CreateProvisionedModelThroughputResponse:
       type: object
       properties:
@@ -163,8 +168,3 @@ components:
           - OneMonth
           - SixMonths
           description: The commitment duration.
-    InternalServerException:
-      type: object
-      properties:
-        message:
-          type: string
